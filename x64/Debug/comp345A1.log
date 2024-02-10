@@ -1,0 +1,27 @@
+﻿  Cell.cpp
+C:\Projects\School\Comp345Project\Cell.h(8,19): error C2061: syntax error: identifier 'CellOccupant'
+C:\Projects\School\Comp345Project\Cell.h(9,15): error C3646: 'getOccupant': unknown override specifier
+C:\Projects\School\Comp345Project\Cell.h(9,26): error C2059: syntax error: '('
+C:\Projects\School\Comp345Project\Cell.h(9,28): error C2238: unexpected token(s) preceding ';'
+C:\Projects\School\Comp345Project\Cell.h(13,15): error C3646: 'occupant': unknown override specifier
+C:\Projects\School\Comp345Project\Cell.h(13,23): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Projects\School\Comp345Project\Cell.cpp(6,12): error C2511: 'void Cell::SetOccupant(CellOccupant)': overloaded member function not found in 'Cell'
+C:\Projects\School\Comp345Project\Cell.h(6,7): message : see declaration of 'Cell'
+C:\Projects\School\Comp345Project\Cell.cpp(8,2): error C2065: 'occupant': undeclared identifier
+C:\Projects\School\Comp345Project\Cell.cpp(11,20): error C2039: 'getOccupant': is not a member of 'Cell'
+C:\Projects\School\Comp345Project\Cell.h(6,7): message : see declaration of 'Cell'
+C:\Projects\School\Comp345Project\Cell.cpp(13,9): error C2065: 'occupant': undeclared identifier
+C:\Projects\School\Comp345Project\Cell.cpp(18,9): error C2065: 'occupant': undeclared identifier
+  Map.cpp
+C:\Projects\School\Comp345Project\Cell.h(8,19): error C2061: syntax error: identifier 'CellOccupant'
+C:\Projects\School\Comp345Project\Cell.h(9,15): error C3646: 'getOccupant': unknown override specifier
+C:\Projects\School\Comp345Project\Cell.h(9,26): error C2059: syntax error: '('
+C:\Projects\School\Comp345Project\Cell.h(9,28): error C2238: unexpected token(s) preceding ';'
+C:\Projects\School\Comp345Project\Cell.h(13,15): error C3646: 'occupant': unknown override specifier
+C:\Projects\School\Comp345Project\Cell.h(13,23): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Projects\School\Comp345Project\Map.h(6,7): warning C4200: nonstandard extension used: zero-sized array in struct/union
+C:\Projects\School\Comp345Project\Map.h(6,7): message : This member will be ignored by a defaulted constructor or copy/move assignment operator
+C:\Projects\School\Comp345Project\Map.h(9,8): error C3863: array type 'Cell [][100]' is not assignable
+C:\Projects\School\Comp345Project\Map.cpp(4,11): error C2011: 'Map': 'class' type redefinition
+C:\Projects\School\Comp345Project\Map.h(3,7): message : see declaration of 'Map'
+  Generating Code...
