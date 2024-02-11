@@ -3,10 +3,12 @@
 class Map
 {
 private:
-	Cell grid[][100];
+	Cell** grid;
 public:
-	Map(int arg1, int arg2) {
-		grid = new Cell[arg1][20];
+	Map(int rows, int cols) {
+		grid = createGrid(rows, cols);
 	}
+	bool IsValid();
+	void SetCellOccupant(int row, int col, CellOccupant o);
 };
 
