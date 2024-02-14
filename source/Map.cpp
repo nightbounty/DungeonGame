@@ -1,5 +1,5 @@
-#include "Map.h"
-#include "Cell.h"
+#include "../headers/Map.h"
+#include "../headers/Cell.h"
 #include <iostream>
 
 Cell** createGrid(int rows, int cols) {
