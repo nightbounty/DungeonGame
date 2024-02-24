@@ -1,5 +1,6 @@
 #pragma once
-#include "Cell.h"
+#include "../headers/Cell.h"
+#include "../headers/Map.h"
 class Map
 {
 private:

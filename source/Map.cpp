@@ -1,6 +1,6 @@
 #include "../headers/Map.h"
-#include "../headers/Cell.h"
 #include <iostream>
+#include "../headers/Cell.h"
 
 Cell** createGrid(int rows, int cols) {
 	// Allocate memory for an array of pointers to rows
@@ -21,5 +21,5 @@ void deleteGrid(Cell** grid, int rows) {
 }
 
 void Map::SetCellOccupant(int row, int col, CellOccupant o) {
-
+	grid[row][col].SetCellOccupant(o);
 }
