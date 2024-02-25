@@ -23,10 +23,10 @@ CellOccupant Cell::getCellOccupant()
 	return occupant;
 }
 
-bool Cell::isWall() // WHY??
+/* bool Cell::isWall() // WHY??
 {
 	return this->isWall;
-}
+} */
 
 
 void Cell::setWall(bool wall)
