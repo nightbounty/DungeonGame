@@ -1,5 +1,5 @@
 
-#include "../headers/Cell.h"
+#include "Cell.h"
 #include <iostream>
 
 using namespace std;
@@ -34,4 +34,12 @@ bool Cell::IsWall()
 void Cell::SetWall(bool wall)
 {
 	this->isWall = wall;
+}
+
+bool Cell::IsOnPath() {
+	return this->isOnPath;
+}
+
+void Cell::SetOnPath(bool onPath) {
+	this->isOnPath = onPath;
 }

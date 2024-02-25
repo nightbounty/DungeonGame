@@ -11,5 +11,6 @@ private:
 public: 
     void Battle(Character c);
     void Interact(Character c);
+    string GetTokenCode();
 };
 

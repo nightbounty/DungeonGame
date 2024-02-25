@@ -1,11 +1,10 @@
 #pragma once
-#include "../headers/CellOccupant.h"
+#include "CellOccupant.h"
 #include <iostream>
 #include <string>
 using namespace std;
 
-class Chest :
-    public CellOccupant
+class Chest : public CellOccupant
 {
 private:
     string contents; // should later be a list of items
@@ -13,5 +12,7 @@ private:
 public:
     string getContents();
     void setContents(string contents);
+    void Interact(Character c);
+    string GetTokenCode();
 };
 

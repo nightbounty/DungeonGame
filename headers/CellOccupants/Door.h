@@ -1,17 +1,19 @@
 #pragma once
-#include <CellOccupant.h>
 #include <iostream>
 #include <string>
-#include <Map.h>
+#include "CellOccupant.h"
+#include "Vector2.h"
+class Map;
+
 using namespace std;
 
-class Door :
-    public CellOccupant
+class Door : public CellOccupant
 {
 private:
-    Map* connectedMap; 
+    Map* connectedMap;
 
 public:
     Door();
-    void Interact(Character c);
+    void Interact(Character* c);
+    string GetTokenCode();
 };
