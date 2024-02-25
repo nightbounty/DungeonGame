@@ -1,4 +1,4 @@
-#include "Boots.h"
+#include "Items/Boots.h"
 #include <sstream>
 #include "CharStats.h"
 

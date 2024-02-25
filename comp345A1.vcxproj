@@ -131,15 +131,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="headers\Vector2.cpp" />
     <ClCompile Include="source\Cell.cpp" />
     <ClCompile Include="source\CellOccupants\CellOccupant.cpp" />
     <ClCompile Include="source\CellOccupants\Chest.cpp" />
     <ClCompile Include="source\CellOccupants\Door.cpp" />
     <ClCompile Include="source\CellOccupants\Enemy.cpp" />
     <ClCompile Include="source\Character.cpp" />
+    <ClCompile Include="source\CharStats.cpp" />
     <ClCompile Include="source\Driver.cpp" />
+    <ClCompile Include="source\Items\Armor.cpp" />
+    <ClCompile Include="source\Items\Belt.cpp" />
+    <ClCompile Include="source\Items\Boots.cpp" />
+    <ClCompile Include="source\Items\Helmet.cpp" />
+    <ClCompile Include="source\Items\Item.cpp" />
+    <ClCompile Include="source\Items\ItemContainer.cpp" />
+    <ClCompile Include="source\Items\Ring.cpp" />
+    <ClCompile Include="source\Items\Shield.cpp" />
+    <ClCompile Include="source\Items\Weapon.cpp" />
     <ClCompile Include="source\Map.cpp" />
+    <ClCompile Include="source\Vector2.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="headers\Cell.h" />
@@ -148,6 +158,16 @@
     <ClInclude Include="headers\CellOccupants\Door.h" />
     <ClInclude Include="headers\CellOccupants\Enemy.h" />
     <ClInclude Include="headers\Character.h" />
+    <ClInclude Include="headers\CharStats.h" />
+    <ClInclude Include="headers\Items\Armor.h" />
+    <ClInclude Include="headers\Items\Belt.h" />
+    <ClInclude Include="headers\Items\Boots.h" />
+    <ClInclude Include="headers\Items\Helmet.h" />
+    <ClInclude Include="headers\Items\Item.h" />
+    <ClInclude Include="headers\Items\ItemContainer.h" />
+    <ClInclude Include="headers\Items\Ring.h" />
+    <ClInclude Include="headers\Items\Shield.h" />
+    <ClInclude Include="headers\Items\Weapon.h" />
     <ClInclude Include="headers\Map.h" />
     <ClInclude Include="headers\Vector2.h" />
   </ItemGroup>
