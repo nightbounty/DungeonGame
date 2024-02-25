@@ -3,20 +3,20 @@
 
 #include <iostream>
 #include "CharStats.h"
-#include <string>
 #include "Item.h"
-
+#include <string>
 class Helmet : public Item
 {
 
     // constructor
 public:
     CharStats charStats;
+    std::string helmetType;
     /**
      * Constructor for Helmet.
      * @param itemName The name of the helmetItem.
      */
-    Helmet(std::string &itemName);
+    Helmet(const std::string &itemName);
 
     // method that increases charStats
     void IncreaseCharStats();
