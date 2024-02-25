@@ -5,8 +5,11 @@ class Vector2 {
         int y;
 
     public:
-        void setX(int x);
-        void setY(int y);
-        int getX();
-        int getY();
+        Vector2();
+        Vector2(int x, int y);
+        void SetX(int x);
+        void SetY(int y);
+        int GetX();
+        int GetY();
+
 };
