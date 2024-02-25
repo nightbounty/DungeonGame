@@ -6,15 +6,21 @@ using namespace std;
 
 class Cell {
 public:
-	void SetCellOccupant(CellOccupant o);
-	CellOccupant getCellOccupant();
-	bool isWall();
-	void setWall(bool wall);
-	Cell(CellOccupant o, bool isItWall);
 	Cell();
+	Cell(CellOccupant* o, bool isItWall);
+	void SetCellOccupant(CellOccupant* o);
+	CellOccupant* GetCellOccupant();
+	bool IsWall();
+	bool IsOnPath();
+	bool IsEmpty();
+	void SetWall(bool wall);
+	void SetOnPath(bool onPath);
+	bool IsOnPath();
+	
 private:
-	CellOccupant occupant;
+	CellOccupant* occupant;
 	bool isWall;
+	bool isOnPath;
 };
 
 

@@ -9,8 +9,9 @@ class Door :
     public CellOccupant
 {
 private:
-    Map connectedMap; 
+    Map* connectedMap; 
 
 public:
+    Door();
     void Interact(Character c);
 };
