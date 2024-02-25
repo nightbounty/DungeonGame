@@ -1,7 +1,7 @@
 #pragma once
 using namespace std;
 #include <iostream>
-#include "CellOccupant.h"
+#include "CellOccupants/CellOccupant.h"
 
 
 class Cell {
@@ -15,7 +15,6 @@ public:
 	bool IsEmpty();
 	void SetWall(bool wall);
 	void SetOnPath(bool onPath);
-	bool IsOnPath();
 	
 private:
 	CellOccupant* occupant;

@@ -13,6 +13,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\CellOccupants">
+      <UniqueIdentifier>{6b5f1f6e-c108-47fc-b8ba-bcbfa3193e0a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\CellOccupants">
+      <UniqueIdentifier>{0722bf34-b0d0-4786-aeb9-5054da62a8bd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\Cell.cpp">
@@ -27,34 +33,46 @@
     <ClCompile Include="source\Map.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="source\CellOccupant.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="source\CellOccupants\CellOccupant.cpp">
+      <Filter>Source Files\CellOccupants</Filter>
     </ClCompile>
-    <ClCompile Include="source\Chest.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="source\CellOccupants\Chest.cpp">
+      <Filter>Source Files\CellOccupants</Filter>
     </ClCompile>
-    <ClCompile Include="source\Enemy.cpp">
+    <ClCompile Include="source\CellOccupants\Door.cpp">
+      <Filter>Source Files\CellOccupants</Filter>
+    </ClCompile>
+    <ClCompile Include="source\CellOccupants\Enemy.cpp">
+      <Filter>Source Files\CellOccupants</Filter>
+    </ClCompile>
+    <ClCompile Include="headers\Vector2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="headers\Cell.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="headers\Character.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="headers\Map.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="headers\CellOccupant.h">
+    <ClInclude Include="headers\Vector2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="headers\Chest.h">
+    <ClInclude Include="headers\Cell.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="headers\Enemy.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="headers\CellOccupants\Chest.h">
+      <Filter>Header Files\CellOccupants</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\CellOccupants\Door.h">
+      <Filter>Header Files\CellOccupants</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\CellOccupants\Enemy.h">
+      <Filter>Header Files\CellOccupants</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\CellOccupants\CellOccupant.h">
+      <Filter>Header Files\CellOccupants</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

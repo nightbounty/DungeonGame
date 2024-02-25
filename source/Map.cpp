@@ -1,12 +1,28 @@
-#include "../headers/Map.h"
 #include <iostream>
-#include "../headers/Cell.h"
+#include "Map.h"
+#include "Cell.h"
 
-Cell** createGrid(int rows, int cols) {
+Map::Map() {
+	this->rows = 2;
+	this->cols = 2;
+	this->path = GeneratePath();
+	this->startPt = new Vector2();
+}
+/**
+ * Method which creates a 2D grid of Cell objects.
+ * 
+ * \param rows Rows of the grid
+ * \param cols Columns of the grid
+ * \return The newly created grid
+ */
+Cell*** Map::CreateGrid(int rows, int cols) {
 	// Allocate memory for an array of pointers to rows
-	Cell** grid = new Cell*[rows];
+	Cell*** grid = new Cell**[rows];
 	for (int i = 0; i < rows; i++) {
-		grid[i] = new Cell[cols];
+		grid[i] = new Cell*[cols];
+		for (int j = 0; j < cols; j++) {
+			grid[i][j] = new Cell();
+		}
 	}
 	
 	return grid;
@@ -37,64 +53,101 @@ void Map::SetStartPt(Vector2* newPt){
 }
 
 void Map::SetCellOccupant(int row, int col, CellOccupant* o) {
-	grid[row][col].SetCellOccupant(o);
+	grid[row][col]->SetCellOccupant(o);
 }
 
 int Map::GetColumns(){
-	return columns;
+	return cols;
 }
 
 int Map::GetRows(){
 	return rows;
 }
 
+Cell*** Map::GetGrid()
+{
+	return this->grid;
+}
+/**
+ * Method which generates a randomized path to keep free.
+ * 
+ * \return 
+ */
 Vector2** Map::GeneratePath(){
-	int y;
+	int x = 0;
 	float random;
 	Vector2** newPath = new Vector2*[rows];
-	// path[0] = startPt;
-	for (int i = 1; i < columns; i++) {
-		random = (float)rand();
+	newPath[0] = startPt;
+	for (int i = 1; i < cols; i++) {
+		random = (float)rand()/(RAND_MAX);
 		// if we are at top row, can only go straight or down
-		if (y+1 >= columns){
-			if (random > 0.5) y = y-1;
+		if (x+1 >= cols){
+			if (random > 0.5) x = x-1;
 		}
 		// if we are at bot row, can only go straight or up
-		else if (y - 1 < 0){
-			if (random > 0.5) y = y+1;
+		else if (x - 1 < 0){
+			if (random > 0.5) x = x+1;
 		}
 		// otherwise can go up, straight or down
 		else{
 			if (random < 0.33){
-				y = y - 1;
+				x = x - 1;
 			}
 			if (random > 0.66){
-				y = y + 1;
+				x = x + 1;
 			}
 		}
+		
+		newPath[i] = new Vector2(x,i);
 
-		path[i] = new Vector2(i,y);
-		grid[i][y].SetOnPath(true);
-		if(i == columns - 1){
-			grid[i][y].SetCellOccupant(new Door());
+		grid[x][i]->SetOnPath(true);
+		if(i == cols - 1){
+			grid[x][i]->SetCellOccupant(new Door());
 		}
 	}
+
 	return newPath;
 }
-
+/**
+ * Method which randomizes all of the cells on the map.
+ * 
+ */
 void Map::RandomizeMap(){
-	int random;
+	
+	float random;
 	for (int i = 0; i < rows; i++){
-		random = rand();
-		for (int j = 0; j < columns; j++){
-			if (!grid[i][j].IsOnPath() && random < 0.1){
-				grid[i][j].SetWall(true);
-			} else if(0.1 < random && 0.15 > random){
-				grid[i][j].SetCellOccupant(new Chest());
-			} else if(0.16 < random && 0.2 < random){
-				grid[i][j].SetCellOccupant(new Enemy());
+		for (int j = 0; j < cols; j++){
+			random = ((float) rand() / (RAND_MAX));
+
+			if (!grid[i][j]->IsOnPath() && random < 0.1){
+				grid[i][j]->SetWall(true);
+			} 
+			else if(random > 0.1 && random < 0.15){
+				grid[i][j]->SetCellOccupant(new Chest());
+			}
+			else if (random > 0.16 && random < 0.2) {
+				grid[i][j]->SetCellOccupant(new Enemy());
 			}
 		}
 	}
 
+}
+
+string Map::ToString(){
+	string mapStr;
+	for (int i = 0; i < rows; i++) {
+		for (int j = 0; j < cols; j++) {
+			if (grid[i][j]->IsWall()) {
+				mapStr += "W\t";
+			}
+			else if (grid[i][j]->GetCellOccupant() != NULL) {
+				mapStr += grid[i][j]->GetCellOccupant()->GetTokenCode() + "\t";
+			}
+			else {
+				mapStr += "O\t";
+			}
+		}
+		mapStr += "\n";
+	}
+	return mapStr;
 }
