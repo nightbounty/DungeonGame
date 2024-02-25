@@ -76,6 +76,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(ProjectDir)\headers;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -90,6 +91,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(ProjectDir)\headers;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -104,6 +106,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(ProjectDir)\headers;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -118,6 +121,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(ProjectDir)\headers;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -127,31 +131,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-<<<<<<< Updated upstream
-    <ClCompile Include="Cell.cpp" />
-    <ClCompile Include="comp345A1.cpp" />
-    <ClCompile Include="Map.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Cell.h" />
-    <ClInclude Include="Map.h" />
-=======
-    <ClCompile Include="source\CellOccupant.cpp" />
+    <ClCompile Include="headers\Vector2.cpp" />
     <ClCompile Include="source\Cell.cpp" />
-    <ClCompile Include="source\Chest.cpp" />
+    <ClCompile Include="source\CellOccupants\CellOccupant.cpp" />
+    <ClCompile Include="source\CellOccupants\Chest.cpp" />
+    <ClCompile Include="source\CellOccupants\Door.cpp" />
+    <ClCompile Include="source\CellOccupants\Enemy.cpp" />
     <ClCompile Include="source\Character.cpp" />
     <ClCompile Include="source\Driver.cpp" />
-    <ClCompile Include="source\Enemy.cpp" />
     <ClCompile Include="source\Map.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="headers\CellOccupant.h" />
     <ClInclude Include="headers\Cell.h" />
-    <ClInclude Include="headers\Chest.h" />
+    <ClInclude Include="headers\CellOccupants\CellOccupant.h" />
+    <ClInclude Include="headers\CellOccupants\Chest.h" />
+    <ClInclude Include="headers\CellOccupants\Door.h" />
+    <ClInclude Include="headers\CellOccupants\Enemy.h" />
     <ClInclude Include="headers\Character.h" />
-    <ClInclude Include="headers\Enemy.h" />
     <ClInclude Include="headers\Map.h" />
->>>>>>> Stashed changes
+    <ClInclude Include="headers\Vector2.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

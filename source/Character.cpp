@@ -1,4 +1,4 @@
-#include "../headers/Character.h"
+#include "Character.h"
 #include <iostream>
 #include <random>
 #include <cstdlib> // srand()
