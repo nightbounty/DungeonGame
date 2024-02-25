@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+<<<<<<< Updated upstream
     <ClCompile Include="Cell.cpp" />
     <ClCompile Include="comp345A1.cpp" />
     <ClCompile Include="Map.cpp" />
@@ -134,6 +135,23 @@
   <ItemGroup>
     <ClInclude Include="Cell.h" />
     <ClInclude Include="Map.h" />
+=======
+    <ClCompile Include="source\CellOccupant.cpp" />
+    <ClCompile Include="source\Cell.cpp" />
+    <ClCompile Include="source\Chest.cpp" />
+    <ClCompile Include="source\Character.cpp" />
+    <ClCompile Include="source\Driver.cpp" />
+    <ClCompile Include="source\Enemy.cpp" />
+    <ClCompile Include="source\Map.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="headers\CellOccupant.h" />
+    <ClInclude Include="headers\Cell.h" />
+    <ClInclude Include="headers\Chest.h" />
+    <ClInclude Include="headers\Character.h" />
+    <ClInclude Include="headers\Enemy.h" />
+    <ClInclude Include="headers\Map.h" />
+>>>>>>> Stashed changes
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
