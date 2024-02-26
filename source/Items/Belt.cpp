@@ -4,7 +4,6 @@
 #include "CharStats.h"
 /**
  * Constructor
- * @param itemName The name of the belt item.
  */
 Belt::Belt(const std::string &itemName) : Item(itemName) {
 }
@@ -26,7 +25,7 @@ void Belt::displayEnhancement() {
 }
 
 /**
- * @return String displays Belt's name
+ * String displays Belt's name
  */
 std::string Belt::toString() const {
     return "Belt Name: " + getName();
