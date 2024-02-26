@@ -3,7 +3,7 @@
 #include "CharStats.h"
 
 /**
- * @brief Constructor for Boots
+ * Constructor for Boots
  * @param itemName Name of the boots.
  */
 Boots::Boots(const std::string &itemName) : Item(itemName)
@@ -29,7 +29,7 @@ void Boots::displayEnhancement()
 }
 
 /**
- * @return Returns Boots Item Name
+ * Returns Boots Item Name
  */
 std::string Boots::toString() const {
     return "Boots Name: " + getName();
