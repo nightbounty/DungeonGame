@@ -8,7 +8,9 @@ class Item
 public:
     std::string itemName;
     // Constructor
-    Item(const std::string &itemName) : itemName(itemName) {}
+    Item(const std::string &itemName) {
+        this->itemName = itemName;
+    }
     // Destructor
     virtual ~Item() = default;
 
