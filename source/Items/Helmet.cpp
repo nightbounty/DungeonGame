@@ -1,7 +1,7 @@
-#include "Items/Helmet.h"
+#include "Helmet.h"
 #include "CharStats.h"
 
-// Constructor
+// Constructor implementation
 Helmet::Helmet(const std::string &itemName) : Item(itemName) {}
 
 // Method that increases charStats
