@@ -22,4 +22,4 @@ public:
     std::string toString() const override;
 };
 
-#endif // SHIELD_H
+#endif
