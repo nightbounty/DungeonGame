@@ -26,4 +26,4 @@ public:
     std::string toString() const override;
 };
 
-#endif // HELMET_H
+#endif
