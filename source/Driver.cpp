@@ -12,6 +12,7 @@
 #include "Items/Weapon.h"
 #include "Items/ItemContainer.h"
 #include "Items/Shield.h"
+#include "Character.h"
 
 using namespace std;
 
