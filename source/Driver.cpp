@@ -42,7 +42,7 @@ int main()
     cout << "\n=== YOUR MAP!! *^* ===\n\n" << testMap->ToString();
 
     // Part 3: ITEMS & ITEM CONTAINER
-        // Create Items
+    // Create Items
     Armor *armor = new Armor("Basic Armor");
     Helmet *helm = new Helmet("Basic Helmet");
     Shield *shield = new Shield("White Shield");
@@ -56,9 +56,15 @@ int main()
     boots->displayEnhancement();
     sword->displayEnhancement();
 
+    // skip line
+    std::cout << "\n";
+
     // Display Item's Name
     std::cout << armor->toString() << std::endl;
     std::cout << boots->toString() << std::endl;
+
+    // skip line
+    std::cout << "\n";
 
     // Create an Item Container
     ItemContainer container1;
@@ -79,7 +85,7 @@ int main()
     Item *takenItem = container1.takeItem("Basic Armor");
 
     // Display Current Items In Container After Taken Item
-    std::cout << "After taking an item:\n"
+    std::cout << "\nAfter taking an item:"
               << std::endl;
     container1.displayItems();
 }
