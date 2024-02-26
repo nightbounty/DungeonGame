@@ -6,8 +6,9 @@
  * Constructor for Boots
  * @param itemName Name of the boots.
  */
-Boots::Boots(const std::string &itemName) : Item(itemName)
+Boots::Boots(const std::string &itemName)
 {
+    this->itemName = itemName;
 }
 
 /**
