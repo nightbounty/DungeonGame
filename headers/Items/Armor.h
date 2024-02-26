@@ -14,13 +14,13 @@ class Armor : public Item {
 public:
 CharStats charStats; 
     /**
-     * Constructor for Armor.
-     * @param itemName The name of the armor item.
+     * Constructor for Armor
+     * @param itemName The name of the armor item
      */
     Armor(const std::string &itemName);
 
     /**
-     * Increases the character's stats.
+     * Increases the character's stats
      */
     void IncreaseCharStats();
 
