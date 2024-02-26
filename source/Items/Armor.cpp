@@ -5,8 +5,8 @@
 /**
  * Constructor
  */
-Armor::Armor(const std::string &itemName) : Item(itemName) {
-
+Armor::Armor(const std::string &itemName) {
+    this->itemName = itemName;
 }
 
 /**
