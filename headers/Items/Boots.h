@@ -36,4 +36,4 @@ public:
     std::string toString() const override;
 };
 
-#endif // BOOTS_H
+#endif
