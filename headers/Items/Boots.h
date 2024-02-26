@@ -31,7 +31,7 @@ public:
     void displayEnhancement() override;
 
     /**
-     * @return Returns Boot's Item Name
+     *  Returns Boot's Item Name
      */
     std::string toString() const override;
 };
