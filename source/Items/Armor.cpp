@@ -25,7 +25,7 @@ void Armor::displayEnhancement() {
 }
 
 /**
- * @return Returns Armor Name String
+ *Returns Armor Name String
  */
 std::string Armor::toString() const {
     return "Armor Name: " + getName();
