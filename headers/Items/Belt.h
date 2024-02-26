@@ -31,7 +31,7 @@ public:
     void displayEnhancement() override;
 
     /**
-     * @return A string of the Belt's Name
+     * A string of the Belt's Name
      */
     std::string toString() const override;
 };
