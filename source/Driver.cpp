@@ -1,5 +1,11 @@
-// comp345A1.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
+/*****************************************************************//**
+ * \file   Driver.cpp
+ * \brief  Driver for COMP345 Assignment 1
+ *  Includes testing for character, map, items, and dice
+ * 
+ * \author Kevin Theam (40192205), Jasmar Louie Badion (40174632), Eliza Bulatao (40252258), Alissia Bocarro (40243259)
+ * \date   February 2024
+ *********************************************************************/
 
 #include <iostream>
 #include "Map.h"
