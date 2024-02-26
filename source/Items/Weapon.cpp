@@ -2,7 +2,8 @@
 #include <sstream>
 
 // Constructor
-Weapon::Weapon(const std::string &itemName) : Item(itemName) {
+Weapon::Weapon(const std::string &itemName) {
+    this->itemName = itemName;
 }
 
 // IncreaseCharStats method 
