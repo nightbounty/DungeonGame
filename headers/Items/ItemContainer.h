@@ -13,12 +13,12 @@ class ItemContainer {
 public:
     /**
      * Method to add an Item to Container
-     * @param item Pointer to the item to add.
+     * @param item pointer
      */
     void addToContainer(Item* item);
 
     /**
-     * Display all items in the container.
+     * Display all items in the container
      */
     void displayItems() const;
 
