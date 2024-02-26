@@ -2,7 +2,9 @@
 #include <iostream>
 
 // Constructor
-Shield::Shield(const std::string &itemName) : Item(itemName) {}
+Shield::Shield(const std::string &itemName){
+    this->itemName = itemName;
+}
 
 // IncreaseCharStats
 void Shield::IncreaseCharStats() {
