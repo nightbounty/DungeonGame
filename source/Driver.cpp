@@ -13,17 +13,55 @@
 #include "Items/ItemContainer.h"
 #include "Items/Shield.h"
 #include "Character.h"
+#include "Dice.h"
+#include <cstdlib> // For srand() and rand()
+#include <ctime>   // For time()
 
 using namespace std;
 
 int main()
 {
+    // Character Testing
+
+    cout << "Welcome to the GAME! +_+\n";
+    cout << "**\n";
+
+    cout << "Let's create your character\n";
+    cout << "**\n";
+
+    // Seed the random number generator once
+    srand(static_cast<unsigned int>(time(0)));
+
+    // Prompt for character creation details
+    string name;
+    string characterClass= "Fighter";
+    int level;
+
+    cout << "Enter your Fighter's name: ";
+    cin >> name;
+
+    cout << "Enter your character's level: ";
+    cin >> level;
+
+    // Create the character
+    Character myCharacter(level, characterClass);
+
+    // Display character stats
+    myCharacter.displayStats();
+
+    // Equip an item
+    string item;
+    cout << "Enter an item for your character to wear: ";
+    cin >> item;
+    myCharacter.wearItem(item);
+
     
     // MAP TESTING!
     int rows, columns, startY;
 
-    cout << "Welcome to the d20 Map Generator! :D\n";
-    cout << "************************************\n";
+    cout << "\n======================================" << endl;
+    cout << "Next, let's test the map creation!~";
+    cout << "\n======================================\n" << endl;
     
     cout << "Please enter the number of rows for the map: \n";
     cin >> rows;
@@ -89,9 +127,25 @@ int main()
     Item *takenItem = container1.takeItem("Basic Armor");
 
     // Display Current Items In Container After Taken Item
-    std::cout << "\nAfter taking an item:"
+    cout << "\nAfter taking an item:"
               << std::endl;
     container1.displayItems();
+
+    // part 4: dice 
+
+    cout << "\n======================================" << endl;
+    cout << "Aaaand lastly, testing the dice! :D";
+    cout << "\n======================================\n" << endl;
+    Dice dice;
+    string input;
+    cout << "Roll dice of the following pattern xdy+z: ";
+    cin >> input;
+    int result = dice.rollDice(input);
+    cout << "Result of the dice: " << result << std::endl;
+
+    cout << "\n======================================" << endl;
+    cout << "Thanks for playing!! :3";
+    cout << "\n======================================\n" << endl;
 }
 
 

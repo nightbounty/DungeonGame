@@ -138,6 +138,7 @@
     <ClCompile Include="source\CellOccupants\Enemy.cpp" />
     <ClCompile Include="source\Character.cpp" />
     <ClCompile Include="source\CharStats.cpp" />
+    <ClCompile Include="source\Dice.cpp" />
     <ClCompile Include="source\Driver.cpp" />
     <ClCompile Include="source\Items\Armor.cpp" />
     <ClCompile Include="source\Items\Belt.cpp" />
