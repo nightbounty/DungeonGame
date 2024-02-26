@@ -2,17 +2,16 @@
 //
 
 #include <iostream>
-#include <Map.h>
-#include "CharStats.cpp"
-#include "Helmet.cpp"
-#include "Armor.cpp"
-#include "Item.cpp"
-#include "Ring.cpp"
-#include "Belt.cpp"
-#include "Boots.cpp"
-#include "Weapon.cpp"
-#include "ItemContainer.cpp"
-#include "Shield.cpp"
+#include "Map.h"
+#include "Items/Helmet.h"
+#include "Items/Armor.h"
+#include "Items/Item.h"
+#include "Items/Ring.h"
+#include "Items/Belt.h"
+#include "Items/Boots.h"
+#include "Items/Weapon.h"
+#include "Items/ItemContainer.h"
+#include "Items/Shield.h"
 
 using namespace std;
 
@@ -43,6 +42,10 @@ int main()
 
     // Part 3: ITEMS & ITEM CONTAINER
     // Create Items
+
+    cout << "\n======================================" << endl;
+    cout << "Now testing the item system! :)";
+    cout << "\n======================================\n" << endl;
     Armor *armor = new Armor("Basic Armor");
     Helmet *helm = new Helmet("Basic Helmet");
     Shield *shield = new Shield("White Shield");

@@ -1,6 +1,8 @@
 #include "CharStats.h"
 #include <sstream>
-
+#ifndef CHARSTATS
+#define CHARSTATS
+#endif
 // Constructor
 CharStats::CharStats() {
     intelligence = 0;
