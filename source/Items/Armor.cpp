@@ -4,7 +4,6 @@
 
 /**
  * Constructor
- * @param itemName The name of the armor item.
  */
 Armor::Armor(const std::string &itemName) : Item(itemName) {
 
