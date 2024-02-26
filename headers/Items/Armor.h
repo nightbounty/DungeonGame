@@ -7,9 +7,7 @@
 
 /**
  * @class Armor
- * @brief Armor Item are capable of modifying a character's stats
- * 
- * Inherits from Item
+ * @brief Item and its enhancements
  */
 class Armor : public Item {
 

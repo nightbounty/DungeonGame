@@ -8,7 +8,6 @@
 class Helmet : public Item
 {
 
-    // constructor
 public:
     CharStats charStats;
     std::string helmetType;
