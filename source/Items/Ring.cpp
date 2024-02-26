@@ -2,7 +2,9 @@
 #include <iostream>
 
 // Constructor
-Ring::Ring(const std::string &itemName) : Item(itemName) {}
+Ring::Ring(const std::string &itemName) {
+    this->itemName = itemName;
+}
 
 // Method to Increase Ring Stats
 void Ring::IncreaseCharStats() {
