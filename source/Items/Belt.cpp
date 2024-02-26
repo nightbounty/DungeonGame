@@ -5,7 +5,8 @@
 /**
  * Constructor
  */
-Belt::Belt(const std::string &itemName) : Item(itemName) {
+Belt::Belt(const std::string &itemName) {
+    this->itemName = itemName;
 }
 
 /**
