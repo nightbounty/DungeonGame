@@ -7,8 +7,12 @@ class Item
 {
 public:
     std::string itemName;
+    //Default Constructor
+    Item(){}
     // Constructor
-    Item(const std::string &itemName) : itemName(itemName) {}
+    Item(const std::string &itemName) {
+        this->itemName= itemName;
+    }
     // Destructor
     virtual ~Item() = default;
 
