@@ -2,7 +2,9 @@
 #include "CharStats.h"
 
 // Constructor implementation
-Helmet::Helmet(const std::string &itemName) : Item(itemName) {}
+Helmet::Helmet(const std::string &itemName){
+    this->itemName = itemName;
+}
 
 // Method that increases charStats
 void Helmet::IncreaseCharStats() {
