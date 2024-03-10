@@ -22,10 +22,9 @@
 #include "Dice.h"
 #include <cstdlib> // For srand() and rand()
 #include <ctime>   // For time()
-
 using namespace std;
 
-int main()
+/*int main()
 {
     // Character Testing
 
@@ -152,6 +151,6 @@ int main()
     cout << "\n======================================" << endl;
     cout << "Thanks for playing!! :3";
     cout << "\n======================================\n" << endl;
-}
+} */
 
 

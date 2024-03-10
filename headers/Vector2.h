@@ -1,4 +1,5 @@
-
+#ifndef VECTOR2
+#define VECTOR2
 
 class Vector2 {
 
@@ -15,3 +16,5 @@ class Vector2 {
         int GetY();
 
 };
+
+#endif

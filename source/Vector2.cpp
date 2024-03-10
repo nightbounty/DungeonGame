@@ -1,4 +1,6 @@
+
 #include "Vector2.h"
+
 
 Vector2::Vector2()
 {
@@ -26,3 +28,4 @@ void Vector2::SetX(int x) {
 void Vector2::SetY(int y) {
 	this->y = y;
 }
+
