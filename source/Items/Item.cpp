@@ -11,8 +11,6 @@ public:
     Item(const std::string &itemName) {
         this->itemName = itemName;
     }
-    // Destructor
-    virtual ~Item() = default;
 
     // Returns Item Name
     virtual std::string getName() const
