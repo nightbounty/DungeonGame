@@ -131,6 +131,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="source\DriverA2.cpp" />
     <ClCompile Include="source\Cell.cpp" />
     <ClCompile Include="source\CellOccupants\CellOccupant.cpp" />
     <ClCompile Include="source\CellOccupants\Chest.cpp" />

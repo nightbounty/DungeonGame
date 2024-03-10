@@ -151,3 +151,16 @@ string Map::ToString(){
 	}
 	return mapStr;
 }
+
+void Map::SetName(string name) {
+	this->name = name;
+}
+string Map::GetName() {
+	return this->name;
+}
+void Map::SetDescription(string description) {
+	this->description = description;
+}
+string Map::GetDescription() {
+	return this->description;
+}
