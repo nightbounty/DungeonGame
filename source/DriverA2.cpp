@@ -7,30 +7,51 @@ using namespace std;
 Map* CreateNewMap();
 	int main()
 	{
-		int currentOption;
 		cout << "Welcome to the interactive campaign builder!" << endl;
 		cout << "============================================" << endl;
-		cout << "Please select a menu option:" << endl;
-		cout << "\t1. Create a new map" << endl;
-		cout << "\t2. Create a new campaign" << endl;
-		cout << "\t3. Load and edit an existing map" << endl;
-		cout << "\t4. Load and edit an existing campaign" << endl;
+		int currentOption;
+		while (true) {
+			cout << "Please select a menu option:" << endl;
+			cout << "\t1. Create a new map" << endl;
+			cout << "\t2. Create a new campaign" << endl;
+			cout << "\t3. Load and edit an existing map" << endl;
+			cout << "\t4. Load and edit an existing campaign" << endl;
+			cout << "\t5. Exit the program" << endl;
 
-		cin >> currentOption;
-		switch (currentOption) {
-		case 1:
-		{
-			Map* newMap = CreateNewMap();
-			// write it to file
-			break;
+			cin >> currentOption;
+			switch (currentOption) {
+			case 1:
+			{
+				Map* newMap = CreateNewMap();
+				// write it to file
+				break;
+			}
+
+			case 2:
+			{
+				cout << "Creating new campaign..." << endl;
+				break;
+			}
+
+			case 3:
+			{
+				cout << "Enter the name of the map you want to load." << endl;
+				
+				break;
+			}
+
+			case 4:
+			{
+				break;
+			}
+			case 5:
+			{
+				return 0;
+			}
+
+			}
 		}
-			
-		case 2:
-		{
-			break;
-		}
-			
-		}
+		
 
 	}
 
