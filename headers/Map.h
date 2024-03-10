@@ -46,5 +46,6 @@ public:
 	string GetName();
 	void SetDescription(string description);
 	string GetDescription();
+
 };
 
