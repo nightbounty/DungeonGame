@@ -3,6 +3,8 @@ using namespace std;
 #include <string>
 #include "Vector2.h"
 #include "Map.h"
+#include <fstream>
+
 
 Map* CreateNewMap();
 	int main()
@@ -23,7 +25,9 @@ Map* CreateNewMap();
 			case 1:
 			{
 				Map* newMap = CreateNewMap();
-				// write it to file
+				ofstream mapFile(newMap->GetName() + ".txt");
+				mapFile.write((char*)&newMap, sizeof(newMap));
+				cout << "Your new map has been saved to a file!" << endl;
 				break;
 			}
 
@@ -36,7 +40,9 @@ Map* CreateNewMap();
 			case 3:
 			{
 				cout << "Enter the name of the map you want to load." << endl;
-				
+				// try to create file object based on the file name
+				// read Map object from the file
+				// what do you want to change?
 				break;
 			}
 
@@ -71,6 +77,7 @@ Map* CreateNewMap();
 		cout << "Please enter the y start coordinate: " << endl;
 		cin >> startY;
 		Map* newMap = new Map(nbRows, nbColumns, new Vector2(0, startY));
+		newMap->SetName(mapTitle);
 		cout << "\n=== LEGEND ===\nD: Door\nE: Enemy\nC: Chest\nO: Empty\nW: Wall";
 		cout << "\n=== YOUR MAP!! *^* ===\n\n" << newMap->ToString();
 		return newMap;

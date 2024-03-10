@@ -18,6 +18,8 @@ private:
 	Vector2** path;
 	int rows;
 	int cols;
+	string name;
+	string description;
 public:
 	Map(int rows, int cols, Vector2* startPt) {
 		this->rows = rows;
@@ -40,5 +42,9 @@ public:
 	int GetRows();
 	Cell*** GetGrid();
 	string ToString();
+	void SetName(string name);
+	string GetName();
+	void SetDescription(string description);
+	string GetDescription();
 };
 
