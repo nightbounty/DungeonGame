@@ -4,25 +4,23 @@ using namespace std;
 #include "Vector2.h"
 #include "Map.h"
 #include <fstream>
+#include "Campaign.h"
+#include "CampaignManager.h"
 
-void SetMapCellOccupant(string type, Map* map);
-Map* CreateNewMap();
+
+void DisplayMainMenu();
+
 	int main()
 	{
 		cout << "Welcome to the interactive campaign builder!" << endl;
 		cout << "============================================" << endl;
 		int currentOption;
 		while (true) {
-			cout << "Please select a menu option:" << endl;
-			cout << "\t1. Create a new map" << endl;
-			cout << "\t2. Create a new campaign" << endl;
-			cout << "\t3. Load and edit an existing map" << endl;
-			cout << "\t4. Load and edit an existing campaign" << endl;
-			cout << "\t5. Exit the program" << endl;
+			DisplayMainMenu();
 
 			cin >> currentOption;
 			switch (currentOption) {
-			case 1:
+			case 1: // Creating a new map
 			{
 				Map* newMap = new Map(5, 6, new Vector2(2, 0));
 				newMap->SetName("testMap");
@@ -34,73 +32,59 @@ Map* CreateNewMap();
 				break;
 			}
 
-			case 2:
+			case 2: // Creating a new campaign
 			{
-				cout << "Creating new campaign..." << endl;
+				string title;
+				cout << "Enter the title of your campaign: (No spaces)" << endl;
+				cin >> title;
+				cin.ignore();
+				vector<Map*> maps;
+				bool stillAddingMaps = true;
+				int createOrLoad, campaignSize=0;
+				Map* mapToAdd;
+				while (stillAddingMaps) {
+					cout << "Create or load a map to add? 1 to create, 2 to load, 3 to exit" << endl;
+					cin >> createOrLoad;
+					cin.ignore();
+					if (createOrLoad == 1) {
+						mapToAdd = CampaignManager::CreateNewMap();
+						maps.push_back(mapToAdd);
+						campaignSize++;
+					}
+					else if (createOrLoad == 2) {
+						mapToAdd = CampaignManager::LoadMap();
+						maps.push_back(mapToAdd);
+						campaignSize++;
+					}
+					else if (createOrLoad == 3) {
+						stillAddingMaps = false;
+					}
+				}
+				Campaign* newCampaign = new Campaign(maps, title, campaignSize);
+				cout << "Campaign successfully created!" << endl;
+				cout << newCampaign->ToString() << endl;
+				// if i+1 < size, maps[i].GetExitDoor().SetConnectedMap(maps[i+1])
+				// else, maps[i].GetExitDoor.SetConnectedMap(NULL) <- end of campaign
+				// TODO: map get exit door function and be able to set the connected map
 				break;
 			}
 
-			case 3:
+			case 3: // Loading and editing a map
 			{
-				int mapEditOption;
-				string mapToLoad;
-				cout << "Enter the name of the map you want to load." << endl;
-				cin >> mapToLoad;
-				cin.ignore();
-				ifstream loadedMapFile(".\\source\\UserCreatedMaps\\" + mapToLoad + ".txt");
-				Map* loadedMap;
-				loadedMapFile.read((char*)&loadedMap, sizeof(loadedMap));
-				cout << "This is the map you loaded!" << endl;
-				cout << loadedMap->ToString() << endl;
-				bool stillEditing = true;
-				while (stillEditing) { // need to separate this into other function
-					cout << "What would you like to change? Please select an option:" << endl;
-					cout << "1. Set Enemy cells" << endl;
-					cout << "2. Set Chests" << endl;
-					cout << "3. Set Walls" << endl;
-					cout << "4. Edit Description" << endl;
-					cout << "5. Save and return to menu" << endl;
-					cin >> mapEditOption;
-					switch (mapEditOption) {
-						case 1: {
-							SetMapCellOccupant("Enemy", loadedMap);
-							break;
-						}
-						case 2: {
-							SetMapCellOccupant("Chest", loadedMap);
-							break;
-						}
-						case 3: {
-							SetMapCellOccupant("Chest", loadedMap);
-							break;
-						}
-						case 4: {
-							string newDescription;
-							cout << "Enter the new description" << endl;
-							getline(cin, newDescription);
-							loadedMap->SetDescription(newDescription);
-							break;
-						} 
-						case 5: {
-							ofstream editedMap(mapToLoad + ".txt");
-							// Need to make sure i'm in overwrite mode
-							editedMap.write((char*)&loadedMap, sizeof(loadedMap));
-							editedMap.close();
-							stillEditing = false;
-							break;
-						}
-					}
-				}
-				loadedMapFile.close();
+				Map* loadedMap = CampaignManager::LoadMap();
+				CampaignManager::EditLoadedMap(loadedMap);
 				break;
 			}
 
 			case 4:
 			{
+				Campaign* loadedCampaign = CampaignManager::LoadCampaign();
+				// EditLoadedCampaign(loadedCampaign);
 				break;
 			}
 			case 5:
 			{
+				cout << "Thank you for using the campaign builder! Exiting the software now..." << endl;
 				return 0;
 			}
 
@@ -108,45 +92,61 @@ Map* CreateNewMap();
 		}
 
 	}
-	static inline void SetMapCellOccupant(string type, Map* map) {
-		int row, col;
-		cout << "Enter the row of the cell where an Enemy should be placed" << endl;
-		cin >> row;
-		cout << "Enter the column of the cell" << endl;
-		cin >> col;
-		if (type == "Enemy") {
-			map->SetCellOccupant(row, col, new Enemy());
+	static inline void EditLoadedCampaign(Campaign* loadedCampaign) {
+		int campaignEditOption, mapToRemove, createOrLoad;
+		string campaignToLoad = loadedCampaign->GetTitle();
+		bool stillEditing = true;
+		while (stillEditing) {
+			cout << "What would you like to change? Please select an option:" << endl;
+			cout << "1. Remove a map" << endl;
+			cout << "2. Add a map" << endl;
+			cout << "3. Save and return to menu" << endl;
+			cin >> campaignEditOption;
+			switch (campaignEditOption) {
+				case 1: {
+					cout << "Enter the index of the map you would like to remove:" << endl;
+					cin >> mapToRemove;
+					cin.ignore();
+					// loadedCampaign.Remove(mapToRemove);
+					break;
+				}
+				case 2: {
+					
+					cout << "Would you like to create a new map or load an existing map? 1 to create, 2 to load" << endl;
+					cin >> createOrLoad;
+					cin.ignore();
+					Campaign* campaignToAdd;
+					if (createOrLoad == 1) {
+						// campaignToAdd = CampaignManager::CreateCampaign();
+					}
+					else if (createOrLoad == 2) {
+						campaignToAdd = CampaignManager::LoadCampaign();
+					}
+					break;
+				}
+				case 3: {
+					ofstream editedCampaign(campaignToLoad + ".txt");
+					// Need to make sure i'm in overwrite mode
+					editedCampaign.write((char*)&loadedCampaign, sizeof(loadedCampaign));
+					editedCampaign.close();
+					stillEditing = false;
+				}
+			}
 		}
-		else if (type == "Chest") {
-			map->SetCellOccupant(row, col, new Chest());
-		}
-		else if (type == "Wall") {
-			map->GetGrid()[row][col]->SetWall(true);
-		}
-		else {
-			cout << "Invalid type, sorry!" << endl;
-		}
-		
 	}
-	static inline Map* CreateNewMap() {
-		int nbRows, nbColumns, startY;
-		string mapTitle, mapDescription;
-		cout << "Enter a title for your new map! (No spaces)" << endl;
-		cin >> mapTitle;
-		cin.ignore();
-		cout << "Enter a description: " << endl;
-		getline(cin, mapDescription);
-		cout << "Enter the number of rows: " << endl;
-		cin >> nbRows;
-		cin.ignore();
-		cout << "Enter the number of columns: " << endl;
-		cin >> nbColumns;
-		cout << "Please enter the y start coordinate: " << endl;
-		cin >> startY;
-		Map* newMap = new Map(nbRows, nbColumns, new Vector2(0, startY));
-		newMap->SetName(mapTitle);
-		cout << "\n=== LEGEND ===\nD: Door\nE: Enemy\nC: Chest\nO: Empty\nW: Wall";
-		cout << "\n=== YOUR MAP!! *^* ===\n\n" << newMap->ToString();
-		return newMap;
+	static inline void DisplayMainMenu() {
+		cout << "Please select a menu option:" << endl;
+		cout << "\t1. Create a new map" << endl;
+		cout << "\t2. Create a new campaign" << endl;
+		cout << "\t3. Load and edit an existing map" << endl;
+		cout << "\t4. Load and edit an existing campaign" << endl;
+		cout << "\t5. Exit the program" << endl;
 	}
+	
+	
+	
+	
+	
+
+
 
