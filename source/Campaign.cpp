@@ -30,5 +30,9 @@ string Campaign::GetTitle() {
 	return this->title;
 }
 string Campaign::ToString(){
-	return "This is a campaign but I haven't made the to string method properly :c";
+	string str = "==========================\n" + this->title + "\n==========================\n";
+	for (int i = 0; i < size; i++) {
+		str += std::to_string(i) + ". " + maps[i]->GetName() + "\n";
+	}
+	return str;
 }

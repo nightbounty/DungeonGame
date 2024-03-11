@@ -34,16 +34,37 @@ void DisplayMainMenu();
 
 			case 2: // Creating a new campaign
 			{
+				string title;
 				cout << "Enter the title of your campaign: (No spaces)" << endl;
-				cout << "Enter the number of maps your campaign will include:" << endl;
-				// Initialize an array of maps with the size specified by user
-				// for loop until the size of the array:
-					// 1. Press 1 to create a new map and 2 to load existing
-					// if loading: Take to the loading map function
-					// if creating: Take to the creating map function
-					// maps[i] = resultingMap
-					// if i+1 < size, maps[i].GetExitDoor().SetConnectedMap(maps[i+1])
-					// else, maps[i].GetExitDoor.SetConnectedMap(NULL) <- end of campaign
+				cin >> title;
+				cin.ignore();
+				vector<Map*> maps;
+				bool stillAddingMaps = true;
+				int createOrLoad, campaignSize=0;
+				Map* mapToAdd;
+				while (stillAddingMaps) {
+					cout << "Create or load a map to add? 1 to create, 2 to load, 3 to exit" << endl;
+					cin >> createOrLoad;
+					cin.ignore();
+					if (createOrLoad == 1) {
+						mapToAdd = CampaignManager::CreateNewMap();
+						maps.push_back(mapToAdd);
+						campaignSize++;
+					}
+					else if (createOrLoad == 2) {
+						mapToAdd = CampaignManager::LoadMap();
+						maps.push_back(mapToAdd);
+						campaignSize++;
+					}
+					else if (createOrLoad == 3) {
+						stillAddingMaps = false;
+					}
+				}
+				Campaign* newCampaign = new Campaign(maps, title, campaignSize);
+				cout << "Campaign successfully created!" << endl;
+				cout << newCampaign->ToString() << endl;
+				// if i+1 < size, maps[i].GetExitDoor().SetConnectedMap(maps[i+1])
+				// else, maps[i].GetExitDoor.SetConnectedMap(NULL) <- end of campaign
 				// TODO: map get exit door function and be able to set the connected map
 				break;
 			}
