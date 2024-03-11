@@ -24,8 +24,10 @@ Map* CreateNewMap();
 			switch (currentOption) {
 			case 1:
 			{
-				Map* newMap = CreateNewMap();
-				ofstream mapFile(newMap->GetName() + ".txt");
+				Map* newMap = new Map(5, 6, new Vector2(2, 0));
+				newMap->SetName("testMap");
+				//Map* newMap = CreateNewMap();
+				ofstream mapFile(".\\source\\UserCreatedMaps\\" + newMap->GetName() + ".txt");
 				mapFile.write((char*)&newMap, sizeof(newMap));
 				mapFile.close();
 				cout << "Your new map has been saved to a file!" << endl;
@@ -45,12 +47,13 @@ Map* CreateNewMap();
 				cout << "Enter the name of the map you want to load." << endl;
 				cin >> mapToLoad;
 				cin.ignore();
-				ifstream loadedMapFile(mapToLoad + ".txt");
+				ifstream loadedMapFile(".\\source\\UserCreatedMaps\\" + mapToLoad + ".txt");
 				Map* loadedMap;
 				loadedMapFile.read((char*)&loadedMap, sizeof(loadedMap));
 				cout << "This is the map you loaded!" << endl;
 				cout << loadedMap->ToString() << endl;
-				while (true) { // need to separate this into other function
+				bool stillEditing = true;
+				while (stillEditing) { // need to separate this into other function
 					cout << "What would you like to change? Please select an option:" << endl;
 					cout << "1. Set Enemy cells" << endl;
 					cout << "2. Set Chests" << endl;
@@ -83,7 +86,8 @@ Map* CreateNewMap();
 							// Need to make sure i'm in overwrite mode
 							editedMap.write((char*)&loadedMap, sizeof(loadedMap));
 							editedMap.close();
-							return 0;
+							stillEditing = false;
+							break;
 						}
 					}
 				}

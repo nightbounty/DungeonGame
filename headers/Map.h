@@ -31,19 +31,26 @@ public:
 	}
 	Map();
 	Cell*** CreateGrid(int rows, int cols);
+
 	void SetCellOccupant(int row, int col, CellOccupant* o);
-	Vector2** GeneratePath(); // this should return a vector2[] but idk how qwq
+	Vector2** GeneratePath(); 
 	void RandomizeMap();
+	
 	void SetPath(Vector2** newPath);
 	Vector2** GetPath();
+	
 	void SetStartPt(Vector2* newPt);
 	Vector2* GetStartPt();
+	
 	int GetColumns();
 	int GetRows();
 	Cell*** GetGrid();
+	
 	string ToString();
+	
 	void SetName(string name);
 	string GetName();
+	
 	void SetDescription(string description);
 	string GetDescription();
 
