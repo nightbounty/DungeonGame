@@ -132,6 +132,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="source\Campaign.cpp" />
+    <ClCompile Include="source\CampaignManager.cpp" />
     <ClCompile Include="source\DriverA2.cpp" />
     <ClCompile Include="source\Cell.cpp" />
     <ClCompile Include="source\CellOccupants\CellOccupant.cpp" />
@@ -174,6 +175,7 @@
     <ClInclude Include="headers\Items\Weapon.h" />
     <ClInclude Include="headers\Map.h" />
     <ClInclude Include="headers\Vector2.h" />
+    <ClInclude Include="source\CampaignManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
