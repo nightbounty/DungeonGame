@@ -133,6 +133,7 @@
   <ItemGroup>
     <ClCompile Include="source\Campaign.cpp" />
     <ClCompile Include="source\CampaignManager.cpp" />
+    <ClCompile Include="source\ConcreteMapObserver.cpp" />
     <ClCompile Include="source\DriverA2.cpp" />
     <ClCompile Include="source\Cell.cpp" />
     <ClCompile Include="source\CellOccupants\CellOccupant.cpp" />
@@ -164,6 +165,8 @@
     <ClInclude Include="headers\CellOccupants\Enemy.h" />
     <ClInclude Include="headers\Character.h" />
     <ClInclude Include="headers\CharStats.h" />
+    <ClInclude Include="headers\ConcreteMapObserver.h" />
+    <ClInclude Include="headers\Dice.h" />
     <ClInclude Include="headers\Items\Armor.h" />
     <ClInclude Include="headers\Items\Belt.h" />
     <ClInclude Include="headers\Items\Boots.h" />
@@ -174,6 +177,7 @@
     <ClInclude Include="headers\Items\Shield.h" />
     <ClInclude Include="headers\Items\Weapon.h" />
     <ClInclude Include="headers\Map.h" />
+    <ClInclude Include="headers\MapObserver.h" />
     <ClInclude Include="headers\Vector2.h" />
     <ClInclude Include="source\CampaignManager.h" />
   </ItemGroup>
