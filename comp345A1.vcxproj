@@ -189,7 +189,7 @@
     <ClInclude Include="headers\MapInterface.h" />
     <ClInclude Include="headers\MapObserver.h" />
     <ClInclude Include="headers\Vector2.h" />
-    <ClInclude Include="source\CampaignManager.h" />
+    <ClInclude Include="headers\CampaignManager.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="source\MapContents.txt" />
