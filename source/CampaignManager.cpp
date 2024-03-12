@@ -8,7 +8,7 @@ Campaign* CampaignManager::LoadCampaign() {
 	ifstream loadedCampaignFile(".\\source\\UserCreatedCampaigns\\" + campaignToLoad + ".txt");
 	Campaign* loadedCampaign;
 	loadedCampaignFile.read((char*)&loadedCampaign, sizeof(loadedCampaign));
-	cout << "This is the map you loaded!" << endl;
+	cout << "This is the campaign you loaded!" << endl;
 	cout << loadedCampaign->ToString() << endl;
 	loadedCampaignFile.close();
 	return loadedCampaign;
@@ -170,13 +170,14 @@ void CampaignManager::EditLoadedMap(Map* loadedMap) {
 				cout << "Would you like to create a new map or load an existing map? 1 to create, 2 to load" << endl;
 				cin >> createOrLoad;
 				cin.ignore();
-				Campaign* campaignToAdd;
+				Map* mapToAdd;
 				if (createOrLoad == 1) {
-					campaignToAdd = CampaignManager::CreateNewCampaign();
+					mapToAdd = CampaignManager::CreateNewMap();
 				}
 				else if (createOrLoad == 2) {
-					campaignToAdd = CampaignManager::LoadCampaign();
+					mapToAdd = CampaignManager::LoadMap();
 				}
+				
 				break;
 			}
 			case 3: {
