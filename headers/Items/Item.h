@@ -10,9 +10,8 @@ public:
     //Default Constructor
     Item(){}
     // Constructor
-    Item(const std::string &itemName) {
-        this->itemName= itemName;
-    }
+    Item(const std::string &itemName);
+
 
     // Returns Item Name
     virtual std::string getName() const
