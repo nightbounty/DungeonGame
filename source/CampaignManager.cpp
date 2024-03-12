@@ -113,3 +113,78 @@ void CampaignManager::EditLoadedMap(Map* loadedMap) {
 		cout << "\n=== YOUR MAP!! *^* ===\n\n" << newMap->ToString();
 		return newMap;
 	}
+
+	Campaign* CampaignManager::CreateNewCampaign() {
+		string title;
+		cout << "Enter the title of your campaign: (No spaces)" << endl;
+		cin >> title;
+		cin.ignore();
+		vector<Map*> maps;
+		bool stillAddingMaps = true;
+		int createOrLoad, campaignSize = 0;
+		Map* mapToAdd;
+		while (stillAddingMaps) {
+			cout << "Create or load a map to add? 1 to create, 2 to load, 3 to exit" << endl;
+			cin >> createOrLoad;
+			cin.ignore();
+			if (createOrLoad == 1) {
+				mapToAdd = CampaignManager::CreateNewMap();
+				maps.push_back(mapToAdd);
+				campaignSize++;
+			}
+			else if (createOrLoad == 2) {
+				mapToAdd = CampaignManager::LoadMap();
+				maps.push_back(mapToAdd);
+				campaignSize++;
+			}
+			else if (createOrLoad == 3) {
+				stillAddingMaps = false;
+			}
+		}
+		Campaign* newCampaign = new Campaign(maps, title, campaignSize);
+		cout << "Campaign successfully created!" << endl;
+		cout << newCampaign->ToString() << endl;
+		return newCampaign;
+	}
+
+	void CampaignManager::EditLoadedCampaign(Campaign* loadedCampaign) {
+		int campaignEditOption, mapToRemove, createOrLoad;
+		string campaignToLoad = loadedCampaign->GetTitle();
+		bool stillEditing = true;
+		while (stillEditing) {
+			cout << "What would you like to change? Please select an option:" << endl;
+			cout << "1. Remove a map" << endl;
+			cout << "2. Add a map" << endl;
+			cout << "3. Save and return to menu" << endl;
+			cin >> campaignEditOption;
+			switch (campaignEditOption) {
+			case 1: {
+				cout << "Enter the index of the map you would like to remove:" << endl;
+				cin >> mapToRemove;
+				cin.ignore();
+				loadedCampaign->RemoveMap(mapToRemove);
+				break;
+			}
+			case 2: {
+
+				cout << "Would you like to create a new map or load an existing map? 1 to create, 2 to load" << endl;
+				cin >> createOrLoad;
+				cin.ignore();
+				Campaign* campaignToAdd;
+				if (createOrLoad == 1) {
+					campaignToAdd = CampaignManager::CreateNewCampaign();
+				}
+				else if (createOrLoad == 2) {
+					campaignToAdd = CampaignManager::LoadCampaign();
+				}
+				break;
+			}
+			case 3: {
+				ofstream editedCampaign(campaignToLoad + ".txt");
+				editedCampaign.write((char*)&loadedCampaign, sizeof(loadedCampaign));
+				editedCampaign.close();
+				stillEditing = false;
+			}
+			}
+		}
+	}

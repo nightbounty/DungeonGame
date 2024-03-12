@@ -9,7 +9,8 @@ public:
 	static Map* CreateNewMap();
 	static Map* LoadMap();
 	static void EditLoadedMap(Map* loadedMap);
-	static void DisplayMainMenu();
 	static Campaign* LoadCampaign();
+	static Campaign* CreateNewCampaign();
+	static void EditLoadedCampaign(Campaign* loadedCampaign);
 };
 

@@ -23,3 +23,14 @@ string Door::GetTokenCode()
 Door::Door(){
     
 }
+
+void Door::SetConnectedMap(Map* map) {
+    this->connectedMap = map;
+}
+Map* Door::GetConnectedMap() {
+    return this->connectedMap;
+}
+
+string Door::ToString() {
+    return "This door connects to: " + this->connectedMap->GetName() + "\n";
+}

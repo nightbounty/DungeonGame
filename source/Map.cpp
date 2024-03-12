@@ -123,7 +123,9 @@ Vector2** Map::GeneratePath(){
 
 		grid[x][i]->SetOnPath(true);
 		if(i == cols - 1){
-			grid[x][i]->SetCellOccupant(new Door());
+			Door* exitDoor = new Door();
+			grid[x][i]->SetCellOccupant(exitDoor);
+			this->exitDoor = exitDoor;
 		}
 	}
 
@@ -185,3 +187,9 @@ void Map::SetDescription(string description) {
 string Map::GetDescription() {
 	return this->description;
 }
+
+Door* Map::GetExitDoor() {
+	return this->exitDoor;
+}
+
+

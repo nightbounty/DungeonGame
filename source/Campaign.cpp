@@ -4,6 +4,10 @@ Campaign::Campaign(vector<Map*> maps, string title, int size){
 	this->maps = maps;
 	this->title = title;
 	this->size = size;
+	for (int i = 0; i < size-1; i++) {
+		maps[i]->GetExitDoor()->SetConnectedMap(maps[i + 1]);
+	}
+	maps[size - 1]->GetExitDoor()->SetConnectedMap(NULL);
 }
 
 void Campaign::AddMap(Map* mapToAdd) {
@@ -12,9 +16,11 @@ void Campaign::AddMap(Map* mapToAdd) {
 }
 
 void Campaign::RemoveMap(int mapToRemove) {
+	if (mapToRemove > 0) {
+		maps[mapToRemove - 1]->GetExitDoor()->SetConnectedMap(maps[mapToRemove + 1]);
+	}
 	for (int i = mapToRemove; i < size-1; i++) {
 		maps[i] = maps[i + 1];
-
 	}
 }
 Map* Campaign::Start() {
@@ -35,4 +41,8 @@ string Campaign::ToString(){
 		str += std::to_string(i) + ". " + maps[i]->GetName() + "\n";
 	}
 	return str;
+}
+
+vector<Map*> Campaign::GetMaps() {
+	return this->maps;
 }

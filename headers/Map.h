@@ -23,6 +23,7 @@ private:
 	int cols;
 	string name;
 	string description;
+	Door* exitDoor;
 	std::vector<MapObserver*> observers; // Where all the observers will be added
 public:
 	Map(int rows, int cols, Vector2* startPt) {
@@ -60,5 +61,7 @@ public:
 
 	void Attach(MapObserver* observer); // adding an observer
     void Notify(); // notifying all observers
+
+	Door* GetExitDoor();
 };
 
