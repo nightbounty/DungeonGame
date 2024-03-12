@@ -1,6 +1,7 @@
 #include <iostream>
 #include "Map.h"
 #include "Cell.h"
+#include "MapObserver.h"  
 
 Map::Map() {
 	this->rows = 2;
@@ -8,6 +9,26 @@ Map::Map() {
 	this->path = GeneratePath();
 	this->startPt = new Vector2();
 }
+
+/**
+ * @brief Adding an observer to the Map
+ * 
+ * @param observer 
+ */
+void Map::Attach(MapObserver* observer) {
+	observers.push_back(observer);
+}
+
+/**
+ * @brief Notifying all the observers when Map is updated
+ * 
+ */
+void Map::Notify() {
+	for (MapObserver* o : observers) {
+        o->update(this);
+    }
+}
+
 /**
  * Method which creates a 2D grid of Cell objects.
  * 

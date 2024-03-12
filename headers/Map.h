@@ -5,10 +5,13 @@ class Vector2;
 #include "CellOccupants/Door.h"
 #include "CellOccupants/Chest.h"
 #include "CellOccupants/Enemy.h"
+#include <vector>
 
 #ifndef MAP
 #define MAP
 #endif
+
+class MapObserver; // Declaring the Obsrver for the Map object
 
 class Map
 {
@@ -20,6 +23,7 @@ private:
 	int cols;
 	string name;
 	string description;
+	std::vector<MapObserver*> observers; // Where all the observers will be added
 public:
 	Map(int rows, int cols, Vector2* startPt) {
 		this->rows = rows;
@@ -54,5 +58,7 @@ public:
 	void SetDescription(string description);
 	string GetDescription();
 
+	void Attach(MapObserver* observer); // adding an observer
+    void Notify(); // notifying all observers
 };
 
