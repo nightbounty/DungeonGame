@@ -192,8 +192,8 @@
     <ClInclude Include="headers\CampaignManager.h" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="source\MapContents.txt" />
-    <Text Include="source\MapSaved.txt" />
+    <Text Include="source\UserCreatedMaps\MapContents.txt" />
+    <Text Include="source\UserCreatedMaps\MapSaved.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -81,7 +81,7 @@ MapBuilder::MapBuilder() {
          }
 
          void MapBuilder::createMap(){
-            if (isMapSaved() == true){
+            if (isMapSaved()){
                map.setMapLevel(importMapLevel());
                map.setWorldName(importWorldName());
                map.setWorldTier(importWorldTier());

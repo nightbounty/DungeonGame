@@ -16,7 +16,7 @@ std::cout << "\nConcrete Builder 1\n" << std::endl;
 MapBuilder mapBuilder;
 
 // Read Map.txt file
-mapBuilder.readFile("MapSaved.txt");
+mapBuilder.readFile(".\\source\\UserCreatedMaps\\MapSaved.txt");
 //****** Builder 1: Check if map is saved, then create a map object ******
 mapBuilder.createMap();
 
@@ -26,7 +26,7 @@ std::cout << "\nConcrete Builder 2" << std::endl;
 // Create Map Builder #2
 MapBuilder2 mapBuilder2;
 // Read Map.txt file
-mapBuilder2.readFile("MapContents.txt");
+mapBuilder2.readFile(".\\source\\UserCreatedMaps\\MapContents.txt");
 mapBuilder2.createMap();
 
 return 0;
