@@ -3,6 +3,7 @@ using namespace std;
 #include <string>
 #include "Vector2.h"
 #include "Map.h"
+#include "ConcreteMapObserver.h"
 #include <fstream>
 #include "Campaign.h"
 #include "CampaignManager.h"
@@ -12,6 +13,37 @@ void DisplayMainMenu();
 
 	int main()
 	{
+		// PART 2 MAP OBSERVER
+		int rows, columns, startY;
+
+		cout << "\n======================================" << endl;
+		cout << "Next, let's test the map creation!~";
+		cout << "\n======================================\n" << endl;
+		
+		cout << "Please enter the number of rows for the map: \n";
+		cin >> rows;
+
+		cout << "Please enter the number of columns for the map: \n";
+		cin >> columns;
+
+		cout << "Please enter the y start coordinate for the map: \n";
+		cin >> startY;
+
+		cout << "Generating a map based on your input! :D" << endl;
+		Map* testMap = new Map(rows, columns, new Vector2(0, startY));
+	
+		cout << "\n=== LEGEND ===\nD: Door\nE: Enemy\nC: Chest\nO: Empty\nW: Wall";
+		
+		cout << "\n=== YOUR MAP!! *^* ===\n\n" << testMap->ToString();
+
+		ConcreteMapObserver concreteMapObserver;
+		testMap->Attach(&concreteMapObserver);
+
+		testMap->SetStartPt(new Vector2(1, 1));
+		testMap->Notify();
+
+		//////////////////////////////////////////////////////////////////
+
 		cout << "Welcome to the interactive campaign builder!" << endl;
 		cout << "============================================" << endl;
 		int currentOption;
