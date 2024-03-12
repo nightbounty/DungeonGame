@@ -2,12 +2,15 @@
 
 Campaign* CampaignManager::LoadCampaign() {
 	string campaignToLoad;
-	cout << "Enter the name of the map you want to load." << endl;
+	// take string input for which campaign
+	cout << "Enter the name of the campaignn you want to load." << endl;
 	cin >> campaignToLoad;
 	cin.ignore();
+	// create file stream based on the string
 	ifstream loadedCampaignFile(".\\source\\UserCreatedCampaigns\\" + campaignToLoad + ".txt");
 	Campaign* loadedCampaign;
 	loadedCampaignFile.read((char*)&loadedCampaign, sizeof(loadedCampaign));
+	// show the loaded campaign to the user
 	cout << "This is the campaign you loaded!" << endl;
 	cout << loadedCampaign->ToString() << endl;
 	loadedCampaignFile.close();
@@ -26,19 +29,19 @@ void CampaignManager::EditLoadedMap(Map* loadedMap) {
 		cout << "5. Save and return to menu" << endl;
 		cin >> mapEditOption;
 		switch (mapEditOption) {
-		case 1: {
+		case 1: { // set enemy cells
 			SetMapCellOccupant("Enemy", loadedMap);
 			break;
 		}
-		case 2: {
+		case 2: { // set chests
 			SetMapCellOccupant("Chest", loadedMap);
 			break;
 		}
-		case 3: {
-			SetMapCellOccupant("Chest", loadedMap);
+		case 3: { // set walls
+			SetMapCellOccupant("Wall", loadedMap);
 			break;
 		}
-		case 4: {
+		case 4: { // change description
 			string newDescription;
 			cout << "Enter the new description" << endl;
 			getline(cin, newDescription);
@@ -46,8 +49,8 @@ void CampaignManager::EditLoadedMap(Map* loadedMap) {
 			break;
 		}
 		case 5: {
+			// save the edited map to a file
 			ofstream editedMap(mapToLoad + ".txt");
-			// Need to make sure i'm in overwrite mode
 			editedMap.write((char*)&loadedMap, sizeof(loadedMap));
 			editedMap.close();
 			stillEditing = false;
@@ -59,6 +62,7 @@ void CampaignManager::EditLoadedMap(Map* loadedMap) {
 
 	void CampaignManager::SetMapCellOccupant(string type, Map * map) {
 		int row, col;
+		// select which cell to edit
 		cout << "Enter the row of the cell where an Enemy should be placed" << endl;
 		cin >> row;
 		cout << "Enter the column of the cell" << endl;
@@ -83,9 +87,11 @@ void CampaignManager::EditLoadedMap(Map* loadedMap) {
 		cout << "Enter the name of the map you want to load." << endl;
 		cin >> mapToLoad;
 		cin.ignore();
+		// create stream from the file name
 		ifstream loadedMapFile(".\\source\\UserCreatedMaps\\" + mapToLoad + ".txt");
 		Map* loadedMap;
 		loadedMapFile.read((char*)&loadedMap, sizeof(loadedMap));
+		// display loaded map to user
 		cout << "This is the map you loaded!" << endl;
 		cout << loadedMap->ToString() << endl;
 		loadedMapFile.close();
@@ -95,6 +101,7 @@ void CampaignManager::EditLoadedMap(Map* loadedMap) {
 	Map* CampaignManager::CreateNewMap() {
 		int nbRows, nbColumns, startY;
 		string mapTitle, mapDescription;
+		// prompting the user to fill in the map's details
 		cout << "Enter a title for your new map! (No spaces)" << endl;
 		cin >> mapTitle;
 		cin.ignore();
@@ -107,6 +114,7 @@ void CampaignManager::EditLoadedMap(Map* loadedMap) {
 		cin >> nbColumns;
 		cout << "Please enter the y start coordinate: " << endl;
 		cin >> startY;
+		// create and display new map
 		Map* newMap = new Map(nbRows, nbColumns, new Vector2(0, startY));
 		newMap->SetName(mapTitle);
 		cout << "\n=== LEGEND ===\nD: Door\nE: Enemy\nC: Chest\nO: Empty\nW: Wall";
@@ -127,17 +135,17 @@ void CampaignManager::EditLoadedMap(Map* loadedMap) {
 			cout << "Create or load a map to add? 1 to create, 2 to load, 3 to exit" << endl;
 			cin >> createOrLoad;
 			cin.ignore();
-			if (createOrLoad == 1) {
+			if (createOrLoad == 1) { // create a new map
 				mapToAdd = CampaignManager::CreateNewMap();
 				maps.push_back(mapToAdd);
 				campaignSize++;
 			}
-			else if (createOrLoad == 2) {
+			else if (createOrLoad == 2) { // load a map
 				mapToAdd = CampaignManager::LoadMap();
 				maps.push_back(mapToAdd);
 				campaignSize++;
 			}
-			else if (createOrLoad == 3) {
+			else if (createOrLoad == 3) {  // exit
 				stillAddingMaps = false;
 			}
 		}
@@ -181,10 +189,11 @@ void CampaignManager::EditLoadedMap(Map* loadedMap) {
 				break;
 			}
 			case 3: {
-				ofstream editedCampaign(campaignToLoad + ".txt");
+				ofstream editedCampaign(".\\source\\UserCreatedCampaigns\\" + campaignToLoad + ".txt");
 				editedCampaign.write((char*)&loadedCampaign, sizeof(loadedCampaign));
 				editedCampaign.close();
 				stillEditing = false;
+				break;
 			}
 			}
 		}

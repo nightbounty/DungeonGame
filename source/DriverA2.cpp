@@ -70,11 +70,22 @@ void DisplayMainMenu();
 
 			case 2: // Creating a new campaign
 			{
-				Campaign* newCampaign = CampaignManager::CreateNewCampaign();
+				vector<Map*> maps;
+				Map* barovia = new Map(5, 6, new Vector2(3, 0));
+				barovia->SetName("Barovia");
+				Map* vallaki = new Map(6, 7, new Vector2(4, 0));
+				vallaki->SetName("vallaki");
+				Map* ravenloft = new Map(4, 5, new Vector2(2, 0));
+				ravenloft->SetName("ravenloft");
+				maps.push_back(barovia);
+				maps.push_back(vallaki);
+				maps.push_back(ravenloft);
+
+				Campaign* newCampaign = new Campaign(maps, "CurseOfStrahd", 3);
+				// Campaign* newCampaign = CampaignManager::CreateNewCampaign();
 				ofstream campaignFile(".\\source\\UserCreatedCampaigns\\" + newCampaign->GetTitle() + ".txt");
 				campaignFile.write((char*)&newCampaign, sizeof(newCampaign));
 				campaignFile.close();
-				cout << newCampaign->GetMaps()[0]->GetExitDoor()->ToString();
 				
 				break;
 			}
@@ -86,7 +97,7 @@ void DisplayMainMenu();
 				break;
 			}
 
-			case 4:
+			case 4: // loading and editing a campaign
 			{
 				Campaign* loadedCampaign = CampaignManager::LoadCampaign();
 				CampaignManager::EditLoadedCampaign(loadedCampaign);
