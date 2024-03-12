@@ -1,14 +1,3 @@
-#include <string>
-#include <vector>
-#include <iostream>
-#include <fstream>
-#include <sstream>
-
-#include "MapBuilder.h"
-#include "Map2.h"
-#include "Item.h"
-#include "MapInterface.h"
-#include "ItemSub.h"
 #include "MapBuilder2.h"
 // empty constructor
 MapBuilder2::MapBuilder2() {

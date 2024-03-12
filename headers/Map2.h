@@ -5,8 +5,9 @@
 #define MAP2_H
 
 #include <string>
-#include "Item.h"
+#include "Items/Item.h"
 #include <vector>
+
 class Map2{
     private:
         // attributes of a map

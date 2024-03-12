@@ -4,6 +4,7 @@
 #include <string>
 #include "Item.h"
 #include "CharStats.h"
+#include <iostream>
 
 class Shield : public Item {
 public:

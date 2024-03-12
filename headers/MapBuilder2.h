@@ -3,9 +3,15 @@
 
 #include <string>
 #include <vector>
-#include "Item.h"
+#include "Items/Item.h"
 #include "MapInterface.h"
+#include <iostream>
+#include <fstream>
+#include <sstream>
+#include "MapBuilder.h"
 #include "Map2.h"
+#include "Items/Item.h"
+#include "Items/ItemSub.h"
 
 
 class MapBuilder2: public MapInterface{

@@ -1,5 +1,4 @@
 #include "Items/ItemContainer.h"
-#include <iostream>
 
 /**
  * Add item to Container

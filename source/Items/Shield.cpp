@@ -1,5 +1,6 @@
 #include "Items/Shield.h"
-#include <iostream>
+
+
 
 // Constructor
 Shield::Shield(const std::string &itemName){

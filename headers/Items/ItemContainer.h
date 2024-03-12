@@ -3,6 +3,7 @@
 
 #include <vector>
 #include "Item.h"
+#include <iostream>
 
 /**
  * @brief Inventory for Items

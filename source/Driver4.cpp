@@ -1,8 +1,8 @@
 #include "Map2.h"
-#include "Item.h"
+#include "Items/Item.h"
 #include "MapBuilder.h"
 #include "MapInterface.h"
-#include "ItemSub.h"
+#include "Items/ItemSub.h"
 #include "MapBuilder2.h"
 #include <iostream>
 

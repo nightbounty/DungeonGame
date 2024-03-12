@@ -1,7 +1,5 @@
 #include "Map2.h"
-#include "Item.h"
-#include <vector>
-#include <string>
+
 
 //Default constructor
 Map2::Map2(){

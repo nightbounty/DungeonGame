@@ -1,6 +1,4 @@
 #include "Items/Armor.h"
-#include <iostream>
-#include "CharStats.h"
 
 /**
  * Constructor

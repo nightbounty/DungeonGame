@@ -1,6 +1,4 @@
 #include "Items/Boots.h"
-#include <sstream>
-#include "CharStats.h"
 
 /**
  * Constructor for Boots

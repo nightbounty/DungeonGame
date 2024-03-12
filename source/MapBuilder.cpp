@@ -5,10 +5,7 @@
 #include <sstream>
 
 #include "MapBuilder.h"
-#include "Map2.h"
-#include "Item.h"
-#include "MapInterface.h"
-#include "ItemSub.h"
+
 // empty constructor
 MapBuilder::MapBuilder() {
 }

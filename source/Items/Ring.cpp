@@ -1,5 +1,5 @@
 #include "Items/Ring.h"
-#include <iostream>
+
 
 // Constructor
 Ring::Ring(const std::string &itemName) {
