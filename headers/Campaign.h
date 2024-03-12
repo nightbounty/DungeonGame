@@ -1,4 +1,5 @@
 #include "Map.h"
+#include "CellOccupants/Door.h"
 #ifndef CAMPAIGN
 #define CAMPAIGN
 using namespace std;
@@ -38,7 +39,7 @@ class Campaign
 
 		string ToString();
 
-		vector<Map> GetMaps();
+		vector<Map*> GetMaps();
 		void SetMaps(vector<Map> maps);
 
 		

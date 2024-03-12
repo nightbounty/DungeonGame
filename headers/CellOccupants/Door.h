@@ -1,4 +1,6 @@
 #pragma once
+#ifndef DOOR_H
+#define DOOR_H
 #include <iostream>
 #include <string>
 #include "CellOccupant.h"
@@ -16,4 +18,9 @@ public:
     Door();
     void Interact(Character* c);
     string GetTokenCode();
+    void SetConnectedMap(Map* map);
+    Map* GetConnectedMap();
+    string ToString();
 };
+
+#endif

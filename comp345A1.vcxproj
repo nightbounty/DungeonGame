@@ -194,6 +194,7 @@
   <ItemGroup>
     <Text Include="source\UserCreatedMaps\MapContents.txt" />
     <Text Include="source\UserCreatedMaps\MapSaved.txt" />
+    <Text Include="source\UserCreatedMaps\testMap.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
