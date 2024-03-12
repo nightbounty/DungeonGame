@@ -1,5 +1,7 @@
 #include "Item.h"
 #include <string>
+#ifndef ITEMSUB_H
+#define ITEMSUB_H
 class ItemSub : public Item {
 public:
     ItemSub(const std::string &itemName) : Item(itemName) {}
@@ -11,3 +13,5 @@ public:
         return getName();
      };
 };
+
+#endif

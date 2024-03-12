@@ -7,12 +7,14 @@ using namespace std;
 #include <fstream>
 #include "Campaign.h"
 #include "CampaignManager.h"
+#include "Driver4.h"
 
 
 void DisplayMainMenu();
 
 	int main()
 	{
+		driver4();
 		// PART 2 MAP OBSERVER
 		int rows, columns, startY;
 
