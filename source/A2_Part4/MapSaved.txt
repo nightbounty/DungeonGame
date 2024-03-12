@@ -1,0 +1,9 @@
+Saved
+Map Level: 2
+Item: Basic Sword
+Item: Basic Helmet
+Item: Basic Ring
+Character: Local Hero
+Character: Local Hero 2
+World Name: August
+World Tier: Advanced
