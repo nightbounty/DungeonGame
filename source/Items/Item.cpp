@@ -7,10 +7,11 @@ class Item
 {
 public:
     std::string itemName;
+    //Default Constructor
+    Item(){}
     // Constructor
-    Item(const std::string &itemName) {
-        this->itemName = itemName;
-    }
+    Item(const std::string &itemName);
+
 
     // Returns Item Name
     virtual std::string getName() const
@@ -22,4 +23,5 @@ public:
     virtual void displayEnhancement() = 0;
     virtual std::string toString() const = 0;
 };
+
 #endif
