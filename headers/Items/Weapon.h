@@ -4,6 +4,7 @@
 #include <iostream>
 #include "CharStats.h" 
 #include "Item.h" 
+#include <sstream>
 
 class Weapon : public Item
 {

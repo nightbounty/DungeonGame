@@ -1,7 +1,4 @@
 #include "Items/Belt.h"
-#include <iostream>
-#include <sstream>
-#include "CharStats.h"
 /**
  * Constructor
  */

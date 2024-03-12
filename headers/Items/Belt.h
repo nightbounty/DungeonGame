@@ -5,6 +5,8 @@
 #include <string>
 #include "CharStats.h"
 #include "Item.h"
+#include <sstream>
+
 
 /**
  * @class Belt

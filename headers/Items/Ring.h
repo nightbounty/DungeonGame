@@ -5,6 +5,7 @@
 #include "CharStats.h"
 #include <string>
 #include "Item.h"
+
 class Ring : public Item
 {
 

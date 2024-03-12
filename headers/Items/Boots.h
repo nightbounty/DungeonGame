@@ -5,6 +5,8 @@
 #include <string>
 #include "Item.h"
 #include "CharStats.h"
+#include <sstream>
+
 
 /**
  * @class Boots

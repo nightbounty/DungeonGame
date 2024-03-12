@@ -1,5 +1,4 @@
 #include "Items/Helmet.h"
-#include "CharStats.h"
 
 // Constructor implementation
 Helmet::Helmet(const std::string &itemName){
