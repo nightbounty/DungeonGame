@@ -39,7 +39,8 @@ void DisplayMainMenu();
 		ConcreteMapObserver concreteMapObserver;
 		testMap->Attach(&concreteMapObserver);
 
-		testMap->SetStartPt(new Vector2(1, 1));
+		testMap->SetCellOccupant(1, 1, new Chest());
+		testMap->SetStartPt(new Vector2(2, 2));
 		testMap->Notify();
 
 		//////////////////////////////////////////////////////////////////
