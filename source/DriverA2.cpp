@@ -13,7 +13,8 @@ using namespace std;
 void DisplayMainMenu();
 
 	int main()
-	{
+	{	
+		// PART 4: MAP BUILDER
 		driver4();
 		// PART 2 MAP OBSERVER
 		int rows, columns, startY;
