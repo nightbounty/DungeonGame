@@ -14,7 +14,7 @@ int driver4(){
 std::cout << "===========================" << std::endl;
 std::cout << "Concrete Builder " << std::endl;
 std::cout << "===========================" << std::endl;
-std::cout << "Checking if a Map is saved, then creating a Map object" << std::endl;
+std::cout << "Checking if a Map is saved, then creating a Map object..." << std::endl;
 // Create a Map Builder
 MapBuilder mapBuilder;
 
