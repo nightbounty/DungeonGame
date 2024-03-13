@@ -73,6 +73,7 @@ MapBuilder2::MapBuilder2() {
                 map2.setWorldTier(importWorldTier());
                 map2.setCharacterTier("Tier 1");
                 map2.setItemTier("Common");
+                map2.setEnemyTier("0-2");
                 map2.displayMapContents();
             }
 
@@ -80,6 +81,7 @@ MapBuilder2::MapBuilder2() {
                 map2.setWorldTier(importWorldTier());
                 map2.setCharacterTier("Tier 2");
                 map2.setItemTier("Uncommon");
+                map2.setEnemyTier("1/4-9");
                 map2.displayMapContents();
             }
 
@@ -87,6 +89,7 @@ MapBuilder2::MapBuilder2() {
                 map2.setWorldTier(importWorldTier());
                 map2.setCharacterTier("Tier 3");
                 map2.setItemTier("Rare");
+                map2.setEnemyTier("1/2-17");
                 map2.displayMapContents();
             }
 
@@ -94,6 +97,7 @@ MapBuilder2::MapBuilder2() {
                 map2.setWorldTier(importWorldTier());
                 map2.setCharacterTier("Tier 4");
                 map2.setItemTier("Very Rare");
+                map2.setEnemyTier("1-20");
                 map2.displayMapContents();
             }
 
