@@ -3,6 +3,10 @@
 
 #include <string>
 #include <array>
+#include <vector>
+
+
+class CharacterObserver;
 
 using namespace std;
 
@@ -43,6 +47,18 @@ public:
      */
     void wearItem(string item);
 
+    /** 
+     * Observer management
+     */
+    void attachObserver(CharacterObserver* observer);
+    void detachObserver(CharacterObserver* observer);
+    void notifyObservers();
+
+private:
+    /**
+     * List of observers
+     */
+    vector<CharacterObserver*> observers;
 };
 
 #endif 

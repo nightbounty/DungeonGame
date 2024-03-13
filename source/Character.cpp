@@ -1,8 +1,11 @@
-#include "Character.h"
+#include "../headers/Character.h"
+#include "../headers/CharacterObserver.h"
+
 #include <iostream>
 #include <random>
 #include <cstdlib> // srand()
 #include <ctime>   // For time()
+#include <algorithm>
 
 using namespace std;
 
@@ -72,6 +75,21 @@ void Character::displayStats() {
     cout << "--------------------------------------------------" << endl;
 
 }
+
+void Character::attachObserver(CharacterObserver* observer) {
+    observers.push_back(observer);
+}
+
+void Character::detachObserver(CharacterObserver* observer) {
+    observers.erase(remove(observers.begin(), observers.end(), observer), observers.end());
+}
+
+void Character::notifyObservers() {
+    for (CharacterObserver* observer : observers) {
+        observer->update(this);
+    }
+}
+
 
 // int main() {
 
