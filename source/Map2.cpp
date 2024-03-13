@@ -33,6 +33,7 @@ Map2::Map2(){
         void Map2::displayMapContents(){
                 std::cout << "World Difficulty: " <<  getWorldTier() << "\n";
                 std::cout << "Item Tier: " <<  getItemTier() << "\n";
+                std::cout << "Enemy Tier (CR): " <<  getEnemyTier() << "\n";
                 std::cout << "Character Tier: " <<  getCharacterTier() << std::endl;
         }
 

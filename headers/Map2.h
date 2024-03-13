@@ -19,6 +19,7 @@ class Map2{
         //new attributes
         std::string characterTier;
         std::string itemTier;
+        std::string enemyTier;
         
     public:
         //Default constructor
@@ -52,6 +53,9 @@ class Map2{
     std::string getItemTier() const {
         return itemTier;
     }
+    std::string getEnemyTier() const {
+        return enemyTier;
+    }
 
     // generate setters
     void setMapLevel(int newMapLevel) {
@@ -78,6 +82,9 @@ class Map2{
     }
      void setItemTier(const std::string& tier) {
         itemTier = tier;
+    }
+    void setEnemyTier(const std::string& tier) {
+        enemyTier = tier;
     }
 
 };
