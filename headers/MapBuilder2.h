@@ -1,3 +1,9 @@
+/** @class MapBuilder2
+ * @brief inherits from MapInterface
+ * This Class Reads a Map .txt file & updates the Character Hero Tier,
+ * Item Tier & Enemy Tier to reflect the World's Map Level.
+*/
+
 #ifndef MAPBUILDER2_H
 #define MAPBUILDER2_H
 
@@ -21,12 +27,9 @@ class MapBuilder2: public MapInterface{
         std::vector<std::string> mapFileCopy;
         std::vector<Item*> tempItems;
         std::vector<std::string> tempChars;
-        // std::vector<std::string> characterTier = {"Tier 1" , "Tier 2", "Tier 3", "Tier 4"};
-        // std::vector<std::string> worldTier = {"Beginner", "Intermediate", "Hard", "Advance"};
-        // std::vector<std::string> itemTier = {"Common", "Uncommon", "Rare", "Very Rare"};
         
         public:
-        // Constructor
+        /**Map Concrete Builder 2 Constructor*/
         MapBuilder2();
 
         virtual void readFile(const std::string &fileName) override;
@@ -36,9 +39,8 @@ class MapBuilder2: public MapInterface{
          std::string importWorldTier() override;
          std::vector<Item*> &importItems() override;
         std::vector<std::string> importCharacters() override;
-        // std::vector<std::string> importCharacterTier();
-        // std::vector<std::string> importItemTier();
-          
+
+          /**Tier methods: Updates map to have appropriate Char, Items and Enemies*/
           void tier1map();
           void tier2map();
           void tier3map();
