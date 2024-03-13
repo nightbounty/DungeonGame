@@ -11,7 +11,10 @@ int driver4(){
 // PART 4: MAP BUILDER
 // *********************************************
 
-std::cout << "\nConcrete Builder 1\n" << std::endl;
+std::cout << "===========================" << std::endl;
+std::cout << "Concrete Builder " << std::endl;
+std::cout << "===========================" << std::endl;
+std::cout << "Checking if a Map is saved, then creating a Map object" << std::endl;
 // Create a Map Builder
 MapBuilder mapBuilder;
 
@@ -21,8 +24,12 @@ mapBuilder.readFile(".\\source\\UserCreatedMaps\\MapSaved.txt");
 mapBuilder.createMap();
 
 
-//****** Builder 2: Check Map Contents, then modifies map object based on Map Contents ******
-std::cout << "\nConcrete Builder 2" << std::endl;
+//****** Builder 2: Check Map contents, then modifies map object based on Map Contents ******
+std::cout << "===========================" << std::endl;
+std::cout << "Concrete Builder 2" << std::endl;
+std::cout << "===========================" << std::endl;
+std::cout << "Checking saved Map contents and modifying a Map based on contents" << std::endl;
+
 // Create Map Builder #2
 MapBuilder2 mapBuilder2;
 // Read Map.txt file

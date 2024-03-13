@@ -6,8 +6,8 @@
 #include <ctime>   // For time()
 
 using namespace std;
-
-int main() {
+/*
+* int main() {
     cout << "Welcome to the GAME! +_+\n";
     cout << "************************\n";
 
@@ -70,3 +70,5 @@ int main() {
 
     return 0;
 }
+*/
+

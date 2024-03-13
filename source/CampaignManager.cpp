@@ -129,7 +129,7 @@ void CampaignManager::EditLoadedMap(Map* loadedMap) {
 		cin.ignore();
 		vector<Map*> maps;
 		bool stillAddingMaps = true;
-		int createOrLoad, campaignSize = 0;
+		int createOrLoad;
 		Map* mapToAdd;
 		while (stillAddingMaps) {
 			cout << "Create or load a map to add? 1 to create, 2 to load, 3 to exit" << endl;
@@ -138,18 +138,16 @@ void CampaignManager::EditLoadedMap(Map* loadedMap) {
 			if (createOrLoad == 1) { // create a new map
 				mapToAdd = CampaignManager::CreateNewMap();
 				maps.push_back(mapToAdd);
-				campaignSize++;
 			}
 			else if (createOrLoad == 2) { // load a map
 				mapToAdd = CampaignManager::LoadMap();
 				maps.push_back(mapToAdd);
-				campaignSize++;
 			}
 			else if (createOrLoad == 3) {  // exit
 				stillAddingMaps = false;
 			}
 		}
-		Campaign* newCampaign = new Campaign(maps, title, campaignSize);
+		Campaign* newCampaign = new Campaign(maps, title);
 		cout << "Campaign successfully created!" << endl;
 		cout << newCampaign->ToString() << endl;
 		return newCampaign;
@@ -178,14 +176,19 @@ void CampaignManager::EditLoadedMap(Map* loadedMap) {
 				cout << "Would you like to create a new map or load an existing map? 1 to create, 2 to load" << endl;
 				cin >> createOrLoad;
 				cin.ignore();
-				Map* mapToAdd;
+				Map* mapToAdd = NULL;
 				if (createOrLoad == 1) {
 					mapToAdd = CampaignManager::CreateNewMap();
 				}
 				else if (createOrLoad == 2) {
 					mapToAdd = CampaignManager::LoadMap();
 				}
-				
+				else {
+					cout << "Thought I told you to write 1 or 2! >:( Returning to menu..." << endl;
+				}
+				if (mapToAdd != NULL) {
+					loadedCampaign->AddMap(mapToAdd);
+				}
 				break;
 			}
 			case 3: {

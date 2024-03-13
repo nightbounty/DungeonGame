@@ -99,6 +99,24 @@
     <ClCompile Include="source\ConcreteMapObserver.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="source\Driver4.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Map2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\MapBuilder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\MapBuilder2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\CharacterObserver.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\CharacterDriver.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="headers\Character.h">
@@ -158,9 +176,6 @@
     <ClInclude Include="headers\Campaign.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="source\CampaignManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="headers\ConcreteMapObserver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -170,5 +185,31 @@
     <ClInclude Include="headers\Dice.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="headers\Driver4.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\Items\ItemSub.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\Map2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\MapBuilder.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\MapBuilder2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\MapInterface.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\CampaignManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="source\UserCreatedMaps\MapContents.txt" />
+    <Text Include="source\UserCreatedMaps\MapSaved.txt" />
+    <Text Include="source\UserCreatedMaps\testMap.txt" />
   </ItemGroup>
 </Project>

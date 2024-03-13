@@ -133,6 +133,8 @@
   <ItemGroup>
     <ClCompile Include="source\Campaign.cpp" />
     <ClCompile Include="source\CampaignManager.cpp" />
+    <ClCompile Include="source\CharacterDriver.cpp" />
+    <ClCompile Include="source\CharacterObserver.cpp" />
     <ClCompile Include="source\ConcreteMapObserver.cpp" />
     <ClCompile Include="source\Driver4.cpp" />
     <ClCompile Include="source\DriverA2.cpp" />

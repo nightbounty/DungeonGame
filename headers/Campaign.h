@@ -9,9 +9,8 @@ class Campaign
 	private:
 		vector<Map*> maps;
 		string title;
-		int size;
 	public:
-		Campaign(vector<Map*> maps, string title, int size);
+		Campaign(vector<Map*> maps, string title);
 		/**
 		 * Method which tells the game which map to start on
 		 * 

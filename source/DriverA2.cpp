@@ -8,19 +8,83 @@ using namespace std;
 #include "Campaign.h"
 #include "CampaignManager.h"
 #include "Driver4.h"
+#include "../headers/Character.h"
+#include "../headers/CharacterObserver.h"
 
 
 void DisplayMainMenu();
 
 	int main()
 	{	
+
+		cout << "Welcome to the GAME! +_+\n";
+		cout << "************************\n";
+
+		cout << "Let's create your character...\n";
+		cout << "***************************\n";
+
+		// Seed the random number generator once
+		srand(static_cast<unsigned int>(time(0)));
+
+		// Prompt for character creation details
+		string name;
+		string characterClass = "Fighter";
+		int level;
+
+		cout << "Enter your Fighter's name: ";
+		cin >> name;
+
+		cout << "Enter your character's level: ";
+		cin >> level;
+
+		// Create the character
+		cout << "\nCreating your character...\n";
+		Character myCharacter(level, characterClass);
+
+		// Attach observer to character
+		CharacterObserver observer;
+		myCharacter.attachObserver(&observer);
+
+		// Display initial character stats
+		cout << "\nDisplaying initial character stats...\n";
+		myCharacter.displayStats();
+
+		// Prompt the player about adding extra levels
+		cout << "\nDo you want to add extra levels to your character? (yes/no): ";
+		string response;
+		cin >> response;
+
+		if (response == "yes" || response == "Yes") {
+			int extraLevels;
+			cout << "How many levels do you want to add?: ";
+			cin >> extraLevels;
+
+			cout << "\nAdding " << extraLevels << " levels to your character...\n";
+			myCharacter.level += extraLevels; // Add extra levels
+
+			// Increment each ability score by 1 for each level added
+			for (int level = 0; level < extraLevels; ++level) {
+				for (int& score : myCharacter.abilityScores) {
+					score += 1;
+				}
+			}
+			myCharacter.attackBonus += extraLevels;
+			// Notify observers of the change to re-display updated stats
+			cout << "\nNow we are notifying the character observers if there was any changes...\n";
+			myCharacter.notifyObservers();
+		}
+		else {
+			cout << "No levels added. Keeping the character as is.\n";
+		}
+
+		cout << "\nCharacter setup complete! Proceed with your adventure.\n";
 		// PART 4: MAP BUILDER
 		driver4();
 		// PART 2 MAP OBSERVER
 		int rows, columns, startY;
 
 		cout << "\n======================================" << endl;
-		cout << "Next, let's test the map creation!~";
+		cout << "Next, let's test the map observer!~";
 		cout << "\n======================================\n" << endl;
 		
 		cout << "Please enter the number of rows for the map: \n";
@@ -41,7 +105,7 @@ void DisplayMainMenu();
 
 		ConcreteMapObserver concreteMapObserver;
 		testMap->Attach(&concreteMapObserver);
-
+		cout << "\n Now we will update te map and see if the observer updates the display!";
 		testMap->SetCellOccupant(1, 1, new Chest());
 		testMap->SetStartPt(new Vector2(2, 2));
 		testMap->Notify();
@@ -81,7 +145,7 @@ void DisplayMainMenu();
 				maps.push_back(vallaki);
 				maps.push_back(ravenloft);
 
-				Campaign* newCampaign = new Campaign(maps, "CurseOfStrahd", 3);
+				Campaign* newCampaign = new Campaign(maps, "CurseOfStrahd");
 				// Campaign* newCampaign = CampaignManager::CreateNewCampaign();
 				ofstream campaignFile(".\\source\\UserCreatedCampaigns\\" + newCampaign->GetTitle() + ".txt");
 				campaignFile.write((char*)&newCampaign, sizeof(newCampaign));
