@@ -1,3 +1,9 @@
+/** @class MapBuilder
+ * @brief Determines whether a Map .txt file
+ * was saved by user. If yes, transforms contents to a
+ * Map Object for future editing.
+ */
+
 #ifndef MAPBUILDER_H
 #define MAPBUILDER_H
 
@@ -32,7 +38,9 @@ class MapBuilder: public MapInterface{
          std::string importWorldTier() override;
          std::vector<Item*> &importItems() override;
         std::vector<std::string> importCharacters() override;
+        /**Boolean method: returns true if map saved*/
          bool isMapSaved();
+        /**Method: Creates a Map if .txt file was saved*/
           void createMap();
 };
 
