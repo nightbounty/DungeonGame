@@ -1,5 +1,10 @@
-// Map header
-//Map object
+/** @class Map2 
+ * @brief Additional Map features such as
+ * World Tier: {"Beginner", "Intermediate", "Hard", "Advance"}
+ * Char Tier: {"Tier 1" (lvl 1-4) , "Tier 2" (lvl 5-10), "Tier 3" (11-16), "Tier 4" (17-20)}
+ * Item Tier: {"Common", "Uncommon", "Rare", "Very Rare"}
+ * Enemy Tier: {"0-2, "1/4 -9", "1/2-17","1-20"}
+*/
 
 #ifndef MAP2_H
 #define MAP2_H
