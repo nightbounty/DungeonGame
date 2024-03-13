@@ -21,11 +21,6 @@ void Campaign::RemoveMap(int mapToRemove) {
 	delete maps[mapToRemove];
 	maps.erase(maps.begin() + mapToRemove);
 
-	//for (int i = mapToRemove; i < size-1; i++) {
-		//maps[i] = maps[i + 1];
-	//}
-	//delete maps[size - 1];
-	//maps[size - 1] = NULL;
 }
 Map* Campaign::Start() {
 	return maps[0];
