@@ -1,4 +1,4 @@
-#include "CharStats.h"
+#include "Character/CharStats.h"
 #include <sstream>
 #ifndef CHARSTATS
 #define CHARSTATS

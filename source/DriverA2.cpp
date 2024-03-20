@@ -8,8 +8,8 @@ using namespace std;
 #include "Campaign.h"
 #include "CampaignManager.h"
 #include "Driver4.h"
-#include "../headers/Character.h"
-#include "../headers/CharacterObserver.h"
+#include "../headers/Character/Character.h"
+#include "../headers/Character/CharacterObserver.h"
 
 
 void DisplayMainMenu();
@@ -111,7 +111,23 @@ void DisplayMainMenu();
 		testMap->Notify();
 
 		//////////////////////////////////////////////////////////////////
+		// creating a test campaign
+		vector<Map*> maps;
+		Map* barovia = new Map(5, 6, new Vector2(3, 0));
+		barovia->SetName("Barovia");
+		Map* vallaki = new Map(6, 7, new Vector2(4, 0));
+		vallaki->SetName("vallaki");
+		Map* ravenloft = new Map(4, 5, new Vector2(2, 0));
+		ravenloft->SetName("ravenloft");
+		maps.push_back(barovia);
+		maps.push_back(vallaki);
+		maps.push_back(ravenloft);
 
+		Campaign* testCampaign = new Campaign(maps, "CurseOfStrahd");
+		// Campaign* newCampaign = CampaignManager::CreateNewCampaign();
+		ofstream campaignFile(".\\source\\UserCreatedCampaigns\\" + testCampaign->GetTitle() + ".txt");
+		campaignFile.write((char*)&testCampaign, sizeof(testCampaign));
+		campaignFile.close();
 		cout << "Welcome to the interactive campaign builder!" << endl;
 		cout << "============================================" << endl;
 		int currentOption;
@@ -134,19 +150,7 @@ void DisplayMainMenu();
 
 			case 2: // Creating a new campaign
 			{
-				vector<Map*> maps;
-				Map* barovia = new Map(5, 6, new Vector2(3, 0));
-				barovia->SetName("Barovia");
-				Map* vallaki = new Map(6, 7, new Vector2(4, 0));
-				vallaki->SetName("vallaki");
-				Map* ravenloft = new Map(4, 5, new Vector2(2, 0));
-				ravenloft->SetName("ravenloft");
-				maps.push_back(barovia);
-				maps.push_back(vallaki);
-				maps.push_back(ravenloft);
-
-				Campaign* newCampaign = new Campaign(maps, "CurseOfStrahd");
-				// Campaign* newCampaign = CampaignManager::CreateNewCampaign();
+				Campaign* newCampaign = CampaignManager::CreateNewCampaign();
 				ofstream campaignFile(".\\source\\UserCreatedCampaigns\\" + newCampaign->GetTitle() + ".txt");
 				campaignFile.write((char*)&newCampaign, sizeof(newCampaign));
 				campaignFile.close();

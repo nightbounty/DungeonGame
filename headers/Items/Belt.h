@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include <string>
-#include "CharStats.h"
+#include "Character/CharStats.h"
 #include "Item.h"
 #include <sstream>
 

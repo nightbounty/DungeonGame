@@ -1,5 +1,5 @@
-#include "../headers/Character.h"
-#include "../headers/CharacterObserver.h"
+#include "../headers/Character/Character.h"
+#include "../headers/Character/CharacterObserver.h"
 
 #include <iostream>
 #include <random>

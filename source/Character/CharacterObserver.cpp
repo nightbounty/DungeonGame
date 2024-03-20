@@ -1,4 +1,4 @@
-#include "../headers/CharacterObserver.h"
+#include "../headers/Character/CharacterObserver.h"
 #include <iostream>
 
 /**

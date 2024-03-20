@@ -18,7 +18,7 @@
 #include "Items/Weapon.h"
 #include "Items/ItemContainer.h"
 #include "Items/Shield.h"
-#include "Character.h"
+#include "Character/Character.h"
 #include "Dice.h"
 #include <cstdlib> // For srand() and rand()
 #include <ctime>   // For time()

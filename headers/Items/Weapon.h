@@ -2,7 +2,7 @@
 #define WEAPON_H
 
 #include <iostream>
-#include "CharStats.h" 
+#include "Character/CharStats.h" 
 #include "Item.h" 
 #include <sstream>
 

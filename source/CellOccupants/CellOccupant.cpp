@@ -1,5 +1,5 @@
 #include "CellOccupants/CellOccupant.h"
-#include <Character.h>
+#include "Character/Character.h"
 
 void CellOccupant::Interact(Character* c)
 {

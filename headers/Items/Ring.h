@@ -2,7 +2,7 @@
 #define RING_H
 
 #include <iostream>
-#include "CharStats.h"
+#include "Character/CharStats.h"
 #include <string>
 #include "Item.h"
 

@@ -30,7 +30,7 @@
     <ClCompile Include="source\Cell.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="source\Character.cpp">
+    <ClCompile Include="source\Character\Character.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="source\Driver.cpp">
@@ -81,7 +81,7 @@
     <ClCompile Include="source\Items\Weapon.cpp">
       <Filter>Source Files\Items</Filter>
     </ClCompile>
-    <ClCompile Include="source\CharStats.cpp">
+    <ClCompile Include="source\Character\CharStats.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="source\Dice.cpp">
@@ -111,15 +111,18 @@
     <ClCompile Include="source\MapBuilder2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="source\CharacterObserver.cpp">
+    <ClCompile Include="source\Character\CharacterObserver.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="source\CharacterDriver.cpp">
+    <ClCompile Include="source\Character\CharacterDriver.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\GameManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="headers\Character.h">
+    <ClInclude Include="headers\Character\Character.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="headers\Map.h">
@@ -170,7 +173,7 @@
     <ClInclude Include="headers\Items\Weapon.h">
       <Filter>Header Files\Items</Filter>
     </ClInclude>
-    <ClInclude Include="headers\CharStats.h">
+    <ClInclude Include="headers\Character\CharStats.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="headers\Campaign.h">
@@ -204,6 +207,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="headers\CampaignManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\GameManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\Character\CharacterObserver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
