@@ -34,7 +34,7 @@ void GameManager::StartCampaign() {
     cout << "STARTING THE GAME...\n" << endl;
     cout << currentMap->ToString() << endl;
     MoveCharacterFromInput(0); // TODO the map doesn't update correctly qwq
-    cout << characters[0]->GetPositionX() << endl;
+    cout << characters[0]->GetPositionX() << endl; // character doesn't move :(
 }
 
 void GameManager::MoveCharacterFromInput(int characterIndex) {
