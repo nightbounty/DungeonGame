@@ -1,7 +1,7 @@
 #pragma once
 #include "CellOccupant.h"
 class Enemy :
-    public CellOccupant
+    public Actor
 {
 private:
     int atkBonus;
@@ -9,7 +9,8 @@ private:
     // a hit dice object
 
 public: 
-    void Battle(Character c);
+    void Attack();
+    void TakeDamage();
     void Interact(Character c);
     string GetTokenCode();
 };

@@ -6,7 +6,7 @@
  * 
  * \param c the character
  */
-void Enemy::Battle(Character c) {
+void Enemy::Attack() {
 	cout << "the battle has begun!" << endl;
 }
 
@@ -15,7 +15,7 @@ void Enemy::Battle(Character c) {
  * \param c The character
  */
 void Enemy::Interact(Character c) {
-	Battle(c);
+	Attack();
 }
 
 string Enemy::GetTokenCode() {

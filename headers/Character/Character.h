@@ -4,6 +4,7 @@
 #include <string>
 #include <array>
 #include <vector>
+#include "Actor.h"
 
 
 class CharacterObserver;
@@ -15,7 +16,7 @@ using namespace std;
  * Class that allow the generation of player characters following the d20 game rules
  */
 
-class Character {
+class Character : public Actor{
 public:
 
     /**
@@ -53,6 +54,12 @@ public:
     void attachObserver(CharacterObserver* observer);
     void detachObserver(CharacterObserver* observer);
     void notifyObservers();
+
+    /**
+     * Attacking and damagina.
+     */
+    void Attack();
+    void TakeDamage();
 
 private:
     /**
