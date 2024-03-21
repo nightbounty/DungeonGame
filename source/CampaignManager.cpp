@@ -1,5 +1,5 @@
 #include "CampaignManager.h"
-
+#include "CellOccupants/Enemy.h"
 Campaign* CampaignManager::LoadCampaign() {
 	string campaignToLoad;
 	// take string input for which campaign

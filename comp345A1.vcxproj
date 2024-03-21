@@ -136,6 +136,7 @@
     <ClCompile Include="source\CampaignManager.cpp" />
     <ClCompile Include="source\Character\CharacterObserver.cpp" />
     <ClCompile Include="source\ConcreteMapObserver.cpp" />
+    <ClCompile Include="source\Driver4.cpp" />
     <ClCompile Include="source\DriverA2.cpp" />
     <ClCompile Include="source\Cell.cpp" />
     <ClCompile Include="source\CellOccupants\CellOccupant.cpp" />

@@ -12,7 +12,7 @@ private:
 public:
     string getContents();
     void setContents(string contents);
-    void Interact(Character c);
+    void Interact();
     string GetTokenCode();
 };
 

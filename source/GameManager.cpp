@@ -1,5 +1,6 @@
 #include "GameManager.h"
 
+
 GameManager* GameManager::GetInstance() {
     {
         // If there is no instance then create one
@@ -15,9 +16,14 @@ GameManager* GameManager::GetInstance() {
         }
     }
 }
+
+void GameManager::StartCampaign() {
+    currentCampaign = CampaignManager::LoadCampaign();
+}
 bool GameManager::MoveActor(Actor* a, Vector2* oldPos, Vector2* newPos) {
 	if (IsValidMove(newPos)) return false;
 	currentMap->SetCellOccupant(oldPos->GetX(), oldPos->GetY(), NULL);
+    dynamic_cast<CellOccupant*>(a);
 	currentMap->SetCellOccupant(newPos->GetX(), newPos->GetY(), a);
 	return true;
 }

@@ -1,5 +1,7 @@
 #pragma once
 class Character;
+#include <string>
+using namespace std;
 
 class CellOccupant
 {

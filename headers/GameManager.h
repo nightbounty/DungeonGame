@@ -1,7 +1,8 @@
 #pragma once
 #include "Map.h"
 #include "Campaign.h"
-class Actor;
+#include "Actor.h"
+#include "CampaignManager.h"
 class GameManager
 {
 private:

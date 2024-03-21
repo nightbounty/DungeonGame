@@ -7,7 +7,7 @@ using namespace std;
 #include <fstream>
 #include "Campaign.h"
 #include "CampaignManager.h"
-#include "Driver4.h"
+#include "Driver4.cpp"
 #include "../headers/Character/Character.h"
 #include "../headers/Character/CharacterObserver.h"
 

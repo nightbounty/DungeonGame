@@ -1,7 +1,7 @@
 #include "CellOccupants/CellOccupant.h"
 class Character;
 
-void CellOccupant::Interact(Character* c)
+void CellOccupant::Interact()
 {
 
 }

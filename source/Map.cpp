@@ -1,7 +1,7 @@
 #include <iostream>
 #include "Map.h"
-#include "Cell.h"
-#include "MapObserver.h"  
+#include "CellOccupants/Enemy.h""
+
 
 Map::Map() {
 	this->rows = 2;

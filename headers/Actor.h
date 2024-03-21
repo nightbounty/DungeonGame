@@ -7,6 +7,7 @@
 #include "GameManager.h"
 #include "Items/Weapon.h"
 #include "Dice.h"
+using namespace std;
 class Actor :
     public CellOccupant
 {

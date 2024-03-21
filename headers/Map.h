@@ -4,7 +4,8 @@ class Vector2;
 #include "CellOccupants/CellOccupant.h"
 #include "CellOccupants/Door.h"
 #include "CellOccupants/Chest.h"
-#include "CellOccupants/Enemy.h"
+class Enemy;
+#include "MapObserver.h"  
 #include <vector>
 
 #ifndef MAP
