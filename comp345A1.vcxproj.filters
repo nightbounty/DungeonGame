@@ -99,9 +99,6 @@
     <ClCompile Include="source\ConcreteMapObserver.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="source\Driver4.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="source\Map2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -114,10 +111,22 @@
     <ClCompile Include="source\Character\CharacterObserver.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="source\Character\CharacterDriver.cpp">
+    <ClCompile Include="source\GameManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="source\GameManager.cpp">
+    <ClCompile Include="source\Actor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Strategies\TurnStrategy.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Strategies\AggressorStrategy.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Strategies\FriendlyStrategy.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Strategies\HumanPlayerStrategy.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -213,6 +222,21 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="headers\Character\CharacterObserver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\Actor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\Strategies\TurnStrategy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\Strategies\AggressorStrategy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\Strategies\FriendlyStrategy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\Strategies\HumanPlayerStrategy.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

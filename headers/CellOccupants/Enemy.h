@@ -1,17 +1,19 @@
 #pragma once
-#include "CellOccupant.h"
+#include "Actor.h"
 class Enemy :
     public Actor
 {
 private:
-    int atkBonus;
+    int attackBonus;
     int initiativeBonus;
-    // a hit dice object
+    int armorClass;
+    int damageBonus;
+    Weapon* currentWeapon;
 
 public: 
     void Attack();
-    void TakeDamage();
-    void Interact(Character c);
+    void TakeDamage(int dmgTaken);
+    void Interact();
     string GetTokenCode();
 };
 

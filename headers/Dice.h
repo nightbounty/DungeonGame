@@ -8,7 +8,7 @@
 */
 class Dice {
     public: 
-        int rollDice(const std::string& diceInput);
+        static int rollDice(const std::string& diceInput);
         
 };
 

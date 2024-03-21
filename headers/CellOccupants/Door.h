@@ -16,7 +16,7 @@ private:
 
 public:
     Door();
-    void Interact(Character* c);
+    void Interact();
     string GetTokenCode();
     void SetConnectedMap(Map* map);
     Map* GetConnectedMap();

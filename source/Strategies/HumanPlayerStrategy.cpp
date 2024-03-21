@@ -1,5 +1,6 @@
 #include "Strategies/HumanPlayerStrategy.h"
 #include <iostream>
+using namespace std;
 
 void HumanPlayerStrategy::ExecuteTurn(Actor* actor){
 	string direction;

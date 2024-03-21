@@ -13,7 +13,7 @@ string Chest::getContents() {
  * 
  * \param c The character
  */
-void Chest::Interact(Character c) { 
+void Chest::Interact() { 
 	cout << "You landed on a chest! You acquire its contents." << endl;
 	//c.acquireItems(this.getContents());
 }

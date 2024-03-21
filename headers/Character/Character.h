@@ -6,7 +6,6 @@
 #include <vector>
 #include "Actor.h"
 
-
 class CharacterObserver;
 
 using namespace std;
@@ -26,7 +25,6 @@ public:
     string characterClass;
     array<int, 6> abilityScores; // Str, Dex, Con, Int, Wis, Cha
     array<int, 6> abilityModifiers;
-    int hitPoints;
     int armorClass;
     int attackBonus;
     int damageBonus;
@@ -44,28 +42,35 @@ public:
     void displayStats();
 
     /**
-     * Wear an item and display it
+     * Equipping items
      */
     void wearItem(string item);
-
+    void EquipWeapon(Weapon* weapon); // later this should take an index from the array of weapons
+    void AddToInventory(Item* item);
     /** 
      * Observer management
      */
     void attachObserver(CharacterObserver* observer);
     void detachObserver(CharacterObserver* observer);
     void notifyObservers();
-
+    
     /**
      * Attacking and damagina.
      */
+ 
+    void TakeDamage(int damageTaken);
     void Attack();
-    void TakeDamage();
 
+    void SetCurrentWeapon(Weapon* weapon);
+    Weapon* GetCurrentWeapon();
 private:
     /**
      * List of observers
      */
     vector<CharacterObserver*> observers;
+    Item* inventory; // later should be an array of inventory items
+    vector<Weapon*> weapons;
+    Weapon* currentWeapon;
 };
 
 #endif 

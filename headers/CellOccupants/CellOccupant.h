@@ -1,10 +1,10 @@
 #pragma once
-#include "Character/Character.h"
+class Character;
 
 class CellOccupant
 {
 public: 
-	virtual void Interact(Character* c);
+	virtual void Interact();
 	virtual string GetTokenCode();
 };
 

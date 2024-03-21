@@ -1,5 +1,20 @@
 #include "GameManager.h"
 
+GameManager* GameManager::GetInstance() {
+    {
+        // If there is no instance then create one
+        if (instancePtr == NULL)
+        {
+            instancePtr = new GameManager();
+            return instancePtr;
+        }
+        else
+        {
+        // otherwise return the existing pointer
+            return instancePtr;
+        }
+    }
+}
 bool GameManager::MoveActor(Actor* a, Vector2* oldPos, Vector2* newPos) {
 	if (IsValidMove(newPos)) return false;
 	currentMap->SetCellOccupant(oldPos->GetX(), oldPos->GetY(), NULL);

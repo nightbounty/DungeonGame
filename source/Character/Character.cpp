@@ -6,6 +6,8 @@
 #include <cstdlib> // srand()
 #include <ctime>   // For time()
 #include <algorithm>
+#include <Items/Weapon.h>
+#include <Dice.h>
 
 using namespace std;
 
@@ -34,7 +36,8 @@ Character::Character(int lvl, string cls) : level(lvl), characterClass(cls) {
     /**
      * Initialize other attributes based on ability scores and modifiers
      */
-    hitPoints = abilityModifiers[2] + 10; // Based on constitution modifier and level
+    SetTotalHitPoints(abilityModifiers[2] + 10); // Based on constitution modifier and level
+    SetCurrentHitPoints(GetCurrentHitPoints());
     armorClass = abilityModifiers[1] + 10; // Based on dexterity modifier
     attackBonus = level + abilityModifiers[0]; // Based on level and strength/dexterity modifiers
     damageBonus = abilityModifiers[0]; // Based on strength modifier
@@ -45,7 +48,12 @@ Character::Character(int lvl, string cls) : level(lvl), characterClass(cls) {
 void Character::wearItem(string item) {
     cout << characterClass << " is wearing " << item << endl;
 }
-
+/**
+ * Equip a weapon from the player's weapon selection
+ */
+void Character::EquipWeapon(Weapon* weapon) {
+    this->currentWeapon = weapon;
+}
 /**
  * Display the Character Stats
  */
@@ -68,7 +76,7 @@ void Character::displayStats() {
     cout << "--------------------------------------------------" << endl;
     cout << "Hidden Stats:" << endl;
     cout << "--------------------------------------------------" << endl;
-    cout << "Hit Points: " << hitPoints << endl;
+    cout << "Hit Points: " << GetTotalHitPoints() << endl;
     cout << "Armor Class: " << armorClass << endl;
     cout << "Attack Bonus: " << attackBonus << endl;
     cout << "Damage Bonus: " << damageBonus << endl;
@@ -91,14 +99,29 @@ void Character::notifyObservers() {
 }
 
 
-// int main() {
+void Character::SetCurrentWeapon(Weapon* weapon) {
+    this->currentWeapon = weapon;
+}
 
+Weapon* Character::GetCurrentWeapon() {
+    return this->currentWeapon;
+}
 
-//     Character Himmel(10,"Fighter");
-//     Himmel.displayStats();
+void Character::Attack() {
+    if (std::abs(GetCurrentTarget()->GetPositionY() - GetPositionY()) < currentWeapon->GetRange()
+        && std::abs(GetCurrentTarget()->GetPositionX() - GetPositionX()) < currentWeapon->GetRange()) {
+            int atkRoll = Dice::rollDice("1d20+" + attackBonus);
+            if (atkRoll > GetCurrentTarget()->GetArmorClass()) {
+                int dmgRoll = Dice::rollDice(currentWeapon->GetDamageDice() + "+" + std::to_string(damageBonus));
+                GetCurrentTarget()->TakeDamage(dmgRoll);
+            }
+            else {
+                cout << "Missed the attack! :(" << endl;
+            }
+    }
+    else {
+        cout << "Enemy is out of range, sorry!" << endl;
+    }
+}
 
-//     //Himmel.wearItem("Helmet");
-    
-//     return 0;
-// }
 

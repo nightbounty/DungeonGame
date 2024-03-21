@@ -1,7 +1,7 @@
 #pragma once
 #include "Map.h"
 #include "Campaign.h"
-#include "Actor.h"
+class Actor;
 class GameManager
 {
 private:
@@ -9,13 +9,23 @@ private:
 	Campaign* currentCampaign;
 	Enemy* enemies;
 	Character* characters;
+	static GameManager* instancePtr;
+	GameManager() 
+	{
+	}
 
 public:
-	void EnterNewMap();
-	bool MoveActor(Actor* a, Vector2* oldPos, Vector2* newPos);
-	bool IsValidMove(Vector2* position);
+	
+	GameManager(const GameManager& obj) = delete;
+	static GameManager* GetInstance();
 	void SelectCampaign();
 	void StartCampaign();
+	
+	void EnterNewMap();
+
+	bool MoveActor(Actor* a, Vector2* oldPos, Vector2* newPos);
+	bool IsValidMove(Vector2* position);
+	
 	void DisplayEnemiesInMap();
 };
 

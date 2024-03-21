@@ -1,7 +1,12 @@
 #pragma once
+#ifndef ACTOR_H
+#define ACTOR_H
 #include "CellOccupants/CellOccupant.h"
 #include "Vector2.h"
 #include "Strategies/TurnStrategy.h"
+#include "GameManager.h"
+#include "Items/Weapon.h"
+#include "Dice.h"
 class Actor :
     public CellOccupant
 {
@@ -9,6 +14,10 @@ private:
     Vector2* position;
     TurnStrategy* turnStrategy;
     Actor* currentTarget;
+    int totalHitPoints;
+    int currentHitPoints;
+    Weapon* currentWeapon;
+    int armorClass;
 
 public:
     Actor();
@@ -25,8 +34,18 @@ public:
     Actor* GetCurrentTarget();
     void SetCurrentTarget(Actor* target);
 
-    virtual void Attack() = 0;
-    virtual void TakeDamage() = 0;
+    void SetTotalHitPoints(int hitPoints);
+    int GetTotalHitPoints();
+
+    int GetCurrentHitPoints();
+    void SetCurrentHitPoints(int hitPoints);
+
+    int GetArmorClass();
+
+
+    virtual void Attack()=0;
+    virtual void TakeDamage(int dmgRoll);
     void MoveTowardTarget();
 };
 
+#endif

@@ -1,5 +1,5 @@
 #pragma once
-#include "../headers/Actor.h"
+class Actor;
 class TurnStrategy
 {
 public:

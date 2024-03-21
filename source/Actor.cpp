@@ -1,5 +1,6 @@
 #include "Actor.h"
 
+
 Actor::Actor()
 {
 	this->position = new Vector2(0, 0);
@@ -50,6 +51,26 @@ void Actor::SetCurrentTarget(Actor* target)
 {
 	this->currentTarget = target;
 }
+
+int Actor::GetCurrentHitPoints() {
+	return this->currentHitPoints;
+}
+
+int Actor::GetTotalHitPoints() {
+	return this->totalHitPoints;
+}
+
+void Actor::SetCurrentHitPoints(int hitPoints) {
+	this->currentHitPoints = hitPoints;
+}
+void Actor::SetTotalHitPoints(int hitPoints) {
+	this->totalHitPoints = hitPoints;
+}
+
+int Actor::GetArmorClass() {
+	return 10; // this needs to have the logic from character
+}
+
 void Actor::MoveTowardTarget() {
 	int newX, newY;
 	Vector2* oldPos = this->position;
@@ -74,7 +95,6 @@ void Actor::MoveTowardTarget() {
 		newY = this->GetPositionY();
 	}
 	this->position = new Vector2(newX, newY);
-	// GameManager.moveActor(oldPos, this->position);
-	// delete oldPos;
-	// oldPos = NULL;
+	GameManager::GetInstance()->MoveActor(this, oldPos, this->position);
 }
+
