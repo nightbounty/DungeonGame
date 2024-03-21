@@ -8,7 +8,7 @@
  * \param c The character
  */
 
-void Door::Interact(Character* c){
+void Door::Interact(){
     cout << "Landed on the door! Ready to move to next map." << endl ;
     connectedMap = new Map(4, 5, new Vector2());
     // Set the Game's current map to the door's connected map

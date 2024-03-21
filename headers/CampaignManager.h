@@ -1,3 +1,5 @@
+#ifndef CAMPAIGNMANAGER_H
+#define CAMPAIGNMANAGER_H
 #include <iostream>
 #include "Map.h"
 #include "Campaign.h"
@@ -13,4 +15,5 @@ public:
 	static Campaign* CreateNewCampaign();
 	static void EditLoadedCampaign(Campaign* loadedCampaign);
 };
+#endif
 

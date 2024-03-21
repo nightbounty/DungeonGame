@@ -1,4 +1,5 @@
-#include <iostream>
+/*
+* #include <iostream>
 using namespace std;
 #include <string>
 #include "Vector2.h"
@@ -7,7 +8,7 @@ using namespace std;
 #include <fstream>
 #include "Campaign.h"
 #include "CampaignManager.h"
-#include "Driver4.h"
+int driver4();
 #include "../headers/Character/Character.h"
 #include "../headers/Character/CharacterObserver.h"
 
@@ -191,6 +192,8 @@ void DisplayMainMenu();
 		cout << "\t5. Exit the program" << endl;
 	}
 	
+*/
+
 	
 	
 	

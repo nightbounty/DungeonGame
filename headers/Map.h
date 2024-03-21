@@ -4,7 +4,8 @@ class Vector2;
 #include "CellOccupants/CellOccupant.h"
 #include "CellOccupants/Door.h"
 #include "CellOccupants/Chest.h"
-#include "CellOccupants/Enemy.h"
+class Enemy;
+#include "MapObserver.h"  
 #include <vector>
 
 #ifndef MAP
@@ -24,6 +25,7 @@ private:
 	string name;
 	string description;
 	Door* exitDoor;
+	std::vector<Enemy*> enemies;
 	std::vector<MapObserver*> observers; // Where all the observers will be added
 public:
 	Map(int rows, int cols, Vector2* startPt) {
@@ -55,6 +57,8 @@ public:
 	
 	void SetName(string name);
 	string GetName();
+
+	vector<Enemy*> GetEnemies();
 	
 	void SetDescription(string description);
 	string GetDescription();
@@ -63,5 +67,6 @@ public:
     void Notify(); // notifying all observers
 
 	Door* GetExitDoor();
+	CellOccupant* GetCellOccupant(int x, int y);
 };
 

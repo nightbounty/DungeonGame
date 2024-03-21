@@ -131,9 +131,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="source\Actor.cpp" />
     <ClCompile Include="source\Campaign.cpp" />
     <ClCompile Include="source\CampaignManager.cpp" />
-    <ClCompile Include="source\Character\CharacterDriver.cpp" />
     <ClCompile Include="source\Character\CharacterObserver.cpp" />
     <ClCompile Include="source\ConcreteMapObserver.cpp" />
     <ClCompile Include="source\Driver4.cpp" />
@@ -147,6 +147,7 @@
     <ClCompile Include="source\Character\CharStats.cpp" />
     <ClCompile Include="source\Dice.cpp" />
     <ClCompile Include="source\Driver.cpp" />
+    <ClCompile Include="source\DriverA3.cpp" />
     <ClCompile Include="source\GameManager.cpp" />
     <ClCompile Include="source\Items\Armor.cpp" />
     <ClCompile Include="source\Items\Belt.cpp" />
@@ -161,9 +162,14 @@
     <ClCompile Include="source\Map2.cpp" />
     <ClCompile Include="source\MapBuilder.cpp" />
     <ClCompile Include="source\MapBuilder2.cpp" />
+    <ClCompile Include="source\Strategies\AggressorStrategy.cpp" />
+    <ClCompile Include="source\Strategies\FriendlyStrategy.cpp" />
+    <ClCompile Include="source\Strategies\HumanPlayerStrategy.cpp" />
+    <ClCompile Include="source\Strategies\TurnStrategy.cpp" />
     <ClCompile Include="source\Vector2.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="headers\Actor.h" />
     <ClInclude Include="headers\Campaign.h" />
     <ClInclude Include="headers\Cell.h" />
     <ClInclude Include="headers\CellOccupants\CellOccupant.h" />
@@ -175,7 +181,6 @@
     <ClInclude Include="headers\Character\CharStats.h" />
     <ClInclude Include="headers\ConcreteMapObserver.h" />
     <ClInclude Include="headers\Dice.h" />
-    <ClInclude Include="headers\Driver4.h" />
     <ClInclude Include="headers\GameManager.h" />
     <ClInclude Include="headers\Items\Armor.h" />
     <ClInclude Include="headers\Items\Belt.h" />
@@ -193,6 +198,10 @@
     <ClInclude Include="headers\MapBuilder2.h" />
     <ClInclude Include="headers\MapInterface.h" />
     <ClInclude Include="headers\MapObserver.h" />
+    <ClInclude Include="headers\Strategies\AggressorStrategy.h" />
+    <ClInclude Include="headers\Strategies\FriendlyStrategy.h" />
+    <ClInclude Include="headers\Strategies\HumanPlayerStrategy.h" />
+    <ClInclude Include="headers\Strategies\TurnStrategy.h" />
     <ClInclude Include="headers\Vector2.h" />
     <ClInclude Include="headers\CampaignManager.h" />
   </ItemGroup>
