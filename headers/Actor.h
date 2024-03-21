@@ -45,8 +45,9 @@ public:
 
 
     virtual void Attack()=0;
-    virtual void TakeDamage(int dmgRoll);
+    virtual void TakeDamage(int dmgRoll) = 0;
     void MoveTowardTarget();
+    virtual string ToString() = 0;
 };
 
 #endif

@@ -124,4 +124,17 @@ void Character::Attack() {
     }
 }
 
+void Character::TakeDamage(int damageTaken) {
+    SetCurrentHitPoints(GetCurrentHitPoints() - damageTaken);
+}
+
+string Character::ToString() {
+    return characterClass + " at (" +
+        std::to_string(GetPositionX()) + ", " +
+        std::to_string(GetPositionY()) + ")";
+}
+string Character::GetTokenCode() {
+    return "P";
+}
+
 

@@ -1,7 +1,16 @@
 #include <iostream>
 using namespace std;
 #include "CellOccupants/Enemy.h"
-
+Enemy::Enemy(string name) {
+    this->name = name;
+    this->SetCurrentHitPoints(10);
+    this->SetTotalHitPoints(10);
+    this->attackBonus = 2;
+    this->damageBonus = 2;
+    this->initiativeBonus = 2;
+    this->armorClass = 10;
+    this->currentWeapon = new Weapon("Sword", "1d8+",1);
+}
 /**
  * Method in which the player character will battle the enemy.
  * 
@@ -16,12 +25,17 @@ void Enemy::Attack() {
             GetCurrentTarget()->TakeDamage(dmgRoll);
         }
         else {
-            cout << "Missed the attack! :(" << endl;
+            cout << "Missed the attack! :D" << endl;
         }
     }
     else {
-        cout << "Enemy is out of range, sorry!" << endl;
+        cout << "Out of range! It can't attack you" << endl;
     }
+}
+
+void Enemy::TakeDamage(int dmgTaken)
+{
+    SetCurrentHitPoints(GetCurrentHitPoints() - dmgTaken);
 }
 
 /**
@@ -34,4 +48,10 @@ void Enemy::Interact() {
 
 string Enemy::GetTokenCode() {
 	return "E";
+}
+
+string Enemy::ToString() {
+    return name + " Enemy at (" + 
+        std::to_string(GetPositionX()) + ", " + 
+        std::to_string(GetPositionY()) + ")";
 }

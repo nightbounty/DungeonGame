@@ -129,6 +129,12 @@
     <ClCompile Include="source\Strategies\HumanPlayerStrategy.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="source\Driver4.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\DriverA3.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="headers\Character\Character.h">
@@ -195,9 +201,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="headers\Dice.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="headers\Driver4.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="headers\Items\ItemSub.h">

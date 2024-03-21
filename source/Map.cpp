@@ -149,7 +149,10 @@ void Map::RandomizeMap(){
 				grid[i][j]->SetCellOccupant(new Chest());
 			}
 			else if (random > 0.16 && random < 0.2) {
-				grid[i][j]->SetCellOccupant(new Enemy());
+				Enemy* enemy = new Enemy("Guard"); // TODO make dynamic enemy types
+				enemy->SetPosition(new Vector2(i, j));
+				enemies.push_back(enemy);
+				grid[i][j]->SetCellOccupant(enemy);
 			}
 		}
 	}
@@ -190,6 +193,14 @@ string Map::GetDescription() {
 
 Door* Map::GetExitDoor() {
 	return this->exitDoor;
+}
+
+vector<Enemy*> Map::GetEnemies() {
+	return this->enemies;
+}
+
+CellOccupant* Map::GetCellOccupant(int x, int y) {
+	return grid[x][y]->GetCellOccupant();
 }
 
 

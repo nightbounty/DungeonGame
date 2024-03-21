@@ -1,6 +1,25 @@
 #include "CampaignManager.h"
 #include "CellOccupants/Enemy.h"
 Campaign* CampaignManager::LoadCampaign() {
+
+	// creating a test campaign
+	vector<Map*> maps;
+	Map* barovia = new Map(5, 6, new Vector2(3, 0));
+	barovia->SetName("Barovia");
+	Map* vallaki = new Map(6, 7, new Vector2(4, 0));
+	vallaki->SetName("vallaki");
+	Map* ravenloft = new Map(4, 5, new Vector2(2, 0));
+	ravenloft->SetName("ravenloft");
+	maps.push_back(barovia);
+	maps.push_back(vallaki);
+	maps.push_back(ravenloft);
+
+	Campaign* testCampaign = new Campaign(maps, "CurseOfStrahd");
+	// Campaign* newCampaign = CampaignManager::CreateNewCampaign();
+	ofstream campaignFile(".\\source\\UserCreatedCampaigns\\" + testCampaign->GetTitle() + ".txt");
+	campaignFile.write((char*)&testCampaign, sizeof(testCampaign));
+	campaignFile.close();
+
 	string campaignToLoad;
 	// take string input for which campaign
 	cout << "Enter the name of the campaignn you want to load." << endl;
@@ -68,7 +87,7 @@ void CampaignManager::EditLoadedMap(Map* loadedMap) {
 		cout << "Enter the column of the cell" << endl;
 		cin >> col;
 		if (type == "Enemy") {
-			map->SetCellOccupant(row, col, new Enemy());
+			map->SetCellOccupant(row, col, new Enemy("Guard"));
 		}
 		else if (type == "Chest") {
 			map->SetCellOccupant(row, col, new Chest());

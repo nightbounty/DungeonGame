@@ -8,8 +8,8 @@ class GameManager
 private:
 	Map* currentMap;
 	Campaign* currentCampaign;
-	Enemy* enemies;
-	Character* characters;
+	std::vector<Enemy*> enemies;
+	Character** characters;
 	static GameManager* instancePtr;
 	GameManager() 
 	{
@@ -26,7 +26,10 @@ public:
 
 	bool MoveActor(Actor* a, Vector2* oldPos, Vector2* newPos);
 	bool IsValidMove(Vector2* position);
+	void MoveCharacterFromInput(int characterIndex);
 	
 	void DisplayEnemiesInMap();
+
+	void InitiateCombat();
 };
 

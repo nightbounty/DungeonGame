@@ -63,6 +63,9 @@ public:
 
     void SetCurrentWeapon(Weapon* weapon);
     Weapon* GetCurrentWeapon();
+
+    string ToString();
+    string GetTokenCode();
 private:
     /**
      * List of observers
