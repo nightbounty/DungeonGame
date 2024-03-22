@@ -1,6 +1,7 @@
 #include "GameManager.h"
 #include "Character/Character.h"
 #include "CellOccupants/Enemy.h"
+#include <iostream>
 
 GameManager* GameManager::instancePtr;
 GameManager* GameManager::GetInstance() {
@@ -145,4 +146,13 @@ void GameManager::InitiateCombat(Actor* enemy) { // TODO this should be an enemy
     // while enemy health > 0 and player health > 0
     // firstPlayer.executeTurn()
     // secondPlayer.executeTurn()
+}
+
+void GameManager::LogEvent(const std::string& event) {
+    logEntry = event;
+    NotifyObservers();
+}
+
+void GameManager::NotifyObservers() {
+    Notify(logEntry);
 }

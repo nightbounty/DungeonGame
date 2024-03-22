@@ -5,6 +5,7 @@
 #include <array>
 #include <vector>
 #include "Actor.h"
+#include "GameLoggerSubject.h"
 
 class CharacterObserver;
 
@@ -15,7 +16,7 @@ using namespace std;
  * Class that allow the generation of player characters following the d20 game rules
  */
 
-class Character : public Actor{
+class Character : public Actor, public GameLoggerSubject {
 public:
 
     /**
@@ -66,6 +67,8 @@ public:
 
     string ToString();
     string GetTokenCode();
+
+    void LogEvent(const std::string& event); // Game log related function
 private:
     /**
      * List of observers
@@ -74,6 +77,9 @@ private:
     Item* inventory; // later should be an array of inventory items
     vector<Weapon*> weapons;
     Weapon* currentWeapon;
+
+    std::string logEntry; // Game Log related member
+	void NotifyObservers(); // Game Log related private function
 };
 
 #endif 

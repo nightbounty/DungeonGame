@@ -37,3 +37,12 @@ int Dice::rollDice(const std::string& diceInput) {
         return 0;
     }
 }
+
+void Dice::LogEvent(const std::string& event) {
+    logEntry = event;
+    NotifyObservers();
+}
+
+void Dice::NotifyObservers() {
+    Notify(logEntry);
+}

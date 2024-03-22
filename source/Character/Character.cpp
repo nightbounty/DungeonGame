@@ -138,4 +138,13 @@ string Character::GetTokenCode() {
     return "P";
 }
 
+void Character::LogEvent(const std::string& event) {
+    logEntry = event;
+    NotifyObservers();
+}
+
+void Character::NotifyObservers() {
+    Notify(logEntry);
+}
+
 

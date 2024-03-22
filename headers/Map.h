@@ -6,6 +6,7 @@ class Vector2;
 #include "CellOccupants/Chest.h"
 class Enemy;
 #include "MapObserver.h"  
+#include "GameLoggerSubject.h"
 #include <vector>
 
 #ifndef MAP
@@ -14,7 +15,7 @@ class Enemy;
 
 class MapObserver; // Declaring the Obsrver for the Map object
 
-class Map
+class Map : public GameLoggerSubject
 {
 private:
 	Cell*** grid;
@@ -27,6 +28,8 @@ private:
 	Door* exitDoor;
 	std::vector<Enemy*> enemies;
 	std::vector<MapObserver*> observers; // Where all the observers will be added
+	std::string logEntry; // Game Log related member
+	void NotifyObservers(); // Game Log related private function
 public:
 	Map(int rows, int cols, Vector2* startPt) {
 		this->rows = rows;
@@ -68,5 +71,7 @@ public:
 
 	Door* GetExitDoor();
 	CellOccupant* GetCellOccupant(int x, int y);
+
+	void LogEvent(const std::string& event); // Game log related function
 };
 
