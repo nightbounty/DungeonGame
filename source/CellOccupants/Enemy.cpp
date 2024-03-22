@@ -1,15 +1,17 @@
 #include <iostream>
 using namespace std;
 #include "CellOccupants/Enemy.h"
-Enemy::Enemy(string name) {
+#include "Strategies/FriendlyStrategy.h"
+Enemy::Enemy(string name) { // TODO make enemy a statblock like player
     this->name = name;
     this->SetCurrentHitPoints(10);
     this->SetTotalHitPoints(10);
     this->attackBonus = 2;
     this->damageBonus = 2;
-    this->initiativeBonus = 2;
+    this->SetInitiativeBonus(2);
     this->armorClass = 10;
     this->currentWeapon = new Weapon("Sword", "1d8+",1);
+    this->SetTurnStrategy(new FriendlyStrategy());
 }
 /**
  * Method in which the player character will battle the enemy.

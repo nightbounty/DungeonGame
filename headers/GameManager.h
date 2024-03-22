@@ -30,6 +30,6 @@ public:
 	
 	void DisplayEnemiesInMap();
 
-	void InitiateCombat();
+	void InitiateCombat(Actor* enemy);
 };
 

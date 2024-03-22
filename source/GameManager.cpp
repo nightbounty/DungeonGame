@@ -25,16 +25,28 @@ void GameManager::SelectCampaign() {
 void GameManager::StartCampaign() {
     currentMap = currentCampaign->Start();
     enemies = currentMap->GetEnemies();
+   
     // creating the party of characters. for now just one
     characters = new Character*[1];
     characters[0] = new Character(1, "Fighter");
     characters[0]->SetPosition(new Vector2(0,0));
     dynamic_cast<CellOccupant*>(characters[0]);
     currentMap->SetCellOccupant(0, 0, characters[0]);
+    // setting the target of the enemies to the player
+    for (int i = 0; i < enemies.size(); i++) {
+        enemies[i]->SetCurrentTarget(characters[0]);
+    }
     cout << "STARTING THE GAME...\n" << endl;
     cout << currentMap->ToString() << endl;
-    MoveCharacterFromInput(0); // TODO the map doesn't update correctly qwq
-    cout << characters[0]->GetPositionX() << endl; // character doesn't move :(
+    cout << "\nCharacter's turn" << endl;
+    MoveCharacterFromInput(0); 
+    cout << "\nEnemy's turn" << endl;
+    for (int i = 0; i < enemies.size(); i++) {
+        cout << "enemy " + std::to_string(i)+ " turn start" << endl;
+        enemies[i]->GetTurnStrategy()->ExecuteTurn(enemies[i]);
+        cout << currentMap->ToString() << endl;
+    }
+    
 }
 
 void GameManager::MoveCharacterFromInput(int characterIndex) {
@@ -46,22 +58,22 @@ void GameManager::MoveCharacterFromInput(int characterIndex) {
     switch (input) {
     case 'w':
     {
-        newY += 1;
+        newX -= 1;
         break;
     }
     case 'a':
     {
-        newX -= 1;
+        newY -= 1;
         break;
     }
     case 's':
     {
-        newY -= 1;
+        newX += 1;
         break;
     }
     case 'd':
     {
-        newX += 1;
+        newY += 1;
         break;
     }
     case 'q':
@@ -88,14 +100,15 @@ void GameManager::MoveCharacterFromInput(int characterIndex) {
         newY -= 1;
         break;
     }
+    }
     Vector2* newPos = new Vector2(newX, newY);
     MoveActor(characters[characterIndex], oldPos, newPos);
-        
-    }
+    cout << currentMap->ToString() << endl;
+    
 }
 
 bool GameManager::MoveActor(Actor* a, Vector2* oldPos, Vector2* newPos) {
-	if (IsValidMove(newPos)) return false;
+    if (!IsValidMove(newPos)) return false;
 	currentMap->SetCellOccupant(oldPos->GetX(), oldPos->GetY(), NULL);
     dynamic_cast<CellOccupant*>(a);
 	currentMap->SetCellOccupant(newPos->GetX(), newPos->GetY(), a);
@@ -105,7 +118,7 @@ bool GameManager::MoveActor(Actor* a, Vector2* oldPos, Vector2* newPos) {
 bool GameManager::IsValidMove(Vector2* position) {
 	return position->GetX() < currentMap->GetColumns()
 		&& position->GetY() < currentMap->GetRows()
-		&& position->GetX() > 0 && position->GetY() > 0;
+		&& position->GetX() >= 0 && position->GetY() >= 0;
 }
 
 void GameManager::DisplayEnemiesInMap() {
@@ -120,10 +133,15 @@ void GameManager::DisplayEnemiesInMap() {
     }
 }
 
-void GameManager::InitiateCombat() {
-    // roll initiative using Dice
-    // firstPlayer = higher initiative
-    // secondPlayer = lower initiative
+void GameManager::InitiateCombat(Actor* enemy) { // TODO this should be an enemy
+    // TODO check that it's an instance of enemy by dynamic casting 
+    cout << "combat started" << endl;
+    int playerInit = Dice::rollDice("1d20+" + characters[0]->GetInitiativeBonus());
+    int enemyInit = Dice::rollDice("1d20+" + enemy->GetInitiativeBonus());
+    
+    if (playerInit > enemyInit) {
+
+    }
     // while enemy health > 0 and player health > 0
     // firstPlayer.executeTurn()
     // secondPlayer.executeTurn()

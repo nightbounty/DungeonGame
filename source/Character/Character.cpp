@@ -41,6 +41,7 @@ Character::Character(int lvl, string cls) : level(lvl), characterClass(cls) {
     armorClass = abilityModifiers[1] + 10; // Based on dexterity modifier
     attackBonus = level + abilityModifiers[0]; // Based on level and strength/dexterity modifiers
     damageBonus = abilityModifiers[0]; // Based on strength modifier
+    SetInitiativeBonus(abilityModifiers[1]); // dex
 }
 /**
  * Wear an item for a character
