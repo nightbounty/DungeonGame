@@ -74,6 +74,7 @@ void Map::SetStartPt(Vector2* newPt){
 }
 
 void Map::SetCellOccupant(int row, int col, CellOccupant* o) {
+	if (grid[row][col]->IsWall()) grid[row][col]->SetWall(false);
 	grid[row][col]->SetCellOccupant(o);
 }
 

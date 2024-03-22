@@ -5,7 +5,6 @@ class Enemy :
 {
 private:
     int attackBonus;
-    int initiativeBonus;
     int armorClass;
     int damageBonus;
     Weapon* currentWeapon;

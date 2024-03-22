@@ -19,6 +19,7 @@ private:
     int currentHitPoints;
     Weapon* currentWeapon;
     int armorClass;
+    int initiativeBonus;
 
 public:
     Actor();
@@ -42,6 +43,9 @@ public:
     void SetCurrentHitPoints(int hitPoints);
 
     int GetArmorClass();
+
+    int GetInitiativeBonus();
+    void SetInitiativeBonus(int bonus);
 
 
     virtual void Attack()=0;

@@ -74,6 +74,13 @@ int Actor::GetArmorClass() {
 void Actor::MoveTowardTarget() {
 	int newX, newY;
 	Vector2* oldPos = this->position;
+
+	if (this->GetPositionX() == this->currentTarget->GetPositionX() + 1
+		|| this->GetPositionY() == this->currentTarget->GetPositionY() + 1
+		|| this->GetPositionX() == this->currentTarget->GetPositionX() - 1
+		|| this->GetPositionY() == this->currentTarget->GetPositionY() - 1) {
+		GameManager::GetInstance()->InitiateCombat(this);
+	}
 	// determine whether to move in X direction
 	if (this->currentTarget->GetPositionX() < this->GetPositionX()) {
 		newX = this->GetPositionX() - 1;
@@ -96,5 +103,13 @@ void Actor::MoveTowardTarget() {
 	}
 	this->position = new Vector2(newX, newY);
 	GameManager::GetInstance()->MoveActor(this, oldPos, this->position);
+}
+
+void Actor::SetInitiativeBonus(int bonus) {
+	this->initiativeBonus = bonus;
+}
+
+int Actor::GetInitiativeBonus() {
+	return this->initiativeBonus;
 }
 
