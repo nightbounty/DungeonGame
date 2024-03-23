@@ -32,4 +32,8 @@ int main(){
 	// then attach the DiceLogger as observer
 	// dice->Attach(&diceLogger);
 	GameManager::GetInstance()->StartCampaign();
+
+    //Remove Item from hero
+    hero->removeItem(armor);
+    hero->displayCharInventory();
 }
