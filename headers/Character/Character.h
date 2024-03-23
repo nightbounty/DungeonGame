@@ -32,6 +32,9 @@ public:
     void WearItem(string item);
     void AddToInventory(Item* item); // todo
     void EquipWeapon(Weapon* weapon); // todo make an overload that takes an index for the inventory :3
+// equi items
+virtual void equipItem(Item* item);
+void displayCharInventory() const;
 
      /** Remove Worn Item */
      bool removeItem(Item* item);
