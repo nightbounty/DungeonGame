@@ -47,6 +47,17 @@ void Character::WearItem(string item) {
 }
 
 
+/** Remove an Item */
+bool Character::removeItem(Item* item) {
+        auto i = std::find(equippedItems.begin(), equippedItems.end(), item);
+        if (i != equippedItems.end()) {
+            equippedItems.erase(i);
+            std::cout << "\n Removed item from Character's inventory: " << item->getName() << "\n";
+            return true;
+        }
+        return false;
+    }
+
 /**
  * Equip a weapon from the player's weapon selection
  */
