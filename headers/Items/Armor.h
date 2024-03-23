@@ -20,6 +20,8 @@ CharStats charStats;
      */
     Armor(const std::string &itemName);
 
+    Armor();
+
     /**
      * Increases the character's stats
      */
