@@ -9,6 +9,8 @@
 #include <algorithm>
 #include "../../headers/Items/Weapon.h"
 #include "../../headers/Dice.h"
+#include "CharContainer.h"
+#include "ItemContainer.h"
 
 using namespace std;
 
@@ -44,6 +46,18 @@ Character::Character(string name, Vector2* pos, TurnStrategy* ts, int lvl, strin
  */
 void Character::WearItem(string item) {
     cout << characterClass << " is wearing " << item << endl;
+}
+
+ void Character::equipItem(Item* item){
+        equippedItems.push_back(item);
+    cout << "Equipped Item to Character\n";
+}
+
+void Character::displayCharInventory() const{
+    std::cout << "Character Inventory:" << '\n';
+        for (const auto* itemInside : equippedItems) {
+            std::cout << itemInside->getName();
+        }
 }
 
 
