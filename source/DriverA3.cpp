@@ -1,5 +1,6 @@
 #include "GameManager.h";
-int main(){
-
+int main()
+{
 	GameManager::GetInstance()->SelectCampaign();
+	GameManager::GetInstance()->StartCampaign();
 }

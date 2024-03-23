@@ -9,6 +9,6 @@ void CharacterObserver::update(Character* character) {
     
     if (character) {
         cout << "\n*** Character Update ***\n";
-        character->displayStats();
+        character->DisplayStats();
     }
 }

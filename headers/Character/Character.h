@@ -2,7 +2,6 @@
 #define CHARACTER_H
 
 #include <string>
-#include <array>
 #include <vector>
 #include "Actor.h"
 
@@ -19,50 +18,24 @@ class Character : public Actor{
 public:
 
     /**
-     * Character Stats
-     */
-    int level;
-    string characterClass;
-    array<int, 6> abilityScores; // Str, Dex, Con, Int, Wis, Cha
-    array<int, 6> abilityModifiers;
-    int armorClass;
-    int attackBonus;
-    int damageBonus;
-
-    /**
      * Character Constructor
      */
 
-    Character(int level, string characterClass);
-    
-    /**
-     * Display the Character Stats
-     */
-
-    void displayStats();
+    Character(string name, Vector2* pos, TurnStrategy* ts = NULL, int level = 1, string cls = "", Actor* target = NULL);
 
     /**
      * Equipping items
      */
-    void wearItem(string item);
-    void EquipWeapon(Weapon* weapon); // later this should take an index from the array of weapons
-    void AddToInventory(Item* item);
+    void WearItem(string item);
+    void AddToInventory(Item* item); // todo
+    void EquipWeapon(Weapon* weapon); // todo make an overload that takes an index for the inventory :3
+
     /** 
      * Observer management
      */
-    void attachObserver(CharacterObserver* observer);
-    void detachObserver(CharacterObserver* observer);
-    void notifyObservers();
-    
-    /**
-     * Attacking and damagina.
-     */
- 
-    void TakeDamage(int damageTaken);
-    void Attack();
-
-    void SetCurrentWeapon(Weapon* weapon);
-    Weapon* GetCurrentWeapon();
+    void AttachObserver(CharacterObserver* observer);
+    void DetachObserver(CharacterObserver* observer);
+    void NotifyObservers();
 
     string ToString();
     string GetTokenCode();
@@ -70,6 +43,7 @@ private:
     /**
      * List of observers
      */
+
     vector<CharacterObserver*> observers;
     Item* inventory; // later should be an array of inventory items
     vector<Weapon*> weapons;

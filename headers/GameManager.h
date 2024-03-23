@@ -7,9 +7,9 @@ class GameManager
 {
 private:
 	Map* currentMap;
+	std::vector<Character*> characters;
 	Campaign* currentCampaign;
 	std::vector<Enemy*> enemies;
-	Character** characters;
 	static GameManager* instancePtr;
 	GameManager() 
 	{
@@ -29,6 +29,8 @@ public:
 	void MoveCharacterFromInput(int characterIndex);
 	
 	void DisplayEnemiesInMap();
+	Enemy* GetEnemyInMap(int i);
+	Character* GetCharacterInMap(int i);
 
 	void InitiateCombat(Actor* enemy);
 };
