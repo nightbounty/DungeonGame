@@ -75,8 +75,8 @@ bool GameManager::MoveActor(Actor* a, Vector2* oldPos, Vector2* newPos) {
         return false;
     }
     cout << "The move is valid!\n";
-    currentMap->SetCellOccupant(oldPos->GetY(), oldPos->GetX(), NULL);
-	currentMap->SetCellOccupant(newPos->GetY(), newPos->GetX(), a);
+    currentMap->SetCellOccupant(oldPos->GetX(), oldPos->GetY(), NULL);
+	currentMap->SetCellOccupant(newPos->GetX(), newPos->GetY(), a);
     a->SetPosition(newPos);
 	return true;
 }

@@ -21,7 +21,6 @@ void HumanPlayerStrategy::ExecuteTurn(Actor* actor){
 		actor->Attack();
 	}
 
-	
 	cout << "Using free actions would go here" << endl;
 }
 

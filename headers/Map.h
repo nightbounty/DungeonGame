@@ -42,7 +42,7 @@ public:
 	Map();
 	Cell*** CreateGrid(int rows, int cols);
 
-	void SetCellOccupant(int row, int col, CellOccupant* o);
+	void SetCellOccupant(int x, int y, CellOccupant* o);
 	Vector2** GeneratePath(); 
 	void RandomizeMap();
 	

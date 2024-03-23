@@ -89,10 +89,10 @@ void CampaignManager::EditLoadedMap(Map* loadedMap) {
 		cout << "Enter the column of the cell" << endl;
 		cin >> col;
 		if (type == "Enemy") {
-			map->SetCellOccupant(row, col, new Enemy("Guard", new Vector2(col, row), new FriendlyStrategy()));
+			map->SetCellOccupant(col, row, new Enemy("Guard", new Vector2(col, row), new FriendlyStrategy()));
 		}
 		else if (type == "Chest") {
-			map->SetCellOccupant(row, col, new Chest());
+			map->SetCellOccupant(col, row, new Chest());
 		}
 		else if (type == "Wall") {
 			map->GetGrid()[row][col]->SetWall(true);

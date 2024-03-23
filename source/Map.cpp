@@ -73,9 +73,9 @@ void Map::SetStartPt(Vector2* newPt){
 	this->startPt = newPt;
 }
 
-void Map::SetCellOccupant(int row, int col, CellOccupant* o) {
-	if (grid[row][col]->IsWall()) grid[row][col]->SetWall(false);
-	grid[row][col]->SetCellOccupant(o);
+void Map::SetCellOccupant(int x, int y, CellOccupant* o) {
+	if (grid[y][x]->IsWall()) grid[y][x]->SetWall(false);
+	grid[y][x]->SetCellOccupant(o);
 }
 
 int Map::GetColumns(){
@@ -151,7 +151,7 @@ void Map::RandomizeMap(){
 				grid[i][j]->SetCellOccupant(new Chest());
 			}
 			else if (random > 0.16 && random < 0.2) {
-				Enemy* enemy = new Enemy("Guard", new Vector2(i, j), new FriendlyStrategy(), 1); // TODO make dynamic enemy types
+				Enemy* enemy = new Enemy("Guard", new Vector2(j, i), new FriendlyStrategy(), 1); // TODO make dynamic enemy types
 				enemies.push_back(enemy);
 				grid[i][j]->SetCellOccupant(enemy);
 			}
@@ -201,11 +201,11 @@ vector<Enemy*> Map::GetEnemies() {
 }
 
 CellOccupant* Map::GetCellOccupant(Vector2* pos) {
-	return grid[pos->GetX()][pos->GetY()]->GetCellOccupant();
+	return grid[pos->GetY()][pos->GetX()]->GetCellOccupant();
 }
 
 CellOccupant* Map::GetCellOccupant(int x, int y) {
-	return grid[x][y]->GetCellOccupant();
+	return grid[y][x]->GetCellOccupant();
 }
 
 void Map::LogEvent(const std::string& event) {

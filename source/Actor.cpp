@@ -51,8 +51,9 @@ void Actor::MoveActorFromInput() {
     cout << "Move actor from input! o^o" << endl;
 
     char input;
-    Vector2* oldPos = this->GetPosition();
+    Vector2* oldPos = new Vector2(position->GetX(), position->GetY());
     int newX = oldPos->GetX(), newY = oldPos->GetY();
+
     cout << "Enter direction of movement: WASD, QEZC for diagonals" << endl;
     cin >> input;
     switch (input) {
@@ -173,10 +174,8 @@ void Actor::Attack() {
         << "," << (std::abs(GetCurrentTarget()->GetPositionY() - GetPositionY())) << ")\n" << endl;
     */
 
-    //cout << "Weapon? " << (currentWeapon != NULL) << endl;
-
-    if (std::abs(currentTarget->GetPositionY() - GetPositionY()) <= currentWeapon->GetRange()
-        && std::abs(currentTarget->GetPositionX() - GetPositionX()) <= currentWeapon->GetRange()) {
+    if (std::abs(currentTarget->GetPositionY() - position->GetY()) <= currentWeapon->GetRange()
+        && std::abs(currentTarget->GetPositionX() - position->GetX()) <= currentWeapon->GetRange()) {
 
         cout << "In range!" << endl;
 
