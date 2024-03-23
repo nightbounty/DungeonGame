@@ -33,6 +33,18 @@ int main(){
 	// dice->Attach(&diceLogger);
 	GameManager::GetInstance()->StartCampaign();
 
+    // ASSIGNMENT 3 : Part 3
+    
+    // Create a Character
+    Character* hero = new Character();
+
+    // Create Items
+    Armor* armor = new Armor("Basic Armor");
+
+    // Add item to hero
+    hero->equipItem(armor);
+    hero->displayCharInventory();
+
     //Remove Item from hero
     hero->removeItem(armor);
     hero->displayCharInventory();
