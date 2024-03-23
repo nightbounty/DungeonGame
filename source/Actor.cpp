@@ -58,46 +58,46 @@ void Actor::MoveActorFromInput() {
     switch (input) {
     case 'w':
     {
-        newX -= 1;
-        break;
-    }
-    case 'a':
-    {
         newY -= 1;
         break;
     }
     case 's':
     {
-        newX += 1;
+        newY= 1;
+        break;
+    }
+    case 'a':
+    {
+        newX -= 1;
         break;
     }
     case 'd':
     {
-        newY += 1;
-        break;
-    }
-    case 'q':
-    {
-        newX -= 1;
-        newY += 1;
-        break;
-    }
-    case 'e':
-    {
         newX += 1;
-        newY += 1;
         break;
     }
-    case 'z':
+    case 'q': //up-left
     {
         newX -= 1;
         newY -= 1;
         break;
     }
-    case 'c':
+    case 'e': //up-right
     {
         newX += 1;
         newY -= 1;
+        break;
+    }
+    case 'z': //down-left
+    {
+        newX -= 1;
+        newY += 1;
+        break;
+    }
+    case 'c': //down-right
+    {
+        newX += 1;
+        newY += 1;
         break;
     }
     }
@@ -113,36 +113,36 @@ void Actor::MoveTowardTarget() {
     }
 
     int newX, newY;
-    Vector2* oldPos = this->position;
+    Vector2* targetPos = currentTarget->GetPosition();
 
-    if (this->GetPositionX() == this->currentTarget->GetPositionX() + 1
-        || this->GetPositionY() == this->currentTarget->GetPositionY() + 1
-        || this->GetPositionX() == this->currentTarget->GetPositionX() - 1
-        || this->GetPositionY() == this->currentTarget->GetPositionY() - 1) {
+    if (position->GetX() - 1 == targetPos->GetX()
+        || position->GetX() + 1 == targetPos->GetX()
+        || position->GetY() - 1 == targetPos->GetY()
+        || position->GetY() + 1 == targetPos->GetY()) {
         GameManager::GetInstance()->InitiateCombat(this);
     }
     // determine whether to move in X direction
-    if (this->currentTarget->GetPositionX() < position->GetX()) {
-        newX = this->GetPositionX() - 1;
+    if (targetPos->GetX() < position->GetX()) {
+        newX = position->GetX() - 1;
     }
-    else if (this->currentTarget->GetPositionX() > position->GetX()) {
-        newX = this->GetPositionX() + 1;
+    else if (targetPos->GetX() > position->GetX()) {
+        newX = position->GetX() + 1;
     }
     else {
-        newX = this->GetPositionX();
+        newX = position->GetX();
     }
     // determine whether to move in Y direction
-    if (this->currentTarget->GetPositionY() < position->GetY()) {
-        newY = this->GetPositionY() - 1;
+    if (targetPos->GetY() < position->GetY()) {
+        newY = position->GetY() - 1;
     }
-    else if (this->currentTarget->GetPositionY() > position->GetY()) {
-        newY = this->GetPositionY() + 1;
+    else if (targetPos->GetY() > position->GetY()) {
+        newY = position->GetY() + 1;
     }
     else {
-        newY = this->GetPositionY();
+        newY = position->GetY();
     }
-    this->position = new Vector2(newX, newY);
-    GameManager::GetInstance()->MoveActor(this, oldPos, this->position);
+    //this->position = new Vector2(newX, newY);
+    GameManager::GetInstance()->MoveActor(this, position, new Vector2(newX, newY));
 }
 
 void Actor::TakeDamage(int dmgTaken)

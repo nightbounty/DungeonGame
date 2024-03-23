@@ -8,7 +8,6 @@ void HumanPlayerStrategy::ExecuteTurn(Actor* actor){
 	cout << "Hellooooo from the turn execution! o^o" << endl;
 	
 	actor->MoveActorFromInput();
-	cout << "After movement! :3" << endl;
 
 	int enemyIndex;
 	string attack;

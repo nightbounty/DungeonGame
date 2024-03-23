@@ -46,7 +46,9 @@ void GameManager::StartCampaign() {
         cout << "= TURN " << turnCounter << " =\n" << endl;
         cout << currentMap->ToString() << endl;
 
-        
+        cout << "\nCharacter's turn" << endl;
+        //cout << "Turn strategy: " << (characters[0]->GetTurnStrategy()->ToString()) << endl;
+        characters[0]->GetTurnStrategy()->ExecuteTurn(characters[0]);
 
         cout << "\nEnemy's turn" << endl;
         for (int i = 0; i < enemies.size(); i++) {
@@ -55,10 +57,6 @@ void GameManager::StartCampaign() {
             enemies[i]->GetTurnStrategy()->ExecuteTurn(enemies[i]);
             cout << currentMap->ToString() << endl;
         }
-
-        cout << "\nCharacter's turn" << endl;
-        //cout << "Turn strategy: " << (characters[0]->GetTurnStrategy()->ToString()) << endl;
-        characters[0]->GetTurnStrategy()->ExecuteTurn(characters[0]);
 
         if (characters[0]->GetCurrentHitPoints() <= 0) {
             cout << "\nCharacter is dead! Gameover :c" << endl;
@@ -76,8 +74,8 @@ bool GameManager::MoveActor(Actor* a, Vector2* oldPos, Vector2* newPos) {
         return false;
     }
     cout << "The move is valid!\n";
-    currentMap->SetCellOccupant(oldPos->GetX(), oldPos->GetY(), NULL);
-	currentMap->SetCellOccupant(newPos->GetX(), newPos->GetY(), a);
+    currentMap->SetCellOccupant(oldPos->GetY(), oldPos->GetX(), NULL);
+	currentMap->SetCellOccupant(newPos->GetY(), newPos->GetX(), a);
     a->SetPosition(newPos);
 	return true;
 }
