@@ -7,8 +7,8 @@
 #include <cstdlib> // srand()
 #include <ctime>   // For time()
 #include <algorithm>
-#include <Items/Weapon.h>
-#include <Dice.h>
+#include "../../headers/Items/Weapon.h"
+#include "../../headers/Dice.h"
 
 using namespace std;
 
@@ -19,13 +19,6 @@ Character::Character(string name, Vector2* pos, TurnStrategy* ts, int lvl, strin
      * It avoids generating the same numbers when running the program
      */
     srand(static_cast<unsigned int>(time(0)));
-
-    /**
-     * Initialize ability scores with random numbers between 3 and 18
-     */
-    for (int i = 0; i < abilityScores.size(); ++i) {
-        abilityScores[i] = rand() % 16 + 3; // rand() % 16 will give us a range 0-15 we need to add 3 for 3-18
-    }
 
     /**
      * Initialize ability modifiers based on ability scores

@@ -5,6 +5,8 @@
 #include <vector>
 #include "Actor.h"
 #include "GameLoggerSubject.h"
+#include "../Vector2.h"
+#include "../Actor.h"
 
 class CharacterObserver;
 
