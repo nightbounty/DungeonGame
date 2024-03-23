@@ -3,7 +3,9 @@
 #include "Campaign.h"
 #include "Actor.h"
 #include "CampaignManager.h"
-class GameManager
+#include "GameLoggerSubject.h"
+
+class GameManager : public GameLoggerSubject
 {
 private:
 	Map* currentMap;
@@ -11,6 +13,8 @@ private:
 	Campaign* currentCampaign;
 	std::vector<Enemy*> enemies;
 	static GameManager* instancePtr;
+	std::string logEntry; // Game Log related member
+	void NotifyObservers(); // Game Log related private function
 	GameManager() 
 	{
 	}
@@ -33,5 +37,7 @@ public:
 	Character* GetCharacterInMap(int i);
 
 	void InitiateCombat(Actor* enemy);
+
+	void LogEvent(const std::string& event); // Game log related function
 };
 

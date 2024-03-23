@@ -208,4 +208,13 @@ CellOccupant* Map::GetCellOccupant(int x, int y) {
 	return grid[x][y]->GetCellOccupant();
 }
 
+void Map::LogEvent(const std::string& event) {
+    logEntry = event;
+    NotifyObservers();
+}
+
+void Map::NotifyObservers() {
+    Notify(logEntry);
+}
+
 

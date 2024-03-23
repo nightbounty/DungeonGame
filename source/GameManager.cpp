@@ -2,6 +2,7 @@
 #include "Character/Character.h"
 #include "CellOccupants/Enemy.h"
 #include "Strategies/HumanPlayerStrategy.h"
+#include <iostream>
 
 GameManager* GameManager::instancePtr;
 GameManager* GameManager::GetInstance() {
@@ -146,4 +147,13 @@ void GameManager::InitiateCombat(Actor* actor) {
     }
 
     */
+}
+
+void GameManager::LogEvent(const std::string& event) {
+    logEntry = event;
+    NotifyObservers();
+}
+
+void GameManager::NotifyObservers() {
+    Notify(logEntry);
 }
