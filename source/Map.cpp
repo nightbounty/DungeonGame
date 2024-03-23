@@ -214,7 +214,7 @@ void Map::LogEvent(const std::string& event) {
 }
 
 void Map::NotifyObservers() {
-    Notify(logEntry);
+    Notify();
 }
 
 

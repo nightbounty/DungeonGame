@@ -38,7 +38,6 @@ public:
      */
     void AttachObserver(CharacterObserver* observer);
     void DetachObserver(CharacterObserver* observer);
-    void NotifyObservers();
 
     string ToString();
     string GetTokenCode();

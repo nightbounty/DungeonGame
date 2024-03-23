@@ -2,10 +2,10 @@
 #include "GameLoggerObserver.h"
 
 /**
- * @brief Observer class for the game log of GameController
+ * @brief Observer class for the game log of GameManager
  * 
  */
-class GameControllerLogger : public GameLoggerObserver {
+class GameManagerLogger : public GameLoggerObserver {
 public:
     void Update(const std::string& logEntry) override;
 };

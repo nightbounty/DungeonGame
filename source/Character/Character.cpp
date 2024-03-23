@@ -62,12 +62,6 @@ void Character::DetachObserver(CharacterObserver* observer) {
     observers.erase(remove(observers.begin(), observers.end(), observer), observers.end());
 }
 
-void Character::NotifyObservers() {
-    for (CharacterObserver* observer : observers) {
-        observer->update(this);
-    }
-}
-
 string Character::ToString() {
     return characterClass + " at (" +
         std::to_string(GetPositionX()) + ", " +

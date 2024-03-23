@@ -134,8 +134,10 @@
     <ClCompile Include="source\Actor.cpp" />
     <ClCompile Include="source\Campaign.cpp" />
     <ClCompile Include="source\CampaignManager.cpp" />
+    <ClCompile Include="source\CharacterLogger.cpp" />
     <ClCompile Include="source\Character\CharacterObserver.cpp" />
     <ClCompile Include="source\ConcreteMapObserver.cpp" />
+    <ClCompile Include="source\DiceLogger.cpp" />
     <ClCompile Include="source\Driver4.cpp" />
     <ClCompile Include="source\DriverA2.cpp" />
     <ClCompile Include="source\Cell.cpp" />
@@ -148,7 +150,10 @@
     <ClCompile Include="source\Dice.cpp" />
     <ClCompile Include="source\Driver.cpp" />
     <ClCompile Include="source\DriverA3.cpp" />
+    <ClCompile Include="source\DriverCharacterBuilder.cpp" />
+    <ClCompile Include="source\GameLoggerSubject.cpp" />
     <ClCompile Include="source\GameManager.cpp" />
+    <ClCompile Include="source\GameManagerLogger.cpp" />
     <ClCompile Include="source\Items\Armor.cpp" />
     <ClCompile Include="source\Items\Belt.cpp" />
     <ClCompile Include="source\Items\Boots.cpp" />
@@ -162,6 +167,7 @@
     <ClCompile Include="source\Map2.cpp" />
     <ClCompile Include="source\MapBuilder.cpp" />
     <ClCompile Include="source\MapBuilder2.cpp" />
+    <ClCompile Include="source\MapLogger.cpp" />
     <ClCompile Include="source\Strategies\AggressorStrategy.cpp" />
     <ClCompile Include="source\Strategies\FriendlyStrategy.cpp" />
     <ClCompile Include="source\Strategies\HumanPlayerStrategy.cpp" />
@@ -176,12 +182,17 @@
     <ClInclude Include="headers\CellOccupants\Chest.h" />
     <ClInclude Include="headers\CellOccupants\Door.h" />
     <ClInclude Include="headers\CellOccupants\Enemy.h" />
+    <ClInclude Include="headers\CharacterLogger.h" />
     <ClInclude Include="headers\Character\Character.h" />
     <ClInclude Include="headers\Character\CharacterObserver.h" />
     <ClInclude Include="headers\Character\CharStats.h" />
     <ClInclude Include="headers\ConcreteMapObserver.h" />
     <ClInclude Include="headers\Dice.h" />
+    <ClInclude Include="headers\DiceLogger.h" />
+    <ClInclude Include="headers\GameLoggerObserver.h" />
+    <ClInclude Include="headers\GameLoggerSubject.h" />
     <ClInclude Include="headers\GameManager.h" />
+    <ClInclude Include="headers\GameManagerLogger.h" />
     <ClInclude Include="headers\Items\Armor.h" />
     <ClInclude Include="headers\Items\Belt.h" />
     <ClInclude Include="headers\Items\Boots.h" />
@@ -197,6 +208,7 @@
     <ClInclude Include="headers\MapBuilder.h" />
     <ClInclude Include="headers\MapBuilder2.h" />
     <ClInclude Include="headers\MapInterface.h" />
+    <ClInclude Include="headers\MapLogger.h" />
     <ClInclude Include="headers\MapObserver.h" />
     <ClInclude Include="headers\Strategies\AggressorStrategy.h" />
     <ClInclude Include="headers\Strategies\FriendlyStrategy.h" />

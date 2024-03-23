@@ -3,7 +3,10 @@
 #include "MapLogger.h"
 #include "CharacterLogger.h"
 #include "DiceLogger.h"
+
 int main(){
+
+	//Character* myCharacter = CharacterFactory::createCharacter("BOB", 5, "Bully");
 
 	GameManager::GetInstance()->SelectCampaign();
 
