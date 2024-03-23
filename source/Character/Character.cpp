@@ -1,29 +1,18 @@
-#include "../headers/Character/Character.h"
-#include "../headers/Character/CharacterObserver.h"
+#include "../../headers/Character/Character.h"
+#include "../../headers/Character/CharacterObserver.h"
 
 #include <iostream>
 #include <random>
 #include <cstdlib> // srand()
 #include <ctime>   // For time()
 #include <algorithm>
-#include <Items/Weapon.h>
-#include <Dice.h>
+#include "../../headers/Items/Weapon.h"
+#include "../../headers/Dice.h"
 
 using namespace std;
 
-Character::Character(int lvl, string cls) : level(lvl), characterClass(cls) {
-    /**
-     * Seed the random number generator
-     * It avoids generating the same numbers when running the program
-     */
-    srand(static_cast<unsigned int>(time(0)));
+Character::Character(const std::string& name, int level, const std::string& characterClass) : name(name), level(level), characterClass(characterClass) {
 
-    /**
-     * Initialize ability scores with random numbers between 3 and 18
-     */
-    for (int i = 0; i < abilityScores.size(); ++i) {
-        abilityScores[i] = rand() % 16 + 3; // rand() % 16 will give us a range 0-15 we need to add 3 for 3-18
-    }
 
     /**
      * Initialize ability modifiers based on ability scores

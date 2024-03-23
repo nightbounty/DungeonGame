@@ -3,8 +3,9 @@
 
 #include <string>
 #include <array>
-#include <vector>
-#include "Actor.h"
+
+#include "../Vector2.h"
+#include "../Actor.h"
 
 class CharacterObserver;
 
@@ -21,6 +22,7 @@ public:
     /**
      * Character Stats
      */
+    string name;
     int level;
     string characterClass;
     array<int, 6> abilityScores; // Str, Dex, Con, Int, Wis, Cha
@@ -33,7 +35,8 @@ public:
      * Character Constructor
      */
 
-    Character(int level, string characterClass);
+    Character(const std::string& name, int level, const std::string& characterClass);
+
     
     /**
      * Display the Character Stats
