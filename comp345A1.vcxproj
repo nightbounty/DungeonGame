@@ -135,6 +135,10 @@
     <ClCompile Include="source\Campaign.cpp" />
     <ClCompile Include="source\CampaignManager.cpp" />
     <ClCompile Include="source\CharacterLogger.cpp" />
+    <ClCompile Include="source\Character\Builder\BullyBuilder.cpp" />
+    <ClCompile Include="source\Character\Builder\NimbleBuilder.cpp" />
+    <ClCompile Include="source\Character\Builder\TankBuilder.cpp" />
+    <ClCompile Include="source\Character\CharacterFactory.cpp" />
     <ClCompile Include="source\Character\CharacterObserver.cpp" />
     <ClCompile Include="source\ConcreteMapObserver.cpp" />
     <ClCompile Include="source\DiceLogger.cpp" />
@@ -184,7 +188,9 @@
     <ClInclude Include="headers\CellOccupants\Enemy.h" />
     <ClInclude Include="headers\CharacterLogger.h" />
     <ClInclude Include="headers\Character\Character.h" />
+    <ClInclude Include="headers\Character\CharacterFactory.h" />
     <ClInclude Include="headers\Character\CharacterObserver.h" />
+    <ClInclude Include="headers\Character\CharContainer.h" />
     <ClInclude Include="headers\Character\CharStats.h" />
     <ClInclude Include="headers\ConcreteMapObserver.h" />
     <ClInclude Include="headers\Dice.h" />
@@ -193,6 +199,7 @@
     <ClInclude Include="headers\GameLoggerSubject.h" />
     <ClInclude Include="headers\GameManager.h" />
     <ClInclude Include="headers\GameManagerLogger.h" />
+    <ClInclude Include="headers\ItemDecorator.h" />
     <ClInclude Include="headers\Items\Armor.h" />
     <ClInclude Include="headers\Items\Belt.h" />
     <ClInclude Include="headers\Items\Boots.h" />
@@ -218,6 +225,7 @@
     <ClInclude Include="headers\CampaignManager.h" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="source\UserCreatedCampaigns\COS.txt" />
     <Text Include="source\UserCreatedMaps\MapContents.txt" />
     <Text Include="source\UserCreatedMaps\MapSaved.txt" />
     <Text Include="source\UserCreatedMaps\testMap.txt" />

@@ -278,6 +278,9 @@
     <ClInclude Include="headers\MapLogger.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="headers\ItemDecorator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="source\UserCreatedMaps\MapContents.txt" />

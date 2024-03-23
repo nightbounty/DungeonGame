@@ -54,7 +54,7 @@ private:
      */
 
     vector<CharacterObserver*> observers;
-    Item* inventory; // later should be an array of inventory items
+    vector<Item*> equippedItems; // later should be an array of inventory items
     vector<Weapon*> weapons;
     Weapon* currentWeapon;
 

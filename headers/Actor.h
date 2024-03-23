@@ -20,9 +20,9 @@ protected:
      * Character Stats
      */
     string name;
-    int level;
+    
     string characterClass;
-    array<int, 6> abilityScores; // Str, Dex, Con, Int, Wis, Cha
+    
     array<int, 6> abilityModifiers;
     int armorClass;
     int attackBonus;
@@ -37,7 +37,8 @@ protected:
     int initiativeBonus;
 
 public:
-
+    array<int, 6> abilityScores; // Str, Dex, Con, Int, Wis, Cha
+    int level;
     Actor();
     Actor(string name, Vector2* pos, TurnStrategy* ts = NULL, int lvl = 1, string cls = "", Actor* target = NULL);
 

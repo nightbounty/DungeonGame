@@ -2,9 +2,10 @@
 #include "../../../headers/Dice.h"
 #include <vector>
 #include <algorithm>
+#include "Strategies/HumanPlayerStrategy.h"
 
 TankBuilder::TankBuilder(const std::string& name, int level) {
-    this->character = new Character(name, level, "Tank");
+    this->character = new Character(name, new Vector2(0, 0), new HumanPlayerStrategy(), level, "Tank");
 }
 
 void TankBuilder::buildAbilityScores() {

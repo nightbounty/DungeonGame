@@ -9,8 +9,8 @@
 #include <algorithm>
 #include "../../headers/Items/Weapon.h"
 #include "../../headers/Dice.h"
-#include "CharContainer.h"
-#include "ItemContainer.h"
+#include "Character/CharContainer.h"
+#include "Items/ItemContainer.h"
 
 using namespace std;
 
@@ -49,14 +49,14 @@ void Character::WearItem(string item) {
 }
 
  void Character::equipItem(Item* item){
-        equippedItems.push_back(item);
-    cout << "Equipped Item to Character\n";
+   //    equippedItems.push_back(item);
+   // cout << "Equipped Item to Character\n";
 }
 
 void Character::displayCharInventory() const{
     std::cout << "Character Inventory:" << '\n';
-        for (const auto* itemInside : equippedItems) {
-            std::cout << itemInside->getName();
+      for (const auto* itemInside : equippedItems) {
+       std::cout << itemInside->getName();
         }
 }
 

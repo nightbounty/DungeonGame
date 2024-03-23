@@ -2,9 +2,10 @@
 #include "../../../headers/Dice.h"
 #include <vector>
 #include <algorithm>
+#include "Strategies/HumanPlayerStrategy.h"
 
 NimbleBuilder::NimbleBuilder(const std::string& name, int level) {
-    this->character = new Character(name, level, "Nimble");
+    this->character = new Character(name, new Vector2(0, 0), new HumanPlayerStrategy(), level, "Nimble");
 }
 
 void NimbleBuilder::buildAbilityScores() {
