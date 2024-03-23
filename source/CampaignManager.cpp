@@ -1,5 +1,7 @@
 #include "CampaignManager.h"
 #include "CellOccupants/Enemy.h"
+#include "Strategies/FriendlyStrategy.h"
+
 Campaign* CampaignManager::LoadCampaign() {
 
 	// creating a test campaign
@@ -7,14 +9,14 @@ Campaign* CampaignManager::LoadCampaign() {
 	Map* barovia = new Map(5, 6, new Vector2(3, 0));
 	barovia->SetName("Barovia");
 	Map* vallaki = new Map(6, 7, new Vector2(4, 0));
-	vallaki->SetName("vallaki");
+	vallaki->SetName("Vallaki");
 	Map* ravenloft = new Map(4, 5, new Vector2(2, 0));
-	ravenloft->SetName("ravenloft");
+	ravenloft->SetName("Ravenloft");
 	maps.push_back(barovia);
 	maps.push_back(vallaki);
 	maps.push_back(ravenloft);
 
-	Campaign* testCampaign = new Campaign(maps, "CurseOfStrahd");
+	Campaign* testCampaign = new Campaign(maps, "COS");
 	// Campaign* newCampaign = CampaignManager::CreateNewCampaign();
 	ofstream campaignFile(".\\source\\UserCreatedCampaigns\\" + testCampaign->GetTitle() + ".txt");
 	campaignFile.write((char*)&testCampaign, sizeof(testCampaign));
@@ -87,7 +89,7 @@ void CampaignManager::EditLoadedMap(Map* loadedMap) {
 		cout << "Enter the column of the cell" << endl;
 		cin >> col;
 		if (type == "Enemy") {
-			map->SetCellOccupant(row, col, new Enemy("Guard"));
+			map->SetCellOccupant(row, col, new Enemy("Guard", new Vector2(col, row), new FriendlyStrategy()));
 		}
 		else if (type == "Chest") {
 			map->SetCellOccupant(row, col, new Chest());

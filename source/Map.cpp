@@ -1,7 +1,7 @@
 #include <iostream>
 #include "Map.h"
 #include "CellOccupants/Enemy.h""
-
+#include "Strategies/FriendlyStrategy.h""
 
 Map::Map() {
 	this->rows = 2;
@@ -49,7 +49,7 @@ Cell*** Map::CreateGrid(int rows, int cols) {
 	return grid;
 }
 
-void deleteGrid(Cell** grid, int rows) {
+void DeleteGrid(Cell** grid, int rows) {
 	// Free memory for each row
 	for (int i = 1; i < rows; i++) {
 		delete[] grid[i];
@@ -120,6 +120,7 @@ Vector2** Map::GeneratePath(){
 			}
 		}
 		
+		//newPath[i]->Set(x, i);
 		newPath[i] = new Vector2(x,i);
 
 		grid[x][i]->SetOnPath(true);
@@ -150,8 +151,7 @@ void Map::RandomizeMap(){
 				grid[i][j]->SetCellOccupant(new Chest());
 			}
 			else if (random > 0.16 && random < 0.2) {
-				Enemy* enemy = new Enemy("Guard"); // TODO make dynamic enemy types
-				enemy->SetPosition(new Vector2(i, j));
+				Enemy* enemy = new Enemy("Guard", new Vector2(i, j), new FriendlyStrategy(), 1); // TODO make dynamic enemy types
 				enemies.push_back(enemy);
 				grid[i][j]->SetCellOccupant(enemy);
 			}
@@ -198,6 +198,10 @@ Door* Map::GetExitDoor() {
 
 vector<Enemy*> Map::GetEnemies() {
 	return this->enemies;
+}
+
+CellOccupant* Map::GetCellOccupant(Vector2* pos) {
+	return grid[pos->GetX()][pos->GetY()]->GetCellOccupant();
 }
 
 CellOccupant* Map::GetCellOccupant(int x, int y) {

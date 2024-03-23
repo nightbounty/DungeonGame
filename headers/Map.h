@@ -67,6 +67,7 @@ public:
     void Notify(); // notifying all observers
 
 	Door* GetExitDoor();
+	CellOccupant* GetCellOccupant(Vector2* pos);
 	CellOccupant* GetCellOccupant(int x, int y);
 };
 
