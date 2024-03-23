@@ -7,6 +7,8 @@ Armor::Armor(const std::string &itemName) {
     this->itemName = itemName;
 }
 
+Armor::Armor(){}
+
 /**
  * Method to increase the Armor Class Stat
  */
