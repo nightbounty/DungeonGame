@@ -34,6 +34,6 @@ int main(){
 	GameManager::GetInstance()->StartCampaign();
 
     //Remove Item from hero
-    hero->removeItem(armor);
-    hero->displayCharInventory();
+    //hero->removeItem(armor);
+    //hero->displayCharInventory();
 }
