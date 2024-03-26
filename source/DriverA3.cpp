@@ -3,9 +3,6 @@
 #include "MapLogger.h"
 #include "CharacterLogger.h"
 #include "DiceLogger.h"
-#include "Character.h"
-#include "CharContainer.h"
-#include "Armor.h"
 
 int main(){
 
