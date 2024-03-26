@@ -22,7 +22,7 @@ class Character : public Actor, public GameLoggerSubject {
     vector<Item*> equippedItems;
 public:
 
-    Character(){};
+    Character();
     /**
      * Character Constructor
      */
