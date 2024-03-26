@@ -33,8 +33,6 @@ public:
     void AddToInventory(Item* item); // todo
     void EquipWeapon(Weapon* weapon); // todo make an overload that takes an index for the inventory :3
 
-     /** Remove Worn Item */
-     bool removeItem(Item* item);
     /** 
      * Observer management
      */
