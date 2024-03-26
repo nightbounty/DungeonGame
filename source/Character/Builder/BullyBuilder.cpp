@@ -2,10 +2,9 @@
 #include "../../../headers/Dice.h"
 #include <vector>
 #include <algorithm>
-#include "Strategies/HumanPlayerStrategy.h"
 
 BullyBuilder::BullyBuilder(const std::string& name, int level) {
-    this->character = new Character(name, new Vector2(0,0), new HumanPlayerStrategy(), level, "Bully");
+    this->character = new Character(name, level, "Bully");
 }
 
 void BullyBuilder::buildAbilityScores() {
