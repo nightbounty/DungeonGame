@@ -18,8 +18,6 @@ using namespace std;
  */
 
 class Character : public Actor, public GameLoggerSubject {
-    protected:
-    vector<Item*> equippedItems;
 public:
 
     /**
