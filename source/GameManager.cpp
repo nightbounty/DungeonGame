@@ -25,15 +25,16 @@ void GameManager::SelectCampaign() {
     currentCampaign = CampaignManager::LoadCampaign();
 }
 void GameManager::StartCampaign() {
+    // TODO character builder goes here 
     currentMap = currentCampaign->Start();
     enemies = currentMap->GetEnemies();
    
     // creating the party of characters. for now just one
-    characters.push_back(new Character("Player", new Vector2(0, 0), new HumanPlayerStrategy(), 1, "Fighter"));
-    currentMap->SetCellOccupant(0, 0, characters[0]);
+    character = new Character("Player", new Vector2(0, 0), new HumanPlayerStrategy(), 1, "Fighter");
+    currentMap->SetCellOccupant(0, 0, character);
     // setting the target of the enemies to the player
     for (int i = 0; i < enemies.size(); i++) {
-        enemies[i]->SetCurrentTarget(characters[0]);
+        enemies[i]->SetCurrentTarget(character);
     }
 
     // GAME LOOP
@@ -49,7 +50,7 @@ void GameManager::StartCampaign() {
 
         cout << "\nCharacter's turn" << endl;
         //cout << "Turn strategy: " << (characters[0]->GetTurnStrategy()->ToString()) << endl;
-        characters[0]->GetTurnStrategy()->ExecuteTurn(characters[0]);
+        character->GetTurnStrategy()->ExecuteTurn(character);
 
         cout << "\nEnemy's turn" << endl;
         for (int i = 0; i < enemies.size(); i++) {
@@ -59,7 +60,7 @@ void GameManager::StartCampaign() {
             cout << currentMap->ToString() << endl;
         }
 
-        if (characters[0]->GetCurrentHitPoints() <= 0) {
+        if (character->GetCurrentHitPoints() <= 0) {
             cout << "\nCharacter is dead! Gameover :c" << endl;
             //break;
         }
@@ -99,9 +100,9 @@ void GameManager::DisplayEnemiesInMap() {
         }
     }
 }
-Character* GameManager::GetCharacterInMap(int i) {
-    if (i >= characters.size() || i < 0) return NULL;
-    return characters[i];
+Character* GameManager::GetCharacterInMap() {
+    
+    return character;
 }
 
 Enemy* GameManager::GetEnemyInMap(int i) {

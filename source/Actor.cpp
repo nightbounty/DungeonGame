@@ -179,8 +179,9 @@ void Actor::Attack() {
 
         cout << "In range!" << endl;
 
-        int atkRoll = Dice::rollDice("1d20+" + attackBonus);
-        atkRoll = 12; // test success roll // todo remove
+        int atkRoll = Dice::rollDice("1d20+" + std::to_string(attackBonus));
+        cout << "attack roll with dice: " << atkRoll << endl;
+       // atkRoll = 12; // test success roll // todo remove
         cout << "Attack roll: " << atkRoll << " vs Target AC: " << currentTarget->GetArmorClass() << endl;
 
         if (atkRoll >= currentTarget->GetArmorClass()) {
