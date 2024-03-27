@@ -178,8 +178,14 @@ void Actor::Attack() {
         && std::abs(currentTarget->GetPositionX() - position->GetX()) <= currentWeapon->GetRange()) {
 
         cout << "In range!" << endl;
-
-        int atkRoll = Dice::rollDice("1d20+" + std::to_string(attackBonus));
+        std::string diceInput;
+        if (attackBonus < 0) {
+            diceInput = "1d20" + std::to_string(attackBonus);
+        }
+        else {
+            diceInput = "1d20+" + std::to_string(attackBonus);
+        }
+        int atkRoll = Dice::rollDice(diceInput);
         cout << "attack roll with dice: " << atkRoll << endl;
        // atkRoll = 12; // test success roll // todo remove
         cout << "Attack roll: " << atkRoll << " vs Target AC: " << currentTarget->GetArmorClass() << endl;
