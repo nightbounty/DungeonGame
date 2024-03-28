@@ -11,7 +11,7 @@
  * here is optional, so if present, the total from the rolled dice will be added with the z.
 */
 int Dice::rollDice(const std::string& diceInput) {
-    std::string validPattern = "([0-9]+)d([0-9]+)([+]?[0-9]+)?";
+    std::string validPattern = "([0-9]+)d([0-9]+)([+-]?[0-9]+)?";
     std::regex pattern(validPattern);
     std::smatch match;
     
