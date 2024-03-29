@@ -2,6 +2,68 @@
 #include "CellOccupants/Enemy.h"
 #include "Strategies/FriendlyStrategy.h"
 
+void CampaignManager::LaunchCampaignBuilder() {
+	cout << "Welcome to the interactive campaign builder!" << endl;
+	cout << "============================================" << endl;
+	int currentOption;
+	while (true) {
+		DisplayMainMenu();
+
+		cin >> currentOption;
+		switch (currentOption) {
+		case 1: // Creating a new map
+		{
+			Map* newMap = new Map(5, 6, new Vector2(2, 0));
+			newMap->SetName("testMap");
+			//Map* newMap = CreateNewMap();
+			ofstream mapFile(".\\source\\UserCreatedMaps\\" + newMap->GetName() + ".txt");
+			mapFile.write((char*)&newMap, sizeof(newMap));
+			mapFile.close();
+			cout << "Your new map has been saved to a file!" << endl;
+			break;
+		}
+
+		case 2: // Creating a new campaign
+		{
+			Campaign* newCampaign = CampaignManager::CreateNewCampaign();
+			ofstream campaignFile(".\\source\\UserCreatedCampaigns\\" + newCampaign->GetTitle() + ".txt");
+			campaignFile.write((char*)&newCampaign, sizeof(newCampaign));
+			campaignFile.close();
+
+			break;
+		}
+
+		case 3: // Loading and editing a map
+		{
+			Map* loadedMap = CampaignManager::LoadMap();
+			CampaignManager::EditLoadedMap(loadedMap);
+			break;
+		}
+
+		case 4: // loading and editing a campaign
+		{
+			Campaign* loadedCampaign = CampaignManager::LoadCampaign();
+			CampaignManager::EditLoadedCampaign(loadedCampaign);
+			break;
+		}
+		case 5:
+		{
+			cout << "Thank you for using the campaign builder! Exiting the software now..." << endl;
+			return;
+		}
+
+		}
+	}
+}
+
+	void CampaignManager::DisplayMainMenu(){
+		cout << "Please select a menu option:" << endl;
+		cout << "\t1. Create a new map" << endl;
+		cout << "\t2. Create a new campaign" << endl;
+		cout << "\t3. Load and edit an existing map" << endl;
+		cout << "\t4. Load and edit an existing campaign" << endl;
+		cout << "\t5. Exit the program" << endl;
+	}
 Campaign* CampaignManager::LoadCampaign() {
 
 	// creating a test campaign

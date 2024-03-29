@@ -15,6 +15,7 @@ Actor::Actor(string name, Vector2* pos, TurnStrategy* ts, int lvl, string cls, A
 { 
     this->currentWeapon = new Weapon("Sword", "1d6+", 1);
     this->SetTurnStrategy(ts);
+    this->initiativeBonus = abilityModifiers[1];
 }
 
 /**
@@ -116,12 +117,15 @@ void Actor::MoveTowardTarget() {
     int newX, newY;
     Vector2* targetPos = currentTarget->GetPosition();
 
-    if (position->GetX() - 1 == targetPos->GetX()
+    /*
+    * if (position->GetX() - 1 == targetPos->GetX()
         || position->GetX() + 1 == targetPos->GetX()
         || position->GetY() - 1 == targetPos->GetY()
         || position->GetY() + 1 == targetPos->GetY()) {
         GameManager::GetInstance()->InitiateCombat(this);
-    }
+          }
+    */
+  
     // determine whether to move in X direction
     if (targetPos->GetX() < position->GetX()) {
         newX = position->GetX() - 1;
@@ -144,6 +148,12 @@ void Actor::MoveTowardTarget() {
     }
     //this->position = new Vector2(newX, newY);
     GameManager::GetInstance()->MoveActor(this, position, new Vector2(newX, newY));
+}
+
+void Actor::RollInitiative() {
+    int initiative = Dice::rollDice("1d20+" + std::to_string(initiativeBonus));
+    cout << this->ToString() << " rolled a " << initiative << " for initiative!" << endl;
+    initiativeScore = initiative;
 }
 
 void Actor::TakeDamage(int dmgTaken)

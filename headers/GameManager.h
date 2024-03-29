@@ -11,6 +11,7 @@ private:
 	Map* currentMap;
 	Character* character;
 	Campaign* currentCampaign;
+	std::vector<Actor*> initiativeOrder;
 	std::vector<Enemy*> enemies;
 	static GameManager* instancePtr;
 	std::string logEntry; // Game Log related member
@@ -23,7 +24,7 @@ public:
 	
 	GameManager(const GameManager& obj) = delete;
 	static GameManager* GetInstance();
-	void SelectCampaign();
+	void SetCampaign(Campaign* campaign);
 	void StartCampaign();
 	
 	void EnterNewMap();

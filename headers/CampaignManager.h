@@ -14,6 +14,8 @@ public:
 	static Campaign* LoadCampaign();
 	static Campaign* CreateNewCampaign();
 	static void EditLoadedCampaign(Campaign* loadedCampaign);
+	static void DisplayMainMenu();
+	static void LaunchCampaignBuilder();
 };
 #endif
 

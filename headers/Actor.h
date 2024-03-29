@@ -35,6 +35,7 @@ protected:
     int currentHitPoints;
     Weapon* currentWeapon;
     int initiativeBonus;
+    int initiativeScore;
 
 public:
 
@@ -68,6 +69,7 @@ public:
 
     int GetInitiativeBonus();
     void SetInitiativeBonus(int bonus);
+    void RollInitiative();
     void SetCurrentWeapon(Weapon* weapon);
     Weapon* GetCurrentWeapon();
 
