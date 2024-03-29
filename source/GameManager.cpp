@@ -21,8 +21,8 @@ GameManager* GameManager::GetInstance() {
     }
 }
 
-void GameManager::SelectCampaign() {
-    currentCampaign = CampaignManager::LoadCampaign();
+void GameManager::SetCampaign(Campaign* campaign) {
+    currentCampaign = campaign;
 }
 void GameManager::StartCampaign() {
     // TODO character builder goes here 
@@ -32,8 +32,11 @@ void GameManager::StartCampaign() {
     // creating the party of characters. for now just one
     character = new Character("Player", new Vector2(0, 0), new HumanPlayerStrategy(), 1, "Fighter");
     currentMap->SetCellOccupant(0, 0, character);
-    // setting the target of the enemies to the player
+    cout << "Rolling everyone's initiative!" << endl;
+    character->RollInitiative();
+    // setting the target of the enemies to the player and rolling initiative
     for (int i = 0; i < enemies.size(); i++) {
+        enemies[i]->RollInitiative();
         enemies[i]->SetCurrentTarget(character);
     }
 

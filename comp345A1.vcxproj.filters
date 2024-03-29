@@ -33,7 +33,7 @@
     <ClCompile Include="source\Character\Character.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="source\Driver.cpp">
+    <ClCompile Include="source\DriverA1.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="source\Map.cpp">
@@ -132,7 +132,7 @@
     <ClCompile Include="source\Driver4.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="source\DriverA3.cpp">
+    <ClCompile Include="source\Driver.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="source\CharacterLogger.cpp">
