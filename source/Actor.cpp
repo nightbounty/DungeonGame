@@ -156,6 +156,10 @@ void Actor::RollInitiative() {
     initiativeScore = initiative;
 }
 
+int Actor::GetInitiative() {
+    return initiativeScore;
+}
+
 void Actor::TakeDamage(int dmgTaken)
 {
     if (dynamic_cast<FriendlyStrategy*>(this->GetTurnStrategy()) != NULL) {
@@ -197,11 +201,10 @@ void Actor::Attack() {
         }
         int atkRoll = Dice::rollDice(diceInput);
         cout << "attack roll with dice: " << atkRoll << endl;
-       // atkRoll = 12; // test success roll // todo remove
         cout << "Attack roll: " << atkRoll << " vs Target AC: " << currentTarget->GetArmorClass() << endl;
 
         if (atkRoll >= currentTarget->GetArmorClass()) {
-            int dmgRoll = 4; //Dice::rollDice(currentWeapon->GetDamageDice() + "+" + std::to_string(damageBonus));
+            int dmgRoll = Dice::rollDice(currentWeapon->GetDamageDice() + "+" + std::to_string(damageBonus));
             currentTarget->TakeDamage(dmgRoll);
             cout << "Attack successful! " << dmgRoll << endl;
         }

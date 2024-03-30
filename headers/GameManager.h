@@ -37,8 +37,6 @@ public:
 	Enemy* GetEnemyInMap(int i);
 	Character* GetCharacterInMap();
 
-	void InitiateCombat(Actor* enemy);
-
 	void LogEvent(const std::string& event); // Game log related function
 };
 
