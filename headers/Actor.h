@@ -70,6 +70,8 @@ public:
     int GetInitiativeBonus();
     void SetInitiativeBonus(int bonus);
     void RollInitiative();
+    int GetInitiative();
+
     void SetCurrentWeapon(Weapon* weapon);
     Weapon* GetCurrentWeapon();
 

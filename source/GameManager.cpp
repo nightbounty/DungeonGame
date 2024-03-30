@@ -3,6 +3,7 @@
 #include "CellOccupants/Enemy.h"
 #include "Strategies/HumanPlayerStrategy.h"
 #include <iostream>
+#include <algorithm>
 
 GameManager* GameManager::instancePtr;
 GameManager* GameManager::GetInstance() {
@@ -19,6 +20,9 @@ GameManager* GameManager::GetInstance() {
             return instancePtr;
         }
     }
+}
+bool compareInitiative(Actor* a, Actor* b) {
+    return a->GetInitiative() < b->GetInitiative();
 }
 
 void GameManager::SetCampaign(Campaign* campaign) {
@@ -39,7 +43,15 @@ void GameManager::StartCampaign() {
         enemies[i]->RollInitiative();
         enemies[i]->SetCurrentTarget(character);
     }
-
+    initiativeOrder.push_back(character);
+    initiativeOrder.insert(initiativeOrder.end(), enemies.begin(), enemies.end());
+    std::sort(initiativeOrder.begin(), initiativeOrder.end(), compareInitiative);
+    cout << "*****************************" << endl;
+    cout << "Here is the initiative order!" << endl;
+    cout << "*****************************" << endl;
+    for (int i = 0; i < initiativeOrder.size(); i++) {
+        std::cout << i+1 << ". " << initiativeOrder[i]->ToString() << " with initiative " << initiativeOrder[i]->GetInitiative() << std::endl;
+    }
     // GAME LOOP
 
     bool gameloop = true;
@@ -48,18 +60,18 @@ void GameManager::StartCampaign() {
     cout << "STARTING THE GAME...\n" << endl;
 
     do {
-        cout << "= TURN " << turnCounter << " =\n" << endl;
+        cout << "= TURN CYCLE " << turnCounter << " =\n" << endl;
         cout << currentMap->ToString() << endl;
 
-        cout << "\nCharacter's turn" << endl;
-        //cout << "Turn strategy: " << (characters[0]->GetTurnStrategy()->ToString()) << endl;
-        character->GetTurnStrategy()->ExecuteTurn(character);
+        //cout << "\nCharacter's turn" << endl;
+        //character->GetTurnStrategy()->ExecuteTurn(character);
 
-        cout << "\nEnemy's turn" << endl;
-        for (int i = 0; i < enemies.size(); i++) {
-            cout << "enemy " + std::to_string(i) + " turn start" << endl;
-            cout << "AC: " << (enemies[i]->GetArmorClass()) << endl;
-            enemies[i]->GetTurnStrategy()->ExecuteTurn(enemies[i]);
+        // run through the initiative order
+        for (int i = 0; i < initiativeOrder.size(); i++) {
+            cout << "============================" << endl;
+            cout << initiativeOrder[i]->ToString() << endl;
+            cout << "============================" << endl;
+            initiativeOrder[i]->GetTurnStrategy()->ExecuteTurn(initiativeOrder[i]);
             cout << currentMap->ToString() << endl;
         }
 
@@ -97,60 +109,21 @@ void GameManager::DisplayEnemiesInMap() {
         cout << "No enemies on this map!" << endl;
     }
     else {
+        cout << "*********************" << endl;
         cout << "Here are the enemies!" << endl;
+        cout << "*********************" << endl;
         for (int i = 0; i < enemies.size(); i++) {
-            cout << enemies[i]->ToString();
+            cout << i << ". " << enemies[i]->ToString() << endl;
         }
     }
 }
-Character* GameManager::GetCharacterInMap() {
-    
+Character* GameManager::GetCharacterInMap() {  
     return character;
 }
 
 Enemy* GameManager::GetEnemyInMap(int i) {
     if (i >= enemies.size() || i < 0) return NULL;
     return enemies[i];
-}
-
-void GameManager::InitiateCombat(Actor* actor) { 
-    cout << "Combat initiated" << endl;
-
-    /*
-    
-    // make sure the actor in parameter is an enemy
-    Enemy* enemy = dynamic_cast<Enemy*>(actor);
-    if (enemy == NULL)return;
-    cout << "combat started" << endl;
-    // rolling initiative and determining turn order
-    // int playerInit = Dice::rollDice("1d20+" + characters[0]->GetInitiativeBonus());
-    // int enemyInit = Dice::rollDice("1d20+" + enemy->GetInitiativeBonus());
-    int playerInit = 20;
-    int enemyInit = 1;
-    Actor* firstPlayer;
-    Actor* secondPlayer;
-    if (playerInit > enemyInit) {
-        firstPlayer = characters[0];
-        secondPlayer = enemy;
-    }
-    else {
-        firstPlayer = enemy;
-        secondPlayer = characters[0];
-    }
-    while (enemy->GetCurrentHitPoints() > 0 && characters[0]->GetCurrentHitPoints() > 0) {
-        firstPlayer->GetTurnStrategy()->ExecuteTurn(firstPlayer);
-        secondPlayer->GetTurnStrategy()->ExecuteTurn(secondPlayer);
-        // MoveFriendlyEnemies()
-    }
-    if (enemy->GetCurrentHitPoints() <= 0) {
-        cout << "Enemy has been defeated! Combat is over. :D" << endl;
-    }
-    else {
-        // TODO should be death saving throws
-        cout << "You have been defeated. Game over :(" << endl;
-    }
-
-    */
 }
 
 void GameManager::LogEvent(const std::string& event) {

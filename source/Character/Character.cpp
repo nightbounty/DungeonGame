@@ -36,7 +36,6 @@ Character::Character(string name, Vector2* pos, TurnStrategy* ts, int lvl, strin
     armorClass = abilityModifiers[1] + 10; // Based on dexterity modifier
     attackBonus = level + abilityModifiers[0]; // Based on level and strength/dexterity modifiers
     damageBonus = abilityModifiers[0]; // Based on strength modifier
-    SetInitiativeBonus(abilityModifiers[1]); // dex
 }
 
 /**
