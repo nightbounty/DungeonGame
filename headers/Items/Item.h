@@ -22,6 +22,7 @@ public:
     // Returns Item Enhancements and Item Name
     virtual void displayEnhancement() = 0;
     virtual std::string toString() const = 0;
+    virtual bool isWeapon();
 };
 
 #endif

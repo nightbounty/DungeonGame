@@ -173,6 +173,7 @@
     <ClCompile Include="source\Strategies\HumanPlayerStrategy.cpp" />
     <ClCompile Include="source\Strategies\TurnStrategy.cpp" />
     <ClCompile Include="source\Vector2.cpp" />
+    <ClCompile Include="testing.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="headers\Actor.h" />

@@ -3,7 +3,7 @@
 #include "MapLogger.h"
 #include "CharacterLogger.h"
 #include "DiceLogger.h"
-
+/**
 int main(){
 
 	int option;
@@ -56,3 +56,4 @@ int main(){
     //hero->removeItem(armor);
     //hero->displayCharInventory();
 }
+*/

@@ -1,5 +1,6 @@
 #include "Items/Armor.h"
 
+Armor::Armor() {}
 /**
  * Constructor
  */

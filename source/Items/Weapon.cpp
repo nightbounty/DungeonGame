@@ -1,6 +1,7 @@
 #include "Items/Weapon.h"
 
-
+//Default Constructor
+Weapon::Weapon() {}
 // Constructor
 Weapon::Weapon(const std::string &itemName, const std::string &damageDice, int range) {
     this->itemName = itemName;
@@ -19,6 +20,10 @@ void Weapon::displayEnhancement() {
     IncreaseCharStats();
     std::cout << "Attack Bonus: +" << charStats.getAttackBonus() << 
     ", Damage Bonus: +" << charStats.getDamageBonus() << std::endl;
+}
+// Check if Item is a Weapn
+bool Weapon::isWeapon() {
+    return true;
 }
 
 // toString method
