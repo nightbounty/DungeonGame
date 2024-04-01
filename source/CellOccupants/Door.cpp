@@ -21,7 +21,15 @@ string Door::GetTokenCode()
 }
 
 Door::Door(){
-    
+    isLocked = true;
+}
+
+void Door::Unlock() {
+    isLocked = false;
+}
+
+bool Door::IsLocked() {
+    return isLocked;
 }
 
 void Door::SetConnectedMap(Map* map) {

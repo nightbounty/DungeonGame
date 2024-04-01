@@ -13,6 +13,7 @@ class Door : public CellOccupant
 {
 private:
     Map* connectedMap;
+    bool isLocked;
 
 public:
     Door();
@@ -20,6 +21,8 @@ public:
     string GetTokenCode();
     void SetConnectedMap(Map* map);
     Map* GetConnectedMap();
+    void Unlock();
+    bool IsLocked();
     string ToString();
 };
 

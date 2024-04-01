@@ -13,7 +13,7 @@ Actor::Actor()
 Actor::Actor(string name, Vector2* pos, TurnStrategy* ts, int lvl, string cls, Actor * target)
     :name(name), position(pos), level(lvl), characterClass(cls), currentTarget(target) 
 { 
-    this->currentWeapon = new Weapon("Sword", "1d6+", 1);
+    this->currentWeapon = new Weapon("Sword", "1d6", 1);
     this->SetTurnStrategy(ts);
     this->initiativeBonus = abilityModifiers[1];
 }
@@ -199,14 +199,22 @@ void Actor::Attack() {
         else {
             diceInput = "1d20+" + std::to_string(attackBonus);
         }
+
         int atkRoll = Dice::rollDice(diceInput);
         cout << "attack roll with dice: " << atkRoll << endl;
         cout << "Attack roll: " << atkRoll << " vs Target AC: " << currentTarget->GetArmorClass() << endl;
 
         if (atkRoll >= currentTarget->GetArmorClass()) {
-            int dmgRoll = Dice::rollDice(currentWeapon->GetDamageDice() + "+" + std::to_string(damageBonus));
+            std::string dmgDiceInput;
+            if (attackBonus < 0) {
+                dmgDiceInput = currentWeapon->GetDamageDice() + std::to_string(damageBonus);
+            }
+            else {
+                dmgDiceInput = currentWeapon->GetDamageDice() + "+" + std::to_string(damageBonus);
+            }
+            int dmgRoll = Dice::rollDice(dmgDiceInput);
             currentTarget->TakeDamage(dmgRoll);
-            cout << "Attack successful! " << dmgRoll << endl;
+            cout << "Attack successful! Dealt " << dmgRoll << " damage!"<< endl;
         }
         else {
             cout << "Missed the attack!" << endl;
