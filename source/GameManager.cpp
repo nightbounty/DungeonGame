@@ -63,11 +63,9 @@ void GameManager::StartCampaign() {
         cout << "= TURN CYCLE " << turnCounter << " =\n" << endl;
         cout << currentMap->ToString() << endl;
 
-        //cout << "\nCharacter's turn" << endl;
-        //character->GetTurnStrategy()->ExecuteTurn(character);
-
         // run through the initiative order
         for (int i = 0; i < initiativeOrder.size(); i++) {
+            // if initiativeorder[i] is an Enemy, if its hp <= 0, it drops loot 
             cout << "============================" << endl;
             cout << initiativeOrder[i]->ToString() << endl;
             cout << "============================" << endl;
