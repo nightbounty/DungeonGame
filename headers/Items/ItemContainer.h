@@ -12,6 +12,10 @@ class ItemContainer {
     std::vector<Item*> items;
 
 public:
+    // Default construtor
+    ItemContainer();
+    // overloaded constructor
+    ItemContainer(const std::vector<Item*>& initialItems) : items(initialItems) {};
     /**
      * Method to add an Item to Container
      * @param item pointer

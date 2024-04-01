@@ -1,5 +1,8 @@
 #include "Items/ItemContainer.h"
-
+#include "Items/Weapon.h"
+// Default construtor
+ItemContainer::ItemContainer() {
+};
 /**
  * Add item to Container
  * @param item Pointer to the item to add
@@ -14,7 +17,7 @@ void ItemContainer::addToContainer(Item* item) {
 void ItemContainer::displayItems() const {
     std::cout << "Items inside container: " << std::endl;
     for (const auto& item : items) {
-        std::cout << item->getName() << std::endl;
+        std::cout << item->getName() << "\n" << std::endl;
     }
 }
 

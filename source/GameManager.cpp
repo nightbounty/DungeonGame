@@ -1,6 +1,7 @@
 #include "GameManager.h"
 #include "Character/Character.h"
 #include "CellOccupants/Enemy.h"
+#include "CellOccupants/Loot.h"
 #include "Strategies/HumanPlayerStrategy.h"
 #include <iostream>
 #include <algorithm>
@@ -22,7 +23,7 @@ GameManager* GameManager::GetInstance() {
     }
 }
 bool compareInitiative(Actor* a, Actor* b) {
-    return a->GetInitiative() < b->GetInitiative();
+    return a->GetInitiative() > b->GetInitiative();
 }
 
 void GameManager::SetCampaign(Campaign* campaign) {
@@ -33,7 +34,7 @@ void GameManager::StartCampaign() {
     currentMap = currentCampaign->Start();
     enemies = currentMap->GetEnemies();
    
-    // creating the party of characters. for now just one
+    // creating the character and rolling initiative
     character = new Character("Player", new Vector2(0, 0), new HumanPlayerStrategy(), 1, "Fighter");
     currentMap->SetCellOccupant(0, 0, character);
     cout << "Rolling everyone's initiative!" << endl;
@@ -42,7 +43,9 @@ void GameManager::StartCampaign() {
     for (int i = 0; i < enemies.size(); i++) {
         enemies[i]->RollInitiative();
         enemies[i]->SetCurrentTarget(character);
+        enemies[i]->SetIndex(i);
     }
+    // adding everything to initiative order and sorting it
     initiativeOrder.push_back(character);
     initiativeOrder.insert(initiativeOrder.end(), enemies.begin(), enemies.end());
     std::sort(initiativeOrder.begin(), initiativeOrder.end(), compareInitiative);
@@ -65,12 +68,26 @@ void GameManager::StartCampaign() {
 
         // run through the initiative order
         for (int i = 0; i < initiativeOrder.size(); i++) {
-            // if initiativeorder[i] is an Enemy, if its hp <= 0, it drops loot 
+            Enemy* enemy = dynamic_cast<Enemy*>(initiativeOrder[i]);
+            if (enemy != NULL) {
+                if (enemy->GetCurrentHitPoints() <= 0) {
+                    // remove the enemy from the enemy list
+                    enemies.erase(enemies.begin() + enemy->GetIndex());
+                    // turn the enemy cell into loot
+                    currentMap->SetCellOccupant(enemy->GetPositionX(), enemy->GetPositionY(), new Loot(enemy->GetCurrentWeapon(), 10));
+                }
+            }
             cout << "============================" << endl;
             cout << initiativeOrder[i]->ToString() << endl;
+            cout << "HP: " << initiativeOrder[i]->GetCurrentHitPoints() << endl;
             cout << "============================" << endl;
             initiativeOrder[i]->GetTurnStrategy()->ExecuteTurn(initiativeOrder[i]);
+            
             cout << currentMap->ToString() << endl;
+        }
+        if (enemies.size() == 0) {
+            currentMap->GetExitDoor()->Unlock();
+            cout << "You have killed all the enemies! You can now progress to the next map." << endl;
         }
 
         if (character->GetCurrentHitPoints() <= 0) {
@@ -86,8 +103,9 @@ bool GameManager::MoveActor(Actor* a, Vector2* oldPos, Vector2* newPos) {
     cout << "Attempted move: " << oldPos->ToString() << " to " << newPos->ToString() << endl;
     if (!IsValidMove(newPos)) {
         CellOccupant* occupant = currentMap->GetCellOccupant(newPos->GetX(), newPos->GetY());
+        Character* chara = dynamic_cast<Character*>(a);
         Door* door = dynamic_cast<Door*>(occupant);
-        if (door != NULL) {
+        if (door != NULL && chara != NULL) {
             if (door->IsLocked()) {
                 cout << "You can't pass through yet. Kill all enemies first!" << endl;
                 return false;
@@ -98,6 +116,24 @@ bool GameManager::MoveActor(Actor* a, Vector2* oldPos, Vector2* newPos) {
                 return true;
             }
         }
+        Loot* loot = dynamic_cast<Loot*>(occupant);
+        if (loot != NULL && chara != NULL) {
+            string option;
+            // show what loot was acquired
+            cout << "You picked up a " << loot->GetItem()->toString() << endl;
+            character->AddToInventory(loot->GetItem());
+            // equipping the item if the player wants
+            cout << "Would you like to equip it? y or n" << endl;
+            cin >> option;
+            if (option == "y") {
+                character->unEquipItem(character->GetCurrentWeapon());
+                character->equipItem(loot->GetItem());
+            }
+            character->displayInventory();
+            // removing the loot from the map
+            currentMap->SetCellOccupant(newPos->GetX(), newPos->GetY(), NULL);
+        }
+       
         cout << "The move is invalid!\n";
         return false;
     }

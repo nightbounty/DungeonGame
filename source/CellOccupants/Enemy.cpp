@@ -33,3 +33,10 @@ string Enemy::ToString() {
         std::to_string(GetPositionX()) + ", " + 
         std::to_string(GetPositionY()) + ")";
 }
+
+void Enemy::SetIndex(int index) {
+    this->index = index;
+}
+int Enemy::GetIndex() {
+    return this->index;
+}

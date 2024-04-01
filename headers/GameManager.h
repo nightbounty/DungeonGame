@@ -26,13 +26,11 @@ public:
 	static GameManager* GetInstance();
 	void SetCampaign(Campaign* campaign);
 	void StartCampaign();
-	void DisplayMainMenu();
 	
 	void EnterNewMap();
 
 	bool MoveActor(Actor* a, Vector2* oldPos, Vector2* newPos);
 	bool IsValidMove(Vector2* position);
-	void MoveCharacterFromInput(int characterIndex);
 	
 	void DisplayEnemiesInMap();
 	Enemy* GetEnemyInMap(int i);

@@ -11,6 +11,9 @@ class Weapon : public Item
 public:
     CharStats charStats;
 
+    // Default constructor
+    Weapon();
+
     // Constructor
     Weapon(const std::string &itemName, const std::string& , int range);
 
@@ -22,7 +25,8 @@ public:
     std::string GetDamageDice();
     int GetRange();
     void SetRange(int range);
-
+    //check if its a weapon item
+    bool isWeapon();
 private:
     std::string damageDice;
     int range;

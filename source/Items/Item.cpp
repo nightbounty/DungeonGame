@@ -4,5 +4,8 @@
     // Constructor
     Item::Item(const std::string &itemName) : itemName(itemName) {
 }
+    bool Item::isWeapon() {
+        return false;
+    }
 
 
