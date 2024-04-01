@@ -12,7 +12,7 @@ int main(){
 	cout << "Welcome to Dungeons and Dragons Online!" << endl;
 	cout << "=============================================" << endl;
 	cout << "\nWould you like to load a pre-existing campaign, or create a new campaign?" << endl;
-	cout << "Press 1 to load, or 2 to create: ";
+	cout << "Press 1 to load, or 2 to create, 3 to quit: ";
 	cin >> option;
 	switch (option) {
 	case 1: {
@@ -21,7 +21,11 @@ int main(){
 	} case 2: {
 		campaign = CampaignManager::CreateNewCampaign();
 		break;
-	} default: {
+	} case 3: {
+		cout << "Exiting the game..." << endl;
+		return 0;
+	}
+	default: {
 		cout << "wrong input!" << endl;
 		return 0;
 	}
