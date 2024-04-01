@@ -193,6 +193,8 @@ void Actor::Attack() {
 
         cout << "In range!" << endl;
         std::string diceInput;
+        Character* testChar = dynamic_cast<Character*>(this); // remove
+        
         if (attackBonus < 0) {
             diceInput = "1d20" + std::to_string(attackBonus);
         }
@@ -201,6 +203,9 @@ void Actor::Attack() {
         }
 
         int atkRoll = Dice::rollDice(diceInput);
+        if (testChar != NULL) { // TODO remove when done testing
+            atkRoll = 20;
+        }
         cout << "attack roll with dice: " << atkRoll << endl;
         cout << "Attack roll: " << atkRoll << " vs Target AC: " << currentTarget->GetArmorClass() << endl;
 
@@ -213,6 +218,9 @@ void Actor::Attack() {
                 dmgDiceInput = currentWeapon->GetDamageDice() + "+" + std::to_string(damageBonus);
             }
             int dmgRoll = Dice::rollDice(dmgDiceInput);
+            if (testChar != NULL) { // TODO remove when done testing
+                dmgRoll = 20;
+            }
             currentTarget->TakeDamage(dmgRoll);
             cout << "Attack successful! Dealt " << dmgRoll << " damage!"<< endl;
         }

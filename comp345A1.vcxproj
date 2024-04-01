@@ -134,6 +134,7 @@
     <ClCompile Include="source\Actor.cpp" />
     <ClCompile Include="source\Campaign.cpp" />
     <ClCompile Include="source\CampaignManager.cpp" />
+    <ClCompile Include="source\CellOccupants\Loot.cpp" />
     <ClCompile Include="source\CharacterLogger.cpp" />
     <ClCompile Include="source\Character\CharacterObserver.cpp" />
     <ClCompile Include="source\ConcreteMapObserver.cpp" />
@@ -173,7 +174,6 @@
     <ClCompile Include="source\Strategies\HumanPlayerStrategy.cpp" />
     <ClCompile Include="source\Strategies\TurnStrategy.cpp" />
     <ClCompile Include="source\Vector2.cpp" />
-    <ClCompile Include="testing.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="headers\Actor.h" />
@@ -183,6 +183,7 @@
     <ClInclude Include="headers\CellOccupants\Chest.h" />
     <ClInclude Include="headers\CellOccupants\Door.h" />
     <ClInclude Include="headers\CellOccupants\Enemy.h" />
+    <ClInclude Include="headers\CellOccupants\Loot.h" />
     <ClInclude Include="headers\CharacterLogger.h" />
     <ClInclude Include="headers\Character\Character.h" />
     <ClInclude Include="headers\Character\CharacterObserver.h" />
