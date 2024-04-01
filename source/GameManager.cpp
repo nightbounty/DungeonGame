@@ -85,14 +85,40 @@ void GameManager::StartCampaign() {
 bool GameManager::MoveActor(Actor* a, Vector2* oldPos, Vector2* newPos) {
     cout << "Attempted move: " << oldPos->ToString() << " to " << newPos->ToString() << endl;
     if (!IsValidMove(newPos)) {
+        CellOccupant* occupant = currentMap->GetCellOccupant(newPos->GetX(), newPos->GetY());
+        Door* door = dynamic_cast<Door*>(occupant);
+        if (door != NULL) {
+            if (door->IsLocked()) {
+                cout << "You can't pass through yet. Kill all enemies first!" << endl;
+                return false;
+            }
+            else {
+                cout << "You killed all the enemies! Entering a new map now...";
+                EnterNewMap();
+                return true;
+            }
+        }
         cout << "The move is invalid!\n";
         return false;
     }
     cout << "The move is valid!\n";
+    
     currentMap->SetCellOccupant(oldPos->GetX(), oldPos->GetY(), NULL);
 	currentMap->SetCellOccupant(newPos->GetX(), newPos->GetY(), a);
     a->SetPosition(newPos);
 	return true;
+}
+
+void GameManager::EnterNewMap() {
+    currentMap = currentMap->GetExitDoor()->GetConnectedMap();
+    if (currentMap == NULL) {
+        cout << "*******************************************" << endl;
+        cout << "You finished the campaign, congratulations!" << endl;
+        cout << "*******************************************" << endl;
+        cout << "Exiting..." << endl;
+        exit(0);
+    }
+    character->SetPosition(new Vector2(0, 0));
 }
 
 bool GameManager::IsValidMove(Vector2* position) {

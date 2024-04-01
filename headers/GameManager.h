@@ -26,6 +26,7 @@ public:
 	static GameManager* GetInstance();
 	void SetCampaign(Campaign* campaign);
 	void StartCampaign();
+	void DisplayMainMenu();
 	
 	void EnterNewMap();
 
