@@ -15,7 +15,7 @@ void ItemContainer::addToContainer(Item* item) {
  *Display all items in the container.
  */
 void ItemContainer::displayItems() const {
-    std::cout << "Items inside container: " << std::endl;
+  //  std::cout << "Items inside Inventory: " << std::endl;
     for (const auto& item : items) {
         std::cout << item->getName() << "\n" << std::endl;
     }

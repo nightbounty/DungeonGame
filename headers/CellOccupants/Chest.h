@@ -1,18 +1,33 @@
+/** Chest only gives 1 loot prize */
+
 #pragma once
 #include "CellOccupant.h"
 #include <iostream>
 #include <string>
+#include <vector>
+#include "Items/Item.h"
+#include "Items/Armor.h"
+#include "Items/Shield.h"
+#include "Items/Weapon.h"
+#include "Items/Ring.h"
+
 using namespace std;
 
 class Chest : public CellOccupant
 {
 private:
-    string contents; // should later be a list of items
+    Item* itemLoot;
+    Shield* shieldLoot = new Shield("Medium Shield");
+    Weapon* bowLoot = new Weapon("Light Bow", "1d8", 1);
+    Armor* armorLoot = new Armor("Medium Armor");
+    Ring* ringLoot = new Ring("Basic Ring");
+    vector<Item*> chestLoot = { shieldLoot, bowLoot, armorLoot, ringLoot };
 
 public:
-    string getContents();
-    void setContents(string contents);
-    void Interact();
+    Item* getContents();
+    void setContents(vector<Item*> chestLoot);
+    void Interact(Character* character);
     string GetTokenCode();
+    void takeChestLoot(Character* character);
 };
 

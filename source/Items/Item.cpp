@@ -7,5 +7,11 @@
     bool Item::isWeapon() {
         return false;
     }
+    bool Item::isArmor() {
+        return false;
+    }
+    bool Item::isShield() {
+        return false;
+    }
 
 

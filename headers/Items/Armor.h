@@ -37,6 +37,9 @@ CharStats charStats;
      */
     std::string toString() const override;
 
+    //check if its a weapon item
+    bool isArmor();
+
 };
 
 #endif

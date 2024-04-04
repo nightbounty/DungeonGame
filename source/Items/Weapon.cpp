@@ -9,6 +9,7 @@ Weapon::Weapon(const std::string &itemName, const std::string &damageDice, int r
     this->range = range;
 }
 
+
 // IncreaseCharStats method 
 void Weapon::IncreaseCharStats() {
     charStats.increaseAttackBonus(5);

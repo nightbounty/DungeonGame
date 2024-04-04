@@ -8,6 +8,8 @@
 #include <ctime>   // For time()
 #include <algorithm>
 #include "../../headers/Items/Weapon.h"
+#include "../../headers/Items/Armor.h"
+#include "../../headers/Items/Shield.h"
 #include "../../headers/Dice.h"
 
 using namespace std;
@@ -68,7 +70,20 @@ void Character::equipItem(Item* item) {
         attackBonus += weapon->charStats.getAttackBonus();
         damageBonus += weapon->charStats.getDamageBonus();
     }
-    cout << "Equipped Item to Character \n";
+     if (item->isArmor()) {
+        Armor* armor = dynamic_cast<Armor*>(item);
+        equippedItems[1] = armor;
+        armor->IncreaseCharStats();
+        armorClass += armor->charStats.getArmorClass();
+    }
+     if (item->isShield()) {
+        Shield* shield = dynamic_cast<Shield*>(item);
+        equippedItems[2] = shield;
+        shield->IncreaseCharStats();
+        armorClass += shield->charStats.getArmorClass();
+    }
+
+    cout << "Equipped " << item->getName() << " to Character \n";
 }
 
 // Unequip an Item
@@ -100,12 +115,13 @@ Item* Character::takeItem(const std::string& itemName) {
 
 // display Inventory
 void Character::displayInventory() {
+    cout << "Items Inside Inventory: \n";
     inventory.displayItems();
 }
 
 // Display Equipped Items
 void Character::displayEquippedItems() {
-    cout << "Equipped Items \n";
+    cout << " Character's Current Equipped Items: \n";
     for (const auto* itemInside : equippedItems) {
         if (itemInside != nullptr) {
             // If the item pointer is not null, display its name.

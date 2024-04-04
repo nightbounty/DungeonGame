@@ -1,6 +1,7 @@
 #include "Items/Ring.h"
 
-
+// Default Construtor
+Ring::Ring() {}
 // Constructor
 Ring::Ring(const std::string &itemName) {
     this->itemName = itemName;

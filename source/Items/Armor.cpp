@@ -29,3 +29,8 @@ void Armor::displayEnhancement() {
 std::string Armor::toString() const {
     return "Armor Name: " + getName();
 }
+
+// Check if Item is a Weapn
+bool Armor::isArmor() {
+    return true;
+}

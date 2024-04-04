@@ -6,6 +6,11 @@ void CellOccupant::Interact()
 
 }
 
+void CellOccupant::Interact(Character* character)
+{
+
+}
+
 
 string CellOccupant::GetTokenCode()
 {

@@ -7,6 +7,9 @@
  *
  * \param c The character
  */
+void Door::Interact(Character* character) {
+    //not sure how u want this
+}
 
 void Door::Interact(){
     cout << "Landed on the door! Ready to move to next map." << endl ;

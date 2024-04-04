@@ -17,6 +17,7 @@ public:
     // Constructor
     Weapon(const std::string &itemName, const std::string& , int range);
 
+
     // Method
     void IncreaseCharStats();
     void displayEnhancement() override;

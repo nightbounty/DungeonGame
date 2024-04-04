@@ -12,6 +12,9 @@ class Ring : public Item
 public:
     CharStats charStats;
 
+    // Default Constructor
+    Ring() {};
+
     // Constructor
     Ring(const std::string &itemName);
 

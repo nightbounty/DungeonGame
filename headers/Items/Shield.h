@@ -10,6 +10,8 @@ class Shield : public Item {
 public:
     CharStats charStats;
 
+    // Default Constructor
+    Shield();
     // Constructor
     Shield(const std::string &itemName);
     
@@ -21,6 +23,9 @@ public:
 
     // toString method
     std::string toString() const override;
+
+    //check if its a weapon item
+    bool isShield();
 };
 
 #endif

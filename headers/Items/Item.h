@@ -23,6 +23,8 @@ public:
     virtual void displayEnhancement() = 0;
     virtual std::string toString() const = 0;
     virtual bool isWeapon();
+    virtual bool isArmor();
+    virtual bool isShield();
 };
 
 #endif
