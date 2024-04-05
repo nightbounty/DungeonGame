@@ -70,30 +70,9 @@ int main(){
 	}
 	}
 	GameManager::GetInstance()->SetCampaign(campaign);
-	// Game Logger 
+	
 	GameManager* gameManager = GameManager::GetInstance();
+	gameManager->StartCampaign();
 
-	GameManagerLogger gameManagerLogger;
-	MapLogger mapLogger;
-    CharacterLogger characterLogger;
-    DiceLogger diceLogger;
 
-	gameManager->Attach(&gameManagerLogger);
-
-	// Initialize a Character
-	// then attach the CharacterLogger as observer
-	// character->Attach(&characterLogger);
-
-	// Initialize a Map
-	// then attach the MapLogger as observer
-	// map->Attach(&mapLogger);
-
-	// Initialize a Dice
-	// then attach the DiceLogger as observer
-	// dice->Attach(&diceLogger);
-	GameManager::GetInstance()->StartCampaign();
-
-    //Remove Item from hero
-    //hero->removeItem(armor);
-    //hero->displayCharInventory();
 }
