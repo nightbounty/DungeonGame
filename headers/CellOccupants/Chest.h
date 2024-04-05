@@ -24,8 +24,9 @@ private:
     vector<Item*> chestLoot = { shieldLoot, bowLoot, armorLoot, ringLoot };
 
 public:
-    Item* getContents();
-    void setContents(vector<Item*> chestLoot);
+    Chest(Vector2* position, string name);
+    Item* GetContents();
+    void SetContents();
     bool Interact(Character* character);
     string GetTokenCode();
 };

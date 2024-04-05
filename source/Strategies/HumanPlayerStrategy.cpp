@@ -6,6 +6,8 @@ using namespace std;
 
 void HumanPlayerStrategy::ExecuteTurn(Actor* actor){
 	
+	cout << GameManager::GetInstance()->currentMap->ToString() << endl;
+
 	actor->MoveActorFromInput();
 
 	int enemyIndex;

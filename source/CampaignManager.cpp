@@ -154,7 +154,7 @@ void CampaignManager::EditLoadedMap(Map* loadedMap) {
 			map->SetCellOccupant(col, row, new Enemy("Guard", new Vector2(col, row), new FriendlyStrategy()));
 		}
 		else if (type == "Chest") {
-			map->SetCellOccupant(col, row, new Chest());
+			map->SetCellOccupant(col, row, new Chest(new Vector2(col,row), "Chest"));
 		}
 		else if (type == "Wall") {
 			map->GetGrid()[row][col]->SetWall(true);

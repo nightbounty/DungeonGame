@@ -66,37 +66,58 @@ void GameManager::StartCampaign() {
         cout << "= TURN CYCLE " << turnCounter << " =\n" << endl;
         cout << currentMap->ToString() << endl;
 
+        int turn = 0;
+
         // run through the initiative order
-        for (int i = 0; i < initiativeOrder.size(); i++) {
-            Enemy* enemy = dynamic_cast<Enemy*>(initiativeOrder[i]);
-            if (enemy != NULL) {
-                if (enemy->GetCurrentHitPoints() <= 0) {
-                    // remove the enemy from the enemy list
-                    enemies.erase(enemies.begin() + enemy->GetIndex());
+        while (turn < initiativeOrder.size()) {
+
+            cout << "============================" << endl;
+            cout << initiativeOrder[turn]->ToString() << endl;
+            cout << "HP: " << initiativeOrder[turn]->GetCurrentHitPoints() << endl;
+            cout << "============================" << endl;
+
+            //cout << currentMap->ToString() << endl;
+
+            initiativeOrder[turn]->GetTurnStrategy()->ExecuteTurn(initiativeOrder[turn]);
+
+            Enemy* enemy = dynamic_cast<Enemy*>(initiativeOrder[turn]);
+            if (enemy != NULL) 
+            {
+                if (enemy->GetCurrentHitPoints() <= 0) 
+                {
                     // turn the enemy cell into loot
                     currentMap->SetCellOccupant(enemy->GetPositionX(), enemy->GetPositionY(), new Loot(enemy->GetCurrentWeapon(), 10));
+                    // remove the enemy from the enemy list
+                    enemies.erase(enemies.begin() + enemy->GetIndex());
+                    initiativeOrder.erase(initiativeOrder.begin() + turn);
+                    //delete enemy;
+                }
+                else 
+                {
+                    turn++;
                 }
             }
-            cout << "============================" << endl;
-            cout << initiativeOrder[i]->ToString() << endl;
-            cout << "HP: " << initiativeOrder[i]->GetCurrentHitPoints() << endl;
-            cout << "============================" << endl;
-            initiativeOrder[i]->GetTurnStrategy()->ExecuteTurn(initiativeOrder[i]);
-            
-            cout << currentMap->ToString() << endl;
-        }
-        if (enemies.size() == 0) {
-            currentMap->GetExitDoor()->Unlock();
-            cout << "You have killed all the enemies! You can now progress to the next map." << endl;
-        }
+            else 
+            {
+                turn++;
+            }
 
-        if (character->GetCurrentHitPoints() <= 0) {
-            cout << "\nCharacter is dead! Gameover :c" << endl;
-            //break;
-        }
+            if (character->GetCurrentHitPoints() <= 0) {
+                cout << "\nCharacter is dead! Gameover :c" << endl;
+                gameloop = false;
+                break;
+            }
 
+            if (enemies.size() == 0) {
+                currentMap->GetExitDoor()->Unlock();
+                cout << "You have killed all the enemies! You can now progress to the next map." << endl;
+                break;
+            }
+        }
+        
         turnCounter++;
-    } while (true);
+
+    } while (gameloop);
 }
 
 bool GameManager::MoveActor(Actor* a, Vector2* oldPos, Vector2* newPos) {

@@ -1,8 +1,9 @@
 #include "CellOccupants/CellOccupant.h"
 #include <Vector2.h>
 class Character;
-CellOccupant::CellOccupant(Vector2* position) {
+CellOccupant::CellOccupant(Vector2* position, string name) {
     this->position = position;
+    this->name = name;
 }
 CellOccupant::CellOccupant() {
     this->position = new Vector2(0, 0);
@@ -37,3 +38,10 @@ void CellOccupant::SetPosition(Vector2* pos)
 {
     this->position = pos;
 }
+
+string CellOccupant::ToString() {
+    return name + " at (" +
+        std::to_string(GetPositionX()) + ", " +
+        std::to_string(GetPositionY()) + ")";
+}
+

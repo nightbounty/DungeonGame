@@ -19,7 +19,6 @@ protected:
     /**
      * Character Stats
      */
-    string name;
     int level;
     string characterClass;
     array<int, 6> abilityScores; // Str, Dex, Con, Int, Wis, Cha
@@ -70,14 +69,13 @@ public:
     Weapon* GetCurrentWeapon();
 
     /**
-     * Attackina and damagina.
+     * Attackina and damagina. :3
      */
     virtual void Attack();
     virtual void TakeDamage(int dmgRoll);
 
     void MoveTowardTarget();
     void MoveActorFromInput();
-    virtual string ToString() = 0;
 };
 
 #endif

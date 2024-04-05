@@ -148,7 +148,7 @@ void Map::RandomizeMap(){
 				grid[i][j]->SetWall(true);
 			} 
 			else if(random > 0.1 && random < 0.15){
-				grid[i][j]->SetCellOccupant(new Chest());
+				grid[i][j]->SetCellOccupant(new Chest(new Vector2(j,i), "Chest"));
 			}
 			else if (random > 0.16 && random < 0.2) {
 				Enemy* enemy = new Enemy("Guard", new Vector2(j, i), new FriendlyStrategy(), 1); // TODO make dynamic enemy types

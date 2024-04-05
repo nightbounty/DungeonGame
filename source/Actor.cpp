@@ -4,12 +4,12 @@
 #include "Strategies/FriendlyStrategy.h"
 #include "Strategies/AggressorStrategy.h"
 
-Actor::Actor():CellOccupant(new Vector2(0,0)), currentTarget(NULL)
+Actor::Actor():CellOccupant(new Vector2(0,0), "Actor"), currentTarget(NULL)
 {
 }
 
 Actor::Actor(string name, Vector2* pos, TurnStrategy* ts, int lvl, string cls, Actor * target)
-    :CellOccupant(pos), name(name), level(lvl), characterClass(cls), currentTarget(target)
+    :CellOccupant(pos,name), level(lvl), characterClass(cls), currentTarget(target)
 { 
     this->currentWeapon = new Weapon("Sword", "1d6", 1);
     this->SetTurnStrategy(ts);
@@ -286,5 +286,7 @@ void Actor::SetCurrentWeapon(Weapon* weapon) {
 Weapon* Actor::GetCurrentWeapon() {
     return this->currentWeapon;
 }
+
+
 
 #pragma endregion

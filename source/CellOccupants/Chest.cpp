@@ -2,7 +2,11 @@
 #include <random>
 #include "Character/Character.h"
 
-void Chest::setContents(vector<Item*> chestLoots) {
+Chest::Chest(Vector2* pos, string name) :CellOccupant(pos, name) {
+    // randomize chest contents
+    SetContents();
+}
+void Chest::SetContents() {
     
     std::random_device rd;
     std::mt19937 eng(rd());
@@ -10,13 +14,13 @@ void Chest::setContents(vector<Item*> chestLoots) {
     std::uniform_int_distribution<> distr(0, 3); // i just set to 3 items for now
 
     int randomNumber=distr(eng);
-    Item* selectedItem = chestLoots[randomNumber];
+    Item* selectedItem = chestLoot[randomNumber];
 
     // Assuming Item has a getName() method to return its name
     itemLoot = selectedItem;
 }
 
-Item* Chest::getContents(){
+Item* Chest::GetContents(){
     return this->itemLoot;
 }
 /**
@@ -26,13 +30,13 @@ Item* Chest::getContents(){
  */
 
 bool Chest::Interact(Character* character) { 
-    if (getContents() == NULL) {
+    if (GetContents() == NULL) {
         cout << "This chest is empty, sorry!" << endl;
         return false;
     }
     cout << "You landed on a chest! You acquire " << itemLoot->getName() << endl;
     // Place Item Into Inventory
-    character->AddToInventory(Chest::getContents());
+    character->AddToInventory(Chest::GetContents());
     return true;
 }
 
