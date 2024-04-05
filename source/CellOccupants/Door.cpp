@@ -1,22 +1,25 @@
 #include <iostream>
 #include "CellOccupants/Door.h"
 #include "Map.h"
+#include "GameManager.h"
 
 /**
  * Method which will generate a new map when the character reaches a door
  *
  * \param c The character
  */
-void Door::Interact(Character* character) {
-    //not sure how u want this
+bool Door::Interact(Character* character) {
+    if (isLocked) {
+        cout << "You can't pass through yet. Kill all enemies first!" << endl;
+        return false;
+    }
+    else {
+        cout << "You killed all the enemies! Entering a new map now...";
+        GameManager::GetInstance()->EnterNewMap();
+        return true;
+    }
 }
 
-void Door::Interact(){
-    cout << "Landed on the door! Ready to move to next map." << endl ;
-    connectedMap = new Map(4, 5, new Vector2());
-    // Set the Game's current map to the door's connected map
-    // Game.setMap(this,getConnectedMap()
-}
 
 string Door::GetTokenCode()
 {

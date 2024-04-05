@@ -16,14 +16,6 @@ Enemy::Enemy(string name, Vector2* pos, TurnStrategy* ts, int lvl, string cls, A
     this->armorClass = 10;
 }
 
-/**
- * Method which will initiate a battle when the player encounters an enemy
- * \param c The character
- */
-void Enemy::Interact() {
-	Attack();
-}
-
 string Enemy::GetTokenCode() {
 	return "E";
 }

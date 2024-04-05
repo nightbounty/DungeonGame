@@ -100,43 +100,28 @@ void GameManager::StartCampaign() {
 }
 
 bool GameManager::MoveActor(Actor* a, Vector2* oldPos, Vector2* newPos) {
+    
     cout << "Attempted move: " << oldPos->ToString() << " to " << newPos->ToString() << endl;
-    if (!IsValidMove(newPos)) {
-        CellOccupant* occupant = currentMap->GetCellOccupant(newPos->GetX(), newPos->GetY());
-        Character* chara = dynamic_cast<Character*>(a);
-        Door* door = dynamic_cast<Door*>(occupant);
-        if (door != NULL && chara != NULL) {
-            if (door->IsLocked()) {
-                cout << "You can't pass through yet. Kill all enemies first!" << endl;
-                return false;
-            }
-            else {
-                cout << "You killed all the enemies! Entering a new map now...";
-                EnterNewMap();
-                return true;
-            }
-        }
-        Loot* loot = dynamic_cast<Loot*>(occupant);
-        if (loot != NULL && chara != NULL) {
-            string option;
-            // show what loot was acquired
-            cout << "You picked up a " << loot->GetItem()->toString() << endl;
-            character->AddToInventory(loot->GetItem());
-            // equipping the item if the player wants
-            cout << "Would you like to equip it? y or n" << endl;
-            cin >> option;
-            if (option == "y") {
-                character->unEquipItem(character->GetCurrentWeapon());
-                character->equipItem(loot->GetItem());
-            }
-            character->displayInventory();
-            // removing the loot from the map
-            currentMap->SetCellOccupant(newPos->GetX(), newPos->GetY(), NULL);
-        }
-       
+    if (!IsInBounds(newPos)) {
         cout << "The move is invalid!\n";
         return false;
     }
+
+    CellOccupant* occupant = currentMap->GetCellOccupant(newPos->GetX(), newPos->GetY());
+    
+    if (occupant != NULL) 
+    {
+        Character* chara = dynamic_cast<Character*>(a); // todo change to canInteract method?
+        if (chara != NULL && occupant->Interact(chara)) 
+        {
+            cout << chara->ToString() << " interacted with an object.\n";
+            return true;
+        }
+
+        cout << "There is an obstacle. The move is invalid!\n";
+        return false;
+    }
+    
     cout << "The move is valid!\n";
     
     currentMap->SetCellOccupant(oldPos->GetX(), oldPos->GetY(), NULL);
@@ -144,6 +129,7 @@ bool GameManager::MoveActor(Actor* a, Vector2* oldPos, Vector2* newPos) {
     a->SetPosition(newPos);
 	return true;
 }
+
 
 void GameManager::EnterNewMap() {
     currentMap = currentMap->GetExitDoor()->GetConnectedMap();
@@ -157,11 +143,14 @@ void GameManager::EnterNewMap() {
     character->SetPosition(new Vector2(0, 0));
 }
 
-bool GameManager::IsValidMove(Vector2* position) {
-	return position->GetX() < currentMap->GetColumns()
-		&& position->GetY() < currentMap->GetRows()
-		&& position->GetX() >= 0 && position->GetY() >= 0
-        && currentMap->GetCellOccupant(position) == NULL;
+bool GameManager::IsEmptyCell(Vector2* position) {
+	return currentMap->GetCellOccupant(position) == NULL;
+}
+
+bool GameManager::IsInBounds(Vector2* position) {
+    return position->GetX() < currentMap->GetColumns()
+        && position->GetY() < currentMap->GetRows()
+        && position->GetX() >= 0 && position->GetY() >= 0;
 }
 
 void GameManager::DisplayEnemiesInMap() {

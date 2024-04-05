@@ -8,7 +8,7 @@
 class GameManager : public GameLoggerSubject
 {
 private:
-	Map* currentMap;
+	
 	Character* character;
 	Campaign* currentCampaign;
 	std::vector<Actor*> initiativeOrder;
@@ -21,7 +21,7 @@ private:
 	}
 
 public:
-	
+	Map* currentMap;
 	GameManager(const GameManager& obj) = delete;
 	static GameManager* GetInstance();
 	void SetCampaign(Campaign* campaign);
@@ -30,7 +30,8 @@ public:
 	void EnterNewMap();
 
 	bool MoveActor(Actor* a, Vector2* oldPos, Vector2* newPos);
-	bool IsValidMove(Vector2* position);
+	bool IsEmptyCell(Vector2* position);
+	bool IsInBounds(Vector2* position);
 	
 	void DisplayEnemiesInMap();
 	Enemy* GetEnemyInMap(int i);

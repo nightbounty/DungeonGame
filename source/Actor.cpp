@@ -4,14 +4,12 @@
 #include "Strategies/FriendlyStrategy.h"
 #include "Strategies/AggressorStrategy.h"
 
-Actor::Actor()
+Actor::Actor():CellOccupant(new Vector2(0,0)), currentTarget(NULL)
 {
-	this->position = new Vector2(0, 0);
-	this->currentTarget = NULL;
 }
 
 Actor::Actor(string name, Vector2* pos, TurnStrategy* ts, int lvl, string cls, Actor * target)
-    :name(name), position(pos), level(lvl), characterClass(cls), currentTarget(target) 
+    :CellOccupant(pos), name(name), level(lvl), characterClass(cls), currentTarget(target)
 { 
     this->currentWeapon = new Weapon("Sword", "1d6", 1);
     this->SetTurnStrategy(ts);
@@ -233,25 +231,6 @@ void Actor::Attack() {
     }
 }
 
-#pragma region
-
-Vector2* Actor::GetPosition()
-{
-    return this->position;
-}
-
-int Actor::GetPositionX() {
-    return this->position->GetX();
-}
-
-int Actor::GetPositionY() {
-    return this->position->GetY();
-}
-
-void Actor::SetPosition(Vector2* pos)
-{
-    this->position = pos;
-}
 
 TurnStrategy* Actor::GetTurnStrategy()
 {

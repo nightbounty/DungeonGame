@@ -13,7 +13,7 @@ public:
     CharStats charStats;
 
     // Default Constructor
-    Ring() {};
+    Ring();
 
     // Constructor
     Ring(const std::string &itemName);

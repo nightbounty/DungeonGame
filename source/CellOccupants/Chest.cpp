@@ -1,6 +1,7 @@
 #include "CellOccupants/Chest.h"
 #include <random>
 #include "Character/Character.h"
+
 void Chest::setContents(vector<Item*> chestLoots) {
     
     std::random_device rd;
@@ -24,12 +25,15 @@ Item* Chest::getContents(){
  * \param c The character
  */
 
-void Chest::Interact(Character* character) { 
-	cout << "You landed on a chest! You acquire " << itemLoot->getName() << endl;
-	//c.acquireItems(this.getContents());
+bool Chest::Interact(Character* character) { 
+    if (getContents() == NULL) {
+        cout << "This chest is empty, sorry!" << endl;
+        return false;
+    }
+    cout << "You landed on a chest! You acquire " << itemLoot->getName() << endl;
     // Place Item Into Inventory
     character->AddToInventory(Chest::getContents());
-    
+    return true;
 }
 
 string Chest::GetTokenCode(){

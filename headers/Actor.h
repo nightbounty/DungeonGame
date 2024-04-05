@@ -28,7 +28,6 @@ protected:
     int attackBonus;
     int damageBonus;
 
-    Vector2* position;
     TurnStrategy* turnStrategy;
     Actor* currentTarget;
     int totalHitPoints;
@@ -47,11 +46,6 @@ public:
      */
 
     void DisplayStats();
-
-    Vector2* GetPosition();
-    int GetPositionX();
-    int GetPositionY();
-    void SetPosition(Vector2* pos);
 
     TurnStrategy* GetTurnStrategy();
     void SetTurnStrategy(TurnStrategy* ts);

@@ -5,6 +5,7 @@
 #include <string>
 #include "CellOccupant.h"
 #include "Vector2.h"
+
 class Map;
 
 using namespace std;
@@ -17,8 +18,7 @@ private:
 
 public:
     Door();
-    void Interact();
-    void Interact(Character* character);
+    bool Interact(Character* character);
     string GetTokenCode();
     void SetConnectedMap(Map* map);
     Map* GetConnectedMap();
