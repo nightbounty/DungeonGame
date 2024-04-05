@@ -146,6 +146,22 @@ bool Character::unEquipItem(Item* item) {
             damageBonus -= weapon->charStats.getDamageBonus();
             return true;
         }
+        if (item->isArmor()) {
+            Armor* armor = dynamic_cast<Armor*>(item);
+            inventory.addToContainer(item); // Re-add Item to Inventory 
+            equippedItems.erase(i);
+            std::cout << "\n Removed item from Character's Slot inventory: " << item->getName() << "\n";
+            armorClass -= armor->charStats.getArmorClass();
+            return true;
+        }
+        if (item->isShield()) {
+            Shield* shield = dynamic_cast<Shield*>(item);
+            inventory.addToContainer(item); // Re-add Item to Inventory 
+            equippedItems.erase(i);
+            std::cout << "\n Removed item from Character's Slot inventory: " << item->getName() << "\n";
+            armorClass -= shield->charStats.getArmorClass();
+            return true;
+        }
     }
     return false;
 }

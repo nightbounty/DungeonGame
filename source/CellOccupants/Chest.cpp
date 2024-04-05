@@ -1,15 +1,20 @@
 #include "CellOccupants/Chest.h"
 #include <random>
 #include "Character/Character.h"
-void Chest::setContents(vector<Item*> chestLoots) {
-    
+void Chest::setContents() {
+    if (chestLoot.empty()) {
+        //If Chest is Empty
+        itemLoot = nullptr;
+        std::cout << "The Chest Is Empty!" << std::endl;
+        return;
+    }
     std::random_device rd;
     std::mt19937 eng(rd());
-    // ange of random number generator
+    // Random Num Generator
     std::uniform_int_distribution<> distr(0, 3); // i just set to 3 items for now
 
     int randomNumber=distr(eng);
-    Item* selectedItem = chestLoots[randomNumber];
+    Item* selectedItem = chestLoot[randomNumber];
 
     // Assuming Item has a getName() method to return its name
     itemLoot = selectedItem;

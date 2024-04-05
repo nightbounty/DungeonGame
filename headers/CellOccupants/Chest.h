@@ -25,9 +25,9 @@ private:
 
 public:
     Item* getContents();
-    void setContents(vector<Item*> chestLoot);
+    void setContents();
     void Interact(Character* character);
     string GetTokenCode();
-    void takeChestLoot(Character* character);
+    
 };
 

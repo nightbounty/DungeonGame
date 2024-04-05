@@ -41,6 +41,7 @@ int main(){
 	hero->displayInventory(); // should have nothing
 	hero->DisplayStats(); // Increase the character stats
 	hero->unEquipItem(takeWeapon);
+
 	// display Character stats
 	hero->DisplayStats();
 	hero->displayInventory(); // should have the bow back

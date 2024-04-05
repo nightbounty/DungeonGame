@@ -1,4 +1,5 @@
 #include "TurnStrategy.h"
+#include "Character/Character.h"
 class HumanPlayerStrategy: public TurnStrategy
 {
 public:
