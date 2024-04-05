@@ -5,6 +5,7 @@
 #include "Strategies/HumanPlayerStrategy.h"
 #include <iostream>
 #include <algorithm>
+#include "Character/CharacterCreator.h"
 
 GameManager* GameManager::instancePtr;
 GameManager* GameManager::GetInstance() {
@@ -29,98 +30,27 @@ bool compareInitiative(Actor* a, Actor* b) {
 void GameManager::SetCampaign(Campaign* campaign) {
     currentCampaign = campaign;
 }
+
 void GameManager::StartCampaign() {
     // TODO character builder goes here 
 
-    std::cout << "Would you like to use a pre-generated character or create a character?\n";
-    std::cout << "Press 1 to load, or 2 to create:";
+    cout << "Would you like to use a pre-generated character or create a character?\n";
+    cout << "Press 1 to load, or 2 to create:";
     int loadOrCreate;
-    std::cin >> loadOrCreate;
+    cin >> loadOrCreate;
 
     switch (loadOrCreate) {
-    case 1:
-        std::cout << "Here are a set of character that you can choose:\n";
-        std::cout << "1. Brick Malone, The Bully: Brick, with his intimidating presence, rules the back alleys, using brute force to get his way.\n";
-        std::cout << "2. Lila Vale, The Nimble: Silent and swift, Lila strikes from the shadows, always one step ahead.\n";
-        std::cout << "3. Garrick Thorvald, The Tank: An armored fortress, Garrick stands tall, unfazed by the chaos of battle.\n";
-        std::cout << "Which one would you like to use? (1-3)\n";
-        int choice;
-        std::cin >> choice;
-        switch (choice) {
         case 1:
-            character = new Character("Brick Malone", new Vector2(0, 0), new HumanPlayerStrategy(), 3, "Bully");
+            character = CharacterCreator::LoadCharacter();
             break;
         case 2:
-            character = new Character("Lila Vale", new Vector2(0, 0), new HumanPlayerStrategy(), 3, "Nimble");
-            break;
-        case 3:
-            character = new Character("Garrick Thorvald", new Vector2(0, 0), new HumanPlayerStrategy(), 3, "Tank");
-            break;
-        }
-        std::cout << "\nHere is your selected character:\n";
-        character->DisplayStats();
-        break;
-    case 2:
-        std::string name;
-        std::string cls;
-        int classChoice;
-        int lvl = 1; // Starting level, adjust as needed
-
-        std::cout << "Let's create your character for the game!\n\n";
-        std::cout << "Enter character's name: ";
-        std::cin >> name;
-        std::cout << "\nChoose a class:\n";
-        std::cout << "1. Bully\n";
-        std::cout << "2. Nimble\n";
-        std::cout << "3. Tank\n";
-        std::cout << "Enter choice (1-3): ";
-        std::cin >> classChoice;
-
-        switch (classChoice) {
-        case 1:
-            cls = "Bully";
-            break;
-        case 2:
-            cls = "Nimble";
-            break;
-        case 3:
-            cls = "Tank";
+            character = CharacterCreator::CreateCharacter();
             break;
         default:
-            std::cout << "Invalid choice. Defaulting to Bully.\n";
-            cls = "Bully";
-        }
-        character = new Character(name, new Vector2(0, 0), new HumanPlayerStrategy(), lvl, cls);
-        std::cout << "\nCharacter Creation COMPLETED!\n";
-        character->DisplayStats();
-        break;
+            break;
+    }
 
-    }
-    std::cout << "\nWhat weapon would you like to start with?\n";
-    std::cout << "Press 1 for a bow, or 2 for a sword:";
-    int weaponChoice;
-    std::cin >> weaponChoice;
-    switch (weaponChoice) {
-    case 1:
-    {
-        Weapon* bow = new Weapon("Bow", "1d8", 5);
-        character->AddToInventory(bow);
-        Item* takeBow = character->takeItem("Bow");
-        character->equipItem(takeBow);
-        character->displayEquippedItems();
-        break;
-    }
-    case 2:
-    {
-        Weapon* sword = new Weapon("Sword", "1d12", 2);
-        character->AddToInventory(sword);
-        Item* takeSword = character->takeItem("Sword");
-        character->equipItem(takeSword);
-        character->displayEquippedItems();
-        break;
-    }
-    }
-    std::cout << "\nYou have sucessfully equipped your weapon!\n";
+    CharacterCreator::SelectWeapon(character);
     
     currentMap = currentCampaign->Start();
     enemies = currentMap->GetEnemies();
@@ -179,6 +109,10 @@ void GameManager::StartCampaign() {
                     currentMap->SetCellOccupant(enemy->GetPositionX(), enemy->GetPositionY(), new Loot(enemy->GetCurrentWeapon(), 10));
                     // remove the enemy from the enemy list
                     enemies.erase(enemies.begin() + enemy->GetIndex());
+                    for (int i = 0; i < enemies.size(); i++) {
+                        enemies[i]->SetIndex(i);
+                    }
+
                     initiativeOrder.erase(initiativeOrder.begin() + turn);
                     //delete enemy;
                 }
@@ -209,7 +143,6 @@ void GameManager::StartCampaign() {
 
     } while (gameloop);
 }
-
 bool GameManager::MoveActor(Actor* a, Vector2* oldPos, Vector2* newPos) {
     
     cout << "Attempted move: " << oldPos->ToString() << " to " << newPos->ToString() << endl;

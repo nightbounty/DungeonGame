@@ -136,6 +136,7 @@
     <ClCompile Include="source\CampaignManager.cpp" />
     <ClCompile Include="source\CellOccupants\Loot.cpp" />
     <ClCompile Include="source\CharacterLogger.cpp" />
+    <ClCompile Include="source\Character\CharacterCreator.cpp" />
     <ClCompile Include="source\Character\CharacterObserver.cpp" />
     <ClCompile Include="source\ConcreteMapObserver.cpp" />
     <ClCompile Include="source\DiceLogger.cpp" />
@@ -186,6 +187,7 @@
     <ClInclude Include="headers\CellOccupants\Loot.h" />
     <ClInclude Include="headers\CharacterLogger.h" />
     <ClInclude Include="headers\Character\Character.h" />
+    <ClInclude Include="headers\Character\CharacterCreator.h" />
     <ClInclude Include="headers\Character\CharacterObserver.h" />
     <ClInclude Include="headers\Character\CharStats.h" />
     <ClInclude Include="headers\ConcreteMapObserver.h" />

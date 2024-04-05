@@ -177,18 +177,11 @@ void Actor::Attack() {
         cout << "No target selected" << endl;
         return;
     }
-
-    /*
-    cout << "Current pos: (" << GetPositionX() << "," << GetPositionY() << ")\n" << endl;
-    cout << "Current target pos: (" << GetCurrentTarget()->GetPositionX()
-        << "," << GetCurrentTarget()->GetPositionY() << ")\n" << endl;
-    cout << "Abs distance: (" << (std::abs(GetCurrentTarget()->GetPositionX() - GetPositionX()))
-        << "," << (std::abs(GetCurrentTarget()->GetPositionY() - GetPositionY())) << ")\n" << endl;
-    */
-
     if (std::abs(currentTarget->GetPositionY() - position->GetY()) <= currentWeapon->GetRange()
         && std::abs(currentTarget->GetPositionX() - position->GetX()) <= currentWeapon->GetRange()) {
-
+        cout << "*********************************" << endl;
+        cout << this->ToString() << " is attacking " << currentTarget->ToString() << endl;
+        cout << "*********************************" << endl;
         cout << "In range!" << endl;
         std::string diceInput;
         Character* testChar = dynamic_cast<Character*>(this); // remove
