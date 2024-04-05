@@ -27,12 +27,58 @@ Character::Character() {
 }
 
 Character::Character(string name, Vector2* pos, TurnStrategy* ts, int lvl, string cls, Actor* target) :
-    Actor(name, pos, ts, lvl, cls, target){
+    Actor(name, pos, ts, lvl, cls, target) {
     /**
-     * Seed the random number generator
-     * It avoids generating the same numbers when running the program
+     * Ability Scores
      */
-    srand(static_cast<unsigned int>(time(0)));
+
+     // generate Score that will help us determine ability scores later
+    std::array<int, 6> scores;
+
+    for (int& score : scores) {
+        std::vector<int> rolls(4);
+
+        // Simulate rolling 4d6 four times
+        for (int i = 0; i < 4; ++i) {
+            rolls[i] = Dice::rollDice("1d6"); // Roll a single d6
+        }
+
+        // Sort rolls to pick the top three
+        std::sort(rolls.begin(), rolls.end(), std::greater<int>());
+
+        // Sum the top three rolls for this ability score
+        score = rolls[0] + rolls[1] + rolls[2];
+    }
+    // Attribute Ability scores depending on classes
+    std::sort(scores.begin(), scores.end(), std::greater<int>());
+
+    if (cls == "Bully") {
+        // Bully: Strength, Constitution, Dexterity, Intelligence, Charisma, Wisdom
+        abilityScores[0] = scores[0]; // Highest score to Strength
+        abilityScores[2] = scores[1]; // Next highest to Constitution
+        abilityScores[1] = scores[2]; // Dexterity
+        abilityScores[3] = scores[3]; // Intelligence
+        abilityScores[5] = scores[4]; // Charisma
+        abilityScores[4] = scores[5]; // Lowest score to Wisdom
+    }
+    else if (cls == "Nimble") {
+        // Nimble: Dexterity, Constitution, Strength, Intelligence, Charisma, Wisdom
+        abilityScores[1] = scores[0]; // Dexterity gets the highest score
+        abilityScores[2] = scores[1]; // Constitution
+        abilityScores[0] = scores[2]; // Strength
+        abilityScores[3] = scores[3]; // Intelligence
+        abilityScores[5] = scores[4]; // Charisma
+        abilityScores[4] = scores[5]; // Wisdom
+    }
+    else if (cls == "Tank") {
+        // Tank: Constitution, Dexterity, Strength, Intelligence, Charisma, Wisdom
+        abilityScores[2] = scores[0]; // Constitution gets the highest score
+        abilityScores[1] = scores[1]; // Dexterity
+        abilityScores[0] = scores[2]; // Strength
+        abilityScores[3] = scores[3]; // Intelligence
+        abilityScores[5] = scores[4]; // Charisma
+        abilityScores[4] = scores[5]; // Wisdom
+    }
 
     /**
      * Initialize ability modifiers based on ability scores
@@ -53,6 +99,7 @@ Character::Character(string name, Vector2* pos, TurnStrategy* ts, int lvl, strin
 
     equippedItems.assign(7, nullptr); // 7 slots of Body Character Inventory
 }
+
 
 /**
  * Wear an item for a character
