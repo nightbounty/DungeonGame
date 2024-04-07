@@ -10,6 +10,9 @@
 #include "Items/Shield.h"
 
 int main(){
+
+	/*
+	
 	// Create a character
 	Character* hero = new Character();
 	// Create an Item
@@ -44,7 +47,8 @@ int main(){
 	// display Character stats
 	hero->DisplayStats();
 	hero->displayInventory(); // should have the bow back
-	
+	*/
+
 	int option;
 	Campaign* campaign;
 	cout << "=============================================" << endl;
