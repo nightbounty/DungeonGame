@@ -28,6 +28,8 @@ public:
 	void StartCampaign();
 	
 	void EnterNewMap();
+	void StartNewMap();
+	void SetInitiativeOrder();
 
 	bool MoveActor(Actor* a, Vector2* oldPos, Vector2* newPos);
 	bool IsEmptyCell(Vector2* position);

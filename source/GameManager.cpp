@@ -49,32 +49,11 @@ void GameManager::StartCampaign() {
         default:
             break;
     }
-
     CharacterCreator::SelectWeapon(character);
     
     currentMap = currentCampaign->Start();
-    enemies = currentMap->GetEnemies();
-   
-    // creating the rolling initiative
-    currentMap->SetCellOccupant(0, 0, character);
-    cout << "Rolling everyone's initiative!" << endl;
-    character->RollInitiative();
-    // setting the target of the enemies to the player and rolling initiative
-    for (int i = 0; i < enemies.size(); i++) {
-        enemies[i]->RollInitiative();
-        enemies[i]->SetCurrentTarget(character);
-        enemies[i]->SetIndex(i);
-    }
-    // adding everything to initiative order and sorting it
-    initiativeOrder.push_back(character);
-    initiativeOrder.insert(initiativeOrder.end(), enemies.begin(), enemies.end());
-    std::sort(initiativeOrder.begin(), initiativeOrder.end(), compareInitiative);
-    cout << "*****************************" << endl;
-    cout << "Here is the initiative order!" << endl;
-    cout << "*****************************" << endl;
-    for (int i = 0; i < initiativeOrder.size(); i++) {
-        std::cout << i+1 << ". " << initiativeOrder[i]->ToString() << " with initiative " << initiativeOrder[i]->GetInitiative() << std::endl;
-    }
+    StartNewMap();
+
     // GAME LOOP
 
     bool gameloop = true;
@@ -96,8 +75,6 @@ void GameManager::StartCampaign() {
             cout << "HP: " << initiativeOrder[turn]->GetCurrentHitPoints() << endl;
             cout << "============================" << endl;
 
-            //cout << currentMap->ToString() << endl;
-
             initiativeOrder[turn]->GetTurnStrategy()->ExecuteTurn(initiativeOrder[turn]);
 
             Enemy* enemy = dynamic_cast<Enemy*>(initiativeOrder[turn]);
@@ -112,19 +89,13 @@ void GameManager::StartCampaign() {
                     for (int i = 0; i < enemies.size(); i++) {
                         enemies[i]->SetIndex(i);
                     }
-
                     initiativeOrder.erase(initiativeOrder.begin() + turn);
                     //delete enemy;
                 }
-                else 
-                {
-                    turn++;
-                }
+                else turn++;
+
             }
-            else 
-            {
-                turn++;
-            }
+            else turn++;
 
             if (character->GetCurrentHitPoints() <= 0) {
                 cout << "\nCharacter is dead! Gameover :c" << endl;
@@ -161,7 +132,6 @@ bool GameManager::MoveActor(Actor* a, Vector2* oldPos, Vector2* newPos) {
             cout << chara->ToString() << " interacted with an object.\n";
             return true;
         }
-
         cout << "There is an obstacle. The move is invalid!\n";
         return false;
     }
@@ -184,7 +154,40 @@ void GameManager::EnterNewMap() {
         cout << "Exiting..." << endl;
         exit(0);
     }
+    cout << currentMap->ToString();
+    StartNewMap();
+}
+
+void GameManager::StartNewMap() {
+    enemies = currentMap->GetEnemies();
+    for (int i = 0; i < currentMap->GetEnemies().size(); i++) {
+        cout << currentMap->GetEnemies()[i]->ToString() << endl;
+    }
+    currentMap->SetCellOccupant(0, 0, character);
     character->SetPosition(new Vector2(0, 0));
+    SetInitiativeOrder();
+}
+
+void GameManager::SetInitiativeOrder() {
+    cout << "Rolling everyone's initiative!" << endl;
+    character->RollInitiative();
+    // setting the target of the enemies to the player and rolling initiative
+    for (int i = 0; i < enemies.size(); i++) {
+        enemies[i]->RollInitiative();
+        enemies[i]->SetCurrentTarget(character);
+        enemies[i]->SetIndex(i);
+    }
+    // adding everything to initiative order and sorting it
+    initiativeOrder.clear();
+    initiativeOrder.push_back(character);
+    initiativeOrder.insert(initiativeOrder.end(), enemies.begin(), enemies.end());
+    std::sort(initiativeOrder.begin(), initiativeOrder.end(), compareInitiative);
+    cout << "*****************************" << endl;
+    cout << "Here is the initiative order!" << endl;
+    cout << "*****************************" << endl;
+    for (int i = 0; i < initiativeOrder.size(); i++) {
+        std::cout << i + 1 << ". " << initiativeOrder[i]->ToString() << " with initiative " << initiativeOrder[i]->GetInitiative() << std::endl;
+    }
 }
 
 bool GameManager::IsEmptyCell(Vector2* position) {
