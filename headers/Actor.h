@@ -19,7 +19,6 @@ protected:
     /**
      * Character Stats
      */
-    string name;
     int level;
     string characterClass;
     array<int, 6> abilityScores; // Str, Dex, Con, Int, Wis, Cha
@@ -28,7 +27,6 @@ protected:
     int attackBonus;
     int damageBonus;
 
-    Vector2* position;
     TurnStrategy* turnStrategy;
     Actor* currentTarget;
     int totalHitPoints;
@@ -47,11 +45,6 @@ public:
      */
 
     void DisplayStats();
-
-    Vector2* GetPosition();
-    int GetPositionX();
-    int GetPositionY();
-    void SetPosition(Vector2* pos);
 
     TurnStrategy* GetTurnStrategy();
     void SetTurnStrategy(TurnStrategy* ts);
@@ -76,14 +69,13 @@ public:
     Weapon* GetCurrentWeapon();
 
     /**
-     * Attackina and damagina.
+     * Attackina and damagina. :3
      */
     virtual void Attack();
     virtual void TakeDamage(int dmgRoll);
 
     void MoveTowardTarget();
     void MoveActorFromInput();
-    virtual string ToString() = 0;
 };
 
 #endif

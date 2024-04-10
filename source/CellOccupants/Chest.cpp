@@ -1,16 +1,16 @@
 #include "CellOccupants/Chest.h"
 #include <random>
 #include "Character/Character.h"
-void Chest::setContents() {
-    if (chestLoot.empty()) {
-        //If Chest is Empty
-        itemLoot = nullptr;
-        std::cout << "The Chest Is Empty!" << std::endl;
-        return;
-    }
+
+Chest::Chest(Vector2* pos, string name) :CellOccupant(pos, name) {
+    // randomize chest contents
+    SetContents();
+}
+void Chest::SetContents() {
+    
     std::random_device rd;
     std::mt19937 eng(rd());
-    // Random Num Generator
+    // ange of random number generator
     std::uniform_int_distribution<> distr(0, 3); // i just set to 3 items for now
 
     int randomNumber=distr(eng);
@@ -20,7 +20,7 @@ void Chest::setContents() {
     itemLoot = selectedItem;
 }
 
-Item* Chest::getContents(){
+Item* Chest::GetContents(){
     return this->itemLoot;
 }
 /**
@@ -29,12 +29,15 @@ Item* Chest::getContents(){
  * \param c The character
  */
 
-void Chest::Interact(Character* character) { 
-	cout << "You landed on a chest! You acquire " << itemLoot->getName() << endl;
-	//c.acquireItems(this.getContents());
+bool Chest::Interact(Character* character) { 
+    if (GetContents() == NULL) {
+        cout << "This chest is empty, sorry!" << endl;
+        return false;
+    }
+    cout << "You landed on a chest! You acquire " << itemLoot->getName() << endl;
     // Place Item Into Inventory
-    character->AddToInventory(Chest::getContents());
-    
+    character->AddToInventory(Chest::GetContents());
+    return true;
 }
 
 string Chest::GetTokenCode(){

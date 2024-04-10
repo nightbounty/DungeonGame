@@ -4,14 +4,12 @@
 #include "Strategies/FriendlyStrategy.h"
 #include "Strategies/AggressorStrategy.h"
 
-Actor::Actor()
+Actor::Actor():CellOccupant(new Vector2(0,0), "Actor"), currentTarget(NULL)
 {
-	this->position = new Vector2(0, 0);
-	this->currentTarget = NULL;
 }
 
 Actor::Actor(string name, Vector2* pos, TurnStrategy* ts, int lvl, string cls, Actor * target)
-    :name(name), position(pos), level(lvl), characterClass(cls), currentTarget(target) 
+    :CellOccupant(pos,name), level(lvl), characterClass(cls), currentTarget(target)
 { 
     this->currentWeapon = new Weapon("Sword", "1d6", 1);
     this->SetTurnStrategy(ts);
@@ -179,18 +177,11 @@ void Actor::Attack() {
         cout << "No target selected" << endl;
         return;
     }
-
-    /*
-    cout << "Current pos: (" << GetPositionX() << "," << GetPositionY() << ")\n" << endl;
-    cout << "Current target pos: (" << GetCurrentTarget()->GetPositionX()
-        << "," << GetCurrentTarget()->GetPositionY() << ")\n" << endl;
-    cout << "Abs distance: (" << (std::abs(GetCurrentTarget()->GetPositionX() - GetPositionX()))
-        << "," << (std::abs(GetCurrentTarget()->GetPositionY() - GetPositionY())) << ")\n" << endl;
-    */
-
     if (std::abs(currentTarget->GetPositionY() - position->GetY()) <= currentWeapon->GetRange()
         && std::abs(currentTarget->GetPositionX() - position->GetX()) <= currentWeapon->GetRange()) {
-
+        cout << "*********************************" << endl;
+        cout << this->ToString() << " is attacking " << currentTarget->ToString() << endl;
+        cout << "*********************************" << endl;
         cout << "In range!" << endl;
         std::string diceInput;
         Character* testChar = dynamic_cast<Character*>(this); // remove
@@ -233,25 +224,6 @@ void Actor::Attack() {
     }
 }
 
-#pragma region
-
-Vector2* Actor::GetPosition()
-{
-    return this->position;
-}
-
-int Actor::GetPositionX() {
-    return this->position->GetX();
-}
-
-int Actor::GetPositionY() {
-    return this->position->GetY();
-}
-
-void Actor::SetPosition(Vector2* pos)
-{
-    this->position = pos;
-}
 
 TurnStrategy* Actor::GetTurnStrategy()
 {
@@ -307,5 +279,7 @@ void Actor::SetCurrentWeapon(Weapon* weapon) {
 Weapon* Actor::GetCurrentWeapon() {
     return this->currentWeapon;
 }
+
+
 
 #pragma endregion

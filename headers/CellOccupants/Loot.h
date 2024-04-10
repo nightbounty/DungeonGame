@@ -9,6 +9,7 @@ private:
     int nbGold;
 public:
     Loot(Item* loot, int nbGold);
+    bool Interact(Character* character);
     string GetTokenCode();
     Item* GetItem();
     int GetGold();
