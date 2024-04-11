@@ -28,6 +28,9 @@ public:
 
     Character(string name, Vector2* pos, TurnStrategy* ts = NULL, int level = 1, string cls = "", Actor* target = NULL);
 
+    //Char destructor
+    ~Character();
+
     /**
      * Equipping items
      */
@@ -39,6 +42,10 @@ public:
     void displayInventory();
     Item* takeItem(const std::string& itemName);
     bool unEquipItem(Item* item);
+    void displayBodyContainer();
+    void saveItemInventoryToFile();
+    void addMultipleItems(vector<Item*> itemsFile);
+    void saveBodyItemsToFile();
 
     /** 
      * Observer management
@@ -68,8 +75,10 @@ private:
     // Item Container (Inventory) for Character
     ItemContainer inventory;
     ItemContainer backpack;
+    ItemContainer bodySlots;
     // Items Inside of Inventory
     vector<Item*> equippedItems;   // equippedItems : body Inventory of 7 Slots that holds Equipped Items
+    
 };
 
 #endif 

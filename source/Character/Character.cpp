@@ -23,8 +23,10 @@ using namespace std;
 Character::Character() {
     this->inventory = inventory;
     this->backpack = backpack;
+    this->bodySlots = bodySlots; //to save equipped items to text file
     equippedItems.assign(7, nullptr);
 }
+
 
 Character::Character(string name, Vector2* pos, TurnStrategy* ts, int lvl, string cls, Actor* target) :
     Actor(name, pos, ts, lvl, cls, target) {
@@ -116,18 +118,21 @@ void Character::equipItem(Item* item) {
         weapon->IncreaseCharStats();
         attackBonus += weapon->charStats.getAttackBonus();
         damageBonus += weapon->charStats.getDamageBonus();
+        bodySlots.saveToBody(item);
     }
      if (item->isArmor()) {
         Armor* armor = dynamic_cast<Armor*>(item);
         equippedItems[1] = armor;
         armor->IncreaseCharStats();
         armorClass += armor->charStats.getArmorClass();
+        bodySlots.saveToBody(item);
     }
      if (item->isShield()) {
         Shield* shield = dynamic_cast<Shield*>(item);
         equippedItems[2] = shield;
         shield->IncreaseCharStats();
         armorClass += shield->charStats.getArmorClass();
+        bodySlots.saveToBody(item);
     }
 
     cout << "Equipped " << item->getName() << " to Character \n";
@@ -135,6 +140,8 @@ void Character::equipItem(Item* item) {
 
 // Unequip an Item
 bool Character::unEquipItem(Item* item) {
+        // delete from body slot history
+    bodySlots.deleteItem(item);
         auto i = std::find(equippedItems.begin(), equippedItems.end(), item);
     if (i != equippedItems.end()) {
         if (item->isWeapon()) {
@@ -171,8 +178,14 @@ void Character::AddToInventory(Item* item) {
     inventory.addToContainer(item);
 }
 
+// Add vector multiple items to Inventory
+void Character::addMultipleItems(vector<Item*> itemsFile) {
+    inventory.addToContainerStart(itemsFile);
+}
+
 // Take Item out of Inventory
 Item* Character::takeItem(const std::string& itemName) {
+    //delete from inventory then take iten
     return inventory.takeItem(itemName);
 }
 
@@ -180,6 +193,12 @@ Item* Character::takeItem(const std::string& itemName) {
 void Character::displayInventory() {
     cout << "Items Inside Inventory: \n";
     inventory.displayItems();
+}
+
+// testing -> display Body Container
+void Character::displayBodyContainer() {
+    cout << "Items Inside Body Container: \n";
+    bodySlots.displayBodyContainer();
 }
 
 // Display Equipped Items
@@ -229,6 +248,12 @@ void Character::NotifyObservers() {
     Notify(logEntry);
 }
 
+void Character::saveItemInventoryToFile() {
+    inventory.saveCharInventoryToFile();
+}
+void Character::saveBodyItemsToFile() {
+    inventory.saveCharBodyItemsToFile();
+}
 
 //itemcontainer character::getinventory() {
 //    return inventory;
