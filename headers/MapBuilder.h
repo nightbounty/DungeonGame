@@ -2,6 +2,8 @@
  * @brief Determines whether a Map .txt file
  * was saved by user. If yes, transforms contents to a
  * Map Object for future editing.
+ * Also additional features include reading a Map .txt file & updates the Character Hero Tier,
+ * Item Tier & Enemy Tier to reflect the World's Map Level.
  */
 
 #ifndef MAPBUILDER_H
@@ -11,7 +13,7 @@
 #include <vector>
 #include "Items/Item.h"
 #include "MapInterface.h"
-#include "Map2.h"
+#include "Map.h"
 #include "Items/ItemSub.h"
 
 #include <iostream>
@@ -42,6 +44,13 @@ class MapBuilder: public MapInterface{
          bool isMapSaved();
         /**Method: Creates a Map if .txt file was saved*/
           void createMap();
+
+          /**Tier methods: Updates map to have appropriate Char, Items and Enemies*/
+          void tier1map();
+          void tier2map();
+          void tier3map();
+          void tier4map();
+          void createMapContents();
 };
 
 

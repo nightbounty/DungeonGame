@@ -5,7 +5,7 @@
 MapBuilder::MapBuilder() {
 }
      // Create a Map Object
-     Map2 map;
+     Map map;
 
         void MapBuilder::readFile(const std::string &fileName){
             std::ifstream file(fileName); //reads file and creates an instance of ifstream
@@ -48,7 +48,7 @@ MapBuilder::MapBuilder() {
                }
             
             }
-             return "";
+             return "Nothing";
          }
           std::string MapBuilder::importWorldTier(){
             for(std::string line : mapFileCopy){
@@ -57,7 +57,7 @@ MapBuilder::MapBuilder() {
                   return terrain;
                }
             }
-            return "";
+            return "Nothing";
          }
          std::vector<Item*>& MapBuilder::importItems(){
             for(std::string line : mapFileCopy){
@@ -97,4 +97,57 @@ MapBuilder::MapBuilder() {
                  
             }
                
+         }
+
+         // addiotional features of the Map
+         void MapBuilder::tier1map() {
+             map.setWorldTier(importWorldTier());
+             map.setCharacterTier("Tier 1");
+             map.setItemTier("Common");
+             map.setEnemyTier("0-2");
+             map.displayMapContents();
+         }
+
+         void MapBuilder::tier2map() {
+             map.setWorldTier(importWorldTier());
+             map.setCharacterTier("Tier 2");
+             map.setItemTier("Uncommon");
+             map.setEnemyTier("1/4-9");
+             map.displayMapContents();
+         }
+
+         void MapBuilder::tier3map() {
+             map.setWorldTier(importWorldTier());
+             map.setCharacterTier("Tier 3");
+             map.setItemTier("Rare");
+             map.setEnemyTier("1/2-17");
+             map.displayMapContents();
+         }
+
+         void MapBuilder::tier4map() {
+             map.setWorldTier(importWorldTier());
+             map.setCharacterTier("Tier 4");
+             map.setItemTier("Very Rare");
+             map.setEnemyTier("1-20");
+             map.displayMapContents();
+         }
+
+         void MapBuilder::createMapContents() {
+             {
+                 std::cout << map.getWorldTier() << std::endl;
+                 if (importWorldTier() == "Beginner") {
+                     tier1map();
+                 }
+                 if (importWorldTier() == "Intermediate") {
+                     tier2map();
+                 }
+                 if (importWorldTier() == "Hard") {
+                     tier3map();
+                 }
+                 if (importWorldTier() == "Advanced") {
+                     tier4map();
+                 }
+
+
+             }
          }
