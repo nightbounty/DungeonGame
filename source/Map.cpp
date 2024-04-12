@@ -4,10 +4,14 @@
 #include "Strategies/FriendlyStrategy.h""
 
 Map::Map() {
-	this->rows = 2;
-	this->cols = 2;
-	this->path = GeneratePath();
-	this->startPt = new Vector2();
+	setMapLevel(mapLevel);
+	std::string worldName;
+	std::string worldTier;
+	std::vector<Item*> items;
+	std::vector<std::string> characters;
+	//New
+	std::string characterTier = "";
+	std::string itemTier = "";
 }
 
 /**
@@ -215,6 +219,31 @@ void Map::LogEvent(const std::string& event) {
 
 void Map::NotifyObservers() {
     Notify();
+}
+
+// additional features of the Map
+void Map::displaySavedMap() {
+	std::cout << "Your Saved Map Contains: " << std::endl;
+	std::cout << "World Name: " << getWorldName() << "\n";
+	std::cout << "World Difficulty: " << getWorldTier() << std::endl;
+
+	std::cout << "\nItems: " << std::endl;
+	for (const auto& item : items) {
+		if (item != nullptr)
+			std::cout << item->toString() << std::endl;
+	}
+	std::cout << "\nCharacters: " << std::endl;
+	for (const auto& character : characters) {
+		std::cout << character << std::endl;
+	}
+
+}
+
+void Map::displayMapContents() {
+	std::cout << "World Difficulty: " << getWorldTier() << "\n";
+	std::cout << "Item Tier: " << getItemTier() << "\n";
+	std::cout << "Enemy Tier (CR): " << getEnemyTier() << "\n";
+	std::cout << "Character Tier: " << getCharacterTier() << std::endl;
 }
 
 

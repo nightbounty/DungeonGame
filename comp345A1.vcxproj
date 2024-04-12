@@ -166,9 +166,7 @@
     <ClCompile Include="source\Items\Shield.cpp" />
     <ClCompile Include="source\Items\Weapon.cpp" />
     <ClCompile Include="source\Map.cpp" />
-    <ClCompile Include="source\Map2.cpp" />
     <ClCompile Include="source\MapBuilder.cpp" />
-    <ClCompile Include="source\MapBuilder2.cpp" />
     <ClCompile Include="source\MapLogger.cpp" />
     <ClCompile Include="source\Strategies\AggressorStrategy.cpp" />
     <ClCompile Include="source\Strategies\FriendlyStrategy.cpp" />
@@ -208,9 +206,7 @@
     <ClInclude Include="headers\Items\Shield.h" />
     <ClInclude Include="headers\Items\Weapon.h" />
     <ClInclude Include="headers\Map.h" />
-    <ClInclude Include="headers\Map2.h" />
     <ClInclude Include="headers\MapBuilder.h" />
-    <ClInclude Include="headers\MapBuilder2.h" />
     <ClInclude Include="headers\MapInterface.h" />
     <ClInclude Include="headers\MapLogger.h" />
     <ClInclude Include="headers\MapObserver.h" />
