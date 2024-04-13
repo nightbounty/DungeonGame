@@ -131,6 +131,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ItemCreation.cpp" />
     <ClCompile Include="source\Actor.cpp" />
     <ClCompile Include="source\Campaign.cpp" />
     <ClCompile Include="source\CampaignManager.cpp" />
@@ -216,11 +217,18 @@
     <ClInclude Include="headers\Strategies\TurnStrategy.h" />
     <ClInclude Include="headers\Vector2.h" />
     <ClInclude Include="headers\CampaignManager.h" />
+    <ClInclude Include="ItemCreation.h" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="CharBodyItems.txt" />
+    <Text Include="CharInventoryItems.txt" />
+    <Text Include="ItemSet1.txt" />
+    <Text Include="ItemSet2.txt" />
+    <Text Include="savedChestLoot.txt" />
     <Text Include="source\UserCreatedMaps\MapContents.txt" />
     <Text Include="source\UserCreatedMaps\MapSaved.txt" />
     <Text Include="source\UserCreatedMaps\testMap.txt" />
+    <Text Include="UserChoiceItems.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

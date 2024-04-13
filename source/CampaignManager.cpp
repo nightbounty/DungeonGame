@@ -1,6 +1,7 @@
 #include "CampaignManager.h"
 #include "CellOccupants/Enemy.h"
 #include "Strategies/FriendlyStrategy.h"
+using namespace std;
 
 void CampaignManager::WriteMapToFile(Map* map) {
 	ofstream mapFile(".\\source\\UserCreatedMaps\\" + map->GetName() + ".txt");
@@ -20,7 +21,8 @@ void CampaignManager::WriteMapToFile(Map* map) {
 Campaign* CampaignManager::LoadCampaign() {
 
 	// creating a test campaign
-	vector<Map*> maps;
+	/*
+	* 	vector<Map*> maps;
 	Map* barovia = new Map(5, 6, new Vector2(3, 0));
 	barovia->SetName("Barovia");
 	WriteMapToFile(barovia);
@@ -43,6 +45,7 @@ Campaign* CampaignManager::LoadCampaign() {
 	campaignFile << mapList;
 	campaignFile.close();
 
+	*/
 	string campaignToLoad;
 	// take string input for which campaign
 	cout << "Enter the name of the campaign you want to load." << endl;
@@ -62,8 +65,9 @@ Campaign* CampaignManager::LoadCampaign() {
 		}
 		*/
 		// if (store_in_maps) {
+		cout << "loaduing map with name" << endl;
 			loadedMaps.push_back(LoadMapWithName(currentLine)); // Store in maps
-		//}
+			//}
 		//else {
 			//items.push_back(line); // Store in items
 		//}
@@ -152,10 +156,55 @@ void CampaignManager::EditLoadedMap(Map* loadedMap) {
 	Map* CampaignManager::LoadMapWithName(string name) {
 		ifstream loadedMapFile(".\\source\\UserCreatedMaps\\" + name + ".txt");
 		Map* loadedMap;
-		loadedMapFile.read((char*)&loadedMap, sizeof(loadedMap));
-		// display loaded map to user
-		//cout << "This is the map you loaded!" << endl;
-		//cout << loadedMap->ToString() << endl;
+		string description, dimensions, currentCellLine;
+		int rows, cols, startpt;
+		std::getline(loadedMapFile, description);
+		std::getline(loadedMapFile, dimensions);
+		std::stringstream ss(dimensions);
+		ss >> rows >> cols >> startpt;
+		loadedMap = new Map(rows, cols, new Vector2(0, startpt));
+		for(int i = 0; i < rows; i++)
+		{
+			for (int j = 0; j < cols; j++) 
+			{
+				std::cout << "row: " << i << " column: " << j << endl;
+				std::getline(loadedMapFile, currentCellLine);
+				
+				if(currentCellLine == "W") 
+				{
+					loadedMap->SetWall(j, i);
+				}
+				else if (currentCellLine == "O") 
+				{
+					// the cell is already empty; do nothing
+				}
+				else if (currentCellLine == "D") 
+				{
+					loadedMap->SetExitDoor(new Door());
+					loadedMap->SetCellOccupant(j, i, loadedMap->GetExitDoor());
+				}
+				else 
+				{ // this means the cell is an E or a C
+					string code, fileName;
+					stringstream ss(currentCellLine);
+					ss >> code >> fileName;
+					if (code == "E") 
+					{
+						// todo based on how it gets saved to file
+						loadedMap->SetCellOccupant(j, i, new Enemy("Guard", new Vector2(i, j), new FriendlyStrategy(), 1));
+					}
+					else 
+					{ // code == "C"
+						loadedMap->SetCellOccupant(j, i, new Chest(new Vector2(i,j), "Chest"));
+					}
+				}
+			}
+			
+			std::getline(loadedMapFile, currentCellLine); // skip blank 
+		}
+		//loadedMapFile.read((char*)&loadedMap, sizeof(loadedMap));
+		cout << "loaded a map" << endl;
+		cout << loadedMap->ToString() << endl;
 		loadedMapFile.close();
 		return loadedMap;
 	}

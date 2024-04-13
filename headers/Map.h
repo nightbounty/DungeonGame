@@ -51,13 +51,14 @@ public:
 		this->cols = cols;
 		grid = CreateGrid(rows, cols);
 		this->startPt = startPt;
-		RandomizeMap();
-		path = GeneratePath(); 
+		//RandomizeMap();
+		//path = GeneratePath(); 
 	}
 	Map();
 	Cell*** CreateGrid(int rows, int cols);
 
 	void SetCellOccupant(int x, int y, CellOccupant* o);
+	void SetWall(int x, int y);
 	Vector2** GeneratePath(); 
 	void RandomizeMap();
 	
@@ -85,6 +86,7 @@ public:
     void Notify(); // notifying all observers
 
 	Door* GetExitDoor();
+	void SetExitDoor(Door* door);
 	CellOccupant* GetCellOccupant(Vector2* pos);
 	CellOccupant* GetCellOccupant(int x, int y);
 

@@ -3,15 +3,19 @@
 #include "Character/Character.h"
 
 Chest::Chest(Vector2* pos, string name) :CellOccupant(pos, name) {
+
     // randomize chest contents
     SetContents();
 }
+Chest::Chest() {
+
+    SetContents();
+};
 void Chest::SetContents() {
-    
     std::random_device rd;
     std::mt19937 eng(rd());
     // ange of random number generator
-    std::uniform_int_distribution<> distr(0, 3); // i just set to 3 items for now
+    std::uniform_int_distribution<> distr(0, chestLoot.size() - 1); // i just set to 3 items for now
 
     int randomNumber=distr(eng);
     Item* selectedItem = chestLoot[randomNumber];
@@ -43,3 +47,13 @@ bool Chest::Interact(Character* character) {
 string Chest::GetTokenCode(){
 	return "C";
 }
+
+ void Chest::setChestLoot(vector<Item*> item) {
+    chestLoot = item;
+};
+ vector<Item*> Chest::chestLoot;
+
+ vector<Item*> Chest::getInitialChestLoot(vector<Item*> item) {
+     chestLoot = item;
+     return item;
+ }

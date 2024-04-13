@@ -153,6 +153,9 @@
     <ClCompile Include="source\Character\CharacterCreator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ItemCreation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="headers\Character\Character.h">
@@ -278,10 +281,19 @@
     <ClInclude Include="headers\Character\CharacterCreator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ItemCreation.h">
+      <Filter>Header Files\Items</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="source\UserCreatedMaps\MapContents.txt" />
     <Text Include="source\UserCreatedMaps\MapSaved.txt" />
     <Text Include="source\UserCreatedMaps\testMap.txt" />
+    <Text Include="savedChestLoot.txt" />
+    <Text Include="CharInventoryItems.txt" />
+    <Text Include="CharBodyItems.txt" />
+    <Text Include="ItemSet1.txt" />
+    <Text Include="ItemSet2.txt" />
+    <Text Include="UserChoiceItems.txt" />
   </ItemGroup>
 </Project>
