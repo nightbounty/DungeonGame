@@ -85,9 +85,9 @@ void GameManager::StartCampaign() {
                     // turn the enemy cell into loot
                     currentMap->SetCellOccupant(enemy->GetPositionX(), enemy->GetPositionY(), new Loot(enemy->GetCurrentWeapon(), 10));
                     // remove the enemy from the enemy list
-                    enemies.erase(enemies.begin() + enemy->GetIndex());
-                    for (int i = 0; i < enemies.size(); i++) {
-                        enemies[i]->SetIndex(i);
+                    enemies->erase(enemies->begin() + enemy->GetIndex());
+                    for (int i = 0; i < enemies->size(); i++) {
+                        (*enemies)[i]->SetIndex(i);
                     }
                     initiativeOrder.erase(initiativeOrder.begin() + turn);
                     //delete enemy;
@@ -103,7 +103,7 @@ void GameManager::StartCampaign() {
                 break;
             }
 
-            if (enemies.size() == 0) {
+            if (enemies->size() == 0) {
                 currentMap->GetExitDoor()->Unlock();
                 cout << "You have killed all the enemies! You can now progress to the next map." << endl;
                 break;
@@ -118,13 +118,17 @@ bool GameManager::MoveActor(Actor* a, Vector2* oldPos, Vector2* newPos) {
     
     cout << "Attempted move: " << oldPos->ToString() << " to " << newPos->ToString() << endl;
     if (!IsInBounds(newPos)) {
-        cout << "The move is invalid!\n";
+        cout << "Out of bounds. The move is invalid!\n";
         return false;
     }
 
     CellOccupant* occupant = currentMap->GetCellOccupant(newPos->GetX(), newPos->GetY());
     
-    if (occupant != NULL) 
+    if (currentMap->GetGrid()[newPos->GetY()][newPos->GetX()]->IsWall()) {
+        cout << "There is a wall. The move is invalid!\n";
+        return false;
+    }
+    else if (occupant != NULL)
     {
         Character* chara = dynamic_cast<Character*>(a); // todo change to canInteract method?
         if (chara != NULL && occupant->Interact(chara)) 
@@ -154,14 +158,14 @@ void GameManager::EnterNewMap() {
         cout << "Exiting..." << endl;
         exit(0);
     }
-    cout << currentMap->ToString();
     StartNewMap();
+    cout << currentMap->ToString();
 }
 
 void GameManager::StartNewMap() {
     enemies = currentMap->GetEnemies();
-    for (int i = 0; i < currentMap->GetEnemies().size(); i++) {
-        cout << currentMap->GetEnemies()[i]->ToString() << endl;
+    for (int i = 0; i < currentMap->GetEnemies()->size(); i++) { 
+        //cout << "This is an enemy!" << currentMap->GetEnemies()[i]->ToString() << endl;
     }
     currentMap->SetCellOccupant(0, 0, character);
     character->SetPosition(new Vector2(0, 0));
@@ -172,15 +176,15 @@ void GameManager::SetInitiativeOrder() {
     cout << "Rolling everyone's initiative!" << endl;
     character->RollInitiative();
     // setting the target of the enemies to the player and rolling initiative
-    for (int i = 0; i < enemies.size(); i++) {
-        enemies[i]->RollInitiative();
-        enemies[i]->SetCurrentTarget(character);
-        enemies[i]->SetIndex(i);
+    for (int i = 0; i < enemies->size(); i++) {
+        (*enemies)[i]->RollInitiative();
+        (*enemies)[i]->SetCurrentTarget(character);
+        (*enemies)[i]->SetIndex(i);
     }
     // adding everything to initiative order and sorting it
     initiativeOrder.clear();
     initiativeOrder.push_back(character);
-    initiativeOrder.insert(initiativeOrder.end(), enemies.begin(), enemies.end());
+    initiativeOrder.insert(initiativeOrder.end(), enemies->begin(), enemies->end());
     std::sort(initiativeOrder.begin(), initiativeOrder.end(), compareInitiative);
     cout << "*****************************" << endl;
     cout << "Here is the initiative order!" << endl;
@@ -201,15 +205,15 @@ bool GameManager::IsInBounds(Vector2* position) {
 }
 
 void GameManager::DisplayEnemiesInMap() {
-    if (enemies.size() == 0) {
+    if (enemies->size() == 0) {
         cout << "No enemies on this map!" << endl;
     }
     else {
         cout << "*********************" << endl;
         cout << "Here are the enemies!" << endl;
         cout << "*********************" << endl;
-        for (int i = 0; i < enemies.size(); i++) {
-            cout << i << ". " << enemies[i]->ToString() << endl;
+        for (int i = 0; i < enemies->size(); i++) {
+            cout << i << ". " << (*enemies)[i]->ToString() << endl;
         }
     }
 }
@@ -218,8 +222,8 @@ Character* GameManager::GetCharacterInMap() {
 }
 
 Enemy* GameManager::GetEnemyInMap(int i) {
-    if (i >= enemies.size() || i < 0) return NULL;
-    return enemies[i];
+    if (i >= enemies->size() || i < 0) return NULL;
+    return (*enemies)[i];
 }
 
 void GameManager::LogEvent(const std::string& event) {

@@ -164,7 +164,7 @@ void Map::RandomizeMap(){
 			}
 			else if (random > 0.16 && random < 0.2) {
 				Enemy* enemy = new Enemy("Guard", new Vector2(j, i), new FriendlyStrategy(), 1); // TODO make dynamic enemy types
-				enemies.push_back(enemy);
+				enemies->push_back(enemy);
 				grid[i][j]->SetCellOccupant(enemy);
 			}
 		}
@@ -173,7 +173,7 @@ void Map::RandomizeMap(){
 }
 
 string Map::ToString(){
-	string mapStr;
+	string mapStr = description + "\n\n";
 	for (int i = 0; i < rows; i++) {
 		for (int j = 0; j < cols; j++) {
 			if (grid[i][j]->IsWall()) {
@@ -208,7 +208,7 @@ Door* Map::GetExitDoor() {
 	return this->exitDoor;
 }
 
-vector<Enemy*> Map::GetEnemies() {
+vector<Enemy*>* Map::GetEnemies() {
 	return this->enemies;
 }
 

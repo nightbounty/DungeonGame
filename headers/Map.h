@@ -28,7 +28,7 @@ private:
 	string name;
 	string description;
 	Door* exitDoor;
-	std::vector<Enemy*> enemies;
+	std::vector<Enemy*>* enemies;
 	std::vector<MapObserver*> observers; // Where all the observers will be added
 	std::string logEntry; // Game Log related member
 	void NotifyObservers(); // Game Log related private function
@@ -51,6 +51,7 @@ public:
 		this->cols = cols;
 		grid = CreateGrid(rows, cols);
 		this->startPt = startPt;
+		this->enemies = new vector<Enemy*>;
 		//RandomizeMap();
 		//path = GeneratePath(); 
 	}
@@ -77,7 +78,7 @@ public:
 	void SetName(string name);
 	string GetName();
 
-	vector<Enemy*> GetEnemies();
+	vector<Enemy*>* GetEnemies();
 	
 	void SetDescription(string description);
 	string GetDescription();

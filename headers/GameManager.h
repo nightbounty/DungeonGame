@@ -12,7 +12,7 @@ private:
 	Character* character;
 	Campaign* currentCampaign;
 	std::vector<Actor*> initiativeOrder;
-	std::vector<Enemy*> enemies;
+	std::vector<Enemy*>* enemies;
 	static GameManager* instancePtr;
 	std::string logEntry; // Game Log related member
 	void NotifyObservers(); // Game Log related private function

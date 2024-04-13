@@ -112,7 +112,7 @@ void Actor::MoveTowardTarget() {
         return;
     }
 
-    int newX, newY;
+    int newX = position->GetX(), newY = position->GetY();
     Vector2* targetPos = currentTarget->GetPosition();
 
     /*
@@ -126,23 +126,18 @@ void Actor::MoveTowardTarget() {
   
     // determine whether to move in X direction
     if (targetPos->GetX() < position->GetX()) {
-        newX = position->GetX() - 1;
+        newX -= 1;
     }
     else if (targetPos->GetX() > position->GetX()) {
-        newX = position->GetX() + 1;
+        newX += 1;
     }
-    else {
-        newX = position->GetX();
-    }
+
     // determine whether to move in Y direction
     if (targetPos->GetY() < position->GetY()) {
-        newY = position->GetY() - 1;
+        newY -= 1;
     }
     else if (targetPos->GetY() > position->GetY()) {
-        newY = position->GetY() + 1;
-    }
-    else {
-        newY = position->GetY();
+        newY += 1;
     }
     //this->position = new Vector2(newX, newY);
     GameManager::GetInstance()->MoveActor(this, position, new Vector2(newX, newY));

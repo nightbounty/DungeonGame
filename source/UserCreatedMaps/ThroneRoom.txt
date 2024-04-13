@@ -1,5 +1,5 @@
 In the throne room...
-4 5 0
+5 5 0
 O
 W
 W
@@ -7,16 +7,23 @@ W
 W
 
 O
-C fileName
 O
-E fileName
+O
+E Guard
 O
 
 O
-E fileName
+E Guard
 O
 O
 D
+
+O
+O
+O
+E Guard
+O
+
 
 W
 W

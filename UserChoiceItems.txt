@@ -1,4 +1,0 @@
-armor
-shield
-bow
-armor

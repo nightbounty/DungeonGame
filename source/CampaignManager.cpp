@@ -65,7 +65,6 @@ Campaign* CampaignManager::LoadCampaign() {
 		}
 		*/
 		// if (store_in_maps) {
-		cout << "loaduing map with name" << endl;
 			loadedMaps.push_back(LoadMapWithName(currentLine)); // Store in maps
 			//}
 		//else {
@@ -163,11 +162,11 @@ void CampaignManager::EditLoadedMap(Map* loadedMap) {
 		std::stringstream ss(dimensions);
 		ss >> rows >> cols >> startpt;
 		loadedMap = new Map(rows, cols, new Vector2(0, startpt));
+		loadedMap->SetName(name);
 		for(int i = 0; i < rows; i++)
 		{
 			for (int j = 0; j < cols; j++) 
 			{
-				std::cout << "row: " << i << " column: " << j << endl;
 				std::getline(loadedMapFile, currentCellLine);
 				
 				if(currentCellLine == "W") 
@@ -191,18 +190,19 @@ void CampaignManager::EditLoadedMap(Map* loadedMap) {
 					if (code == "E") 
 					{
 						// todo based on how it gets saved to file
-						loadedMap->SetCellOccupant(j, i, new Enemy("Guard", new Vector2(i, j), new FriendlyStrategy(), 1));
+						Enemy* enemy = new Enemy("Guard", new Vector2(j, i), new FriendlyStrategy(), 1);
+						loadedMap->SetCellOccupant(j, i, enemy);
+						loadedMap->GetEnemies()->push_back(enemy);
 					}
 					else 
 					{ // code == "C"
-						loadedMap->SetCellOccupant(j, i, new Chest(new Vector2(i,j), "Chest"));
+						loadedMap->SetCellOccupant(j, i, new Chest(new Vector2(j,i), "Chest"));
 					}
 				}
 			}
 			
 			std::getline(loadedMapFile, currentCellLine); // skip blank 
 		}
-		//loadedMapFile.read((char*)&loadedMap, sizeof(loadedMap));
 		cout << "loaded a map" << endl;
 		cout << loadedMap->ToString() << endl;
 		loadedMapFile.close();
