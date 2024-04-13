@@ -53,6 +53,10 @@ Cell*** Map::CreateGrid(int rows, int cols) {
 	return grid;
 }
 
+void Map::SetExitDoor(Door* d) {
+	this->exitDoor = d;
+}
+
 void DeleteGrid(Cell** grid, int rows) {
 	// Free memory for each row
 	for (int i = 1; i < rows; i++) {
@@ -80,6 +84,10 @@ void Map::SetStartPt(Vector2* newPt){
 void Map::SetCellOccupant(int x, int y, CellOccupant* o) {
 	if (grid[y][x]->IsWall()) grid[y][x]->SetWall(false);
 	grid[y][x]->SetCellOccupant(o);
+}
+
+void Map::SetWall(int x, int y) {
+	grid[y][x]->SetWall(true);
 }
 
 int Map::GetColumns(){
