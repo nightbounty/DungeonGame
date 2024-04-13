@@ -1,0 +1,25 @@
+In the dining area...
+4 5 0
+O
+W
+W
+W
+W
+
+O
+C fileName
+O
+E fileName
+O
+
+O
+E fileName
+O
+O
+D
+
+W
+W
+W
+W
+W

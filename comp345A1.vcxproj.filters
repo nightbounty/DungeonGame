@@ -99,13 +99,7 @@
     <ClCompile Include="source\ConcreteMapObserver.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="source\Map2.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="source\MapBuilder.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="source\MapBuilder2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="source\Character\CharacterObserver.cpp">
@@ -233,13 +227,7 @@
     <ClInclude Include="headers\Items\ItemSub.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="headers\Map2.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="headers\MapBuilder.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="headers\MapBuilder2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="headers\MapInterface.h">

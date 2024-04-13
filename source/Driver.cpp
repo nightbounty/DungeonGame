@@ -25,8 +25,7 @@ Chest::getInitialChestLoot(startingItems.getUserItemChoice());
 //	std::cout << vectorStartingItems[i]->getName() << " ";
 //}
 //std::cout << std::endl;
-
-	int option;
+int option;
 	Campaign* campaign;
 	cout << "=============================================" << endl;
 	cout << "Welcome to Dungeons and Dragons Online!" << endl;
