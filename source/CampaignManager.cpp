@@ -181,6 +181,7 @@ void CampaignManager::EditLoadedMap(Map* loadedMap) {
 		newMap->SetName(mapTitle);
 		cout << "\n=== LEGEND ===\nD: Door\nE: Enemy\nC: Chest\nO: Empty\nW: Wall";
 		cout << "\n=== YOUR MAP!! *^* ===\n\n" << newMap->ToString();
+		WriteMapToFile(newMap);
 		return newMap;
 	}
 
