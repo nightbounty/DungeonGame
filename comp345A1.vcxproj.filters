@@ -304,5 +304,8 @@
     <Text Include="savedChestLoot.txt" />
     <Text Include="CharInventoryItems.txt" />
     <Text Include="CharBodyItems.txt" />
+    <Text Include="ItemSet1.txt" />
+    <Text Include="ItemSet2.txt" />
+    <Text Include="UserChoiceItems.txt" />
   </ItemGroup>
 </Project>

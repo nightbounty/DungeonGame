@@ -1,0 +1,5 @@
+Shiny Armor
+Shiny Belt
+Shiny Ring
+Shiny Helmet
+Shiny Bow

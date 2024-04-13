@@ -28,7 +28,7 @@ private:
     };
     std::vector<Item*> chestLoot2;
     std::vector<Item*> item;
-    //Chest* chest;
+    std::vector<Item*> userItemChoice;
 
 public:
     ItemCreation();
@@ -42,9 +42,10 @@ public:
     }
     void saveChestLootToFile(const std::string& filename);
     void readChestLootFromFile(const std::string& filename);
-    std::vector<Item*> readItemsFile(const std::string& filename);
+    std::vector<Item*> loadItemsFromFile(const std::string& filename);
     static std::string toLower(const std::string& str);
-
+    void startingUserItems();
+    std::vector<Item*> getUserItemChoice();
 
 };
 #endif // ITEMCREATION_H

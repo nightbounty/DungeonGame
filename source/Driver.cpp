@@ -13,60 +13,18 @@
 
 int main(){
 
-	//Item creation
-	ItemCreation charInventory;
-	
-	// Create a character
-	Character* hero = new Character();
-	// Create an Item
-	Weapon* bow = new Weapon("Bow", "1d8", 5);
-	Armor* armor = new Armor("Light Armor");
-	Shield* shield = new Shield("Light Shield");
+	 // TESTING USER ITEMS
+ItemCreation startingItems;
+	startingItems.startingUserItems();
+	// Get the Item Set Decided by User & Place into chet
+	cout << "\nYour Chosen Items Have Been Loaded Into Chest!" << endl;
+	std::vector<Item*> vectorStartingItems = startingItems.getUserItemChoice(); //this to get users vector of items
+Chest::getInitialChestLoot(startingItems.getUserItemChoice());
 
-	// add to inventory
-	hero->AddToInventory(bow);
-	hero->AddToInventory(armor);
-	hero->AddToInventory(shield);
-	//diplay inventory
-	hero->displayInventory();
-
-	//Save Items from Inventory to TEXT file
-	hero->saveItemInventoryToFile();
-	hero->saveBodyItemsToFile();
-	//Testing reading items from file and then inserting to character
-	 vector<Item*> itemsFromFile = charInventory.readItemsFile("CharInventoryItems.txt");
-	 // add all items to hero inventory
-	 Character* hero1 = new Character();
-	 hero1->addMultipleItems(itemsFromFile);
-	
-	 cout << "ITEMS IN INVENTORY AFTER READING TEXT FILE \n";
-
-	 hero1->displayInventory();
-
-	////skip line
-	//std::cout << "\n";
-	////skip line
-	//std::cout << "\n";
-
-	////take Weapon from Inventory
-	//Item* takeWeapon = hero->takeItem("Bow");
-	//Item* takeArmor = hero->takeItem("Light Armor");
-	//// Equip Item to Character
-	//hero->equipItem(takeWeapon);
-	//hero->equipItem(takeArmor);
-	////display Equipped items
-	//hero->displayEquippedItems();
-	//hero->displayBodyContainer();
-	////diplay inventory
-	//hero->displayInventory(); // should have nothing
-	//hero->DisplayStats(); // Increase the character stats
-	//hero->unEquipItem(takeWeapon);
-
-	//// display Character stats
-	//hero->DisplayStats();
-	//hero->displayInventory(); // should have the bow back
-	//hero->displayBodyContainer();
-
+//for (size_t i = 0; i < vectorStartingItems.size(); ++i) {
+//	std::cout << vectorStartingItems[i]->getName() << " ";
+//}
+//std::cout << std::endl;
 
 	int option;
 	Campaign* campaign;
@@ -74,13 +32,6 @@ int main(){
 	cout << "Welcome to Dungeons and Dragons Online!" << endl;
 	cout << "=============================================" << endl;
 
-	//Starting Chest Loot
-	ItemCreation creation;
-	vector<Item*> initialItems = creation.startingChestItems();
-	Chest::getInitialChestLoot(initialItems);
-
-	//Testing saving Chest Loot to file
-	creation.saveChestLootToFile("savedChestLoot.txt");
 
 	cout << "\n";
 
@@ -104,7 +55,6 @@ int main(){
 	}
 	}
 	GameManager::GetInstance()->SetCampaign(campaign);
-
 	
 	GameManager* gameManager = GameManager::GetInstance();
 

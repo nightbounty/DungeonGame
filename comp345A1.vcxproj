@@ -226,10 +226,13 @@
   <ItemGroup>
     <Text Include="CharBodyItems.txt" />
     <Text Include="CharInventoryItems.txt" />
+    <Text Include="ItemSet1.txt" />
+    <Text Include="ItemSet2.txt" />
     <Text Include="savedChestLoot.txt" />
     <Text Include="source\UserCreatedMaps\MapContents.txt" />
     <Text Include="source\UserCreatedMaps\MapSaved.txt" />
     <Text Include="source\UserCreatedMaps\testMap.txt" />
+    <Text Include="UserChoiceItems.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

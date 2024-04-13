@@ -118,21 +118,21 @@ void Character::equipItem(Item* item) {
         weapon->IncreaseCharStats();
         attackBonus += weapon->charStats.getAttackBonus();
         damageBonus += weapon->charStats.getDamageBonus();
-        bodySlots.saveToBody(item);
+       
     }
      if (item->isArmor()) {
         Armor* armor = dynamic_cast<Armor*>(item);
         equippedItems[1] = armor;
         armor->IncreaseCharStats();
         armorClass += armor->charStats.getArmorClass();
-        bodySlots.saveToBody(item);
+       
     }
      if (item->isShield()) {
         Shield* shield = dynamic_cast<Shield*>(item);
         equippedItems[2] = shield;
         shield->IncreaseCharStats();
         armorClass += shield->charStats.getArmorClass();
-        bodySlots.saveToBody(item);
+       
     }
 
     cout << "Equipped " << item->getName() << " to Character \n";
@@ -185,7 +185,7 @@ void Character::addMultipleItems(vector<Item*> itemsFile) {
 
 // Take Item out of Inventory
 Item* Character::takeItem(const std::string& itemName) {
-    //delete from inventory then take iten
+    
     return inventory.takeItem(itemName);
 }
 

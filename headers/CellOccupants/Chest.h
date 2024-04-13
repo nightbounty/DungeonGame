@@ -21,11 +21,11 @@ class Chest : public CellOccupant
 {
 private:
     Item* itemLoot;
-    //Shield* shieldLoot = new Shield("Medium Shield");
-    //Weapon* bowLoot = new Weapon("Light Bow", "1d8", 1);
-    //Armor* armorLoot = new Armor("Medium Armor");
-    //Ring* ringLoot = new Ring("Basic Ring");
-    //vector<Item*> chestLoot = { shieldLoot, bowLoot, armorLoot, ringLoot };
+    Shield* shieldLoot = new Shield("Medium Shield");
+    Weapon* bowLoot = new Weapon("Light Bow", "1d8", 1);
+    Armor* armorLoot = new Armor("Medium Armor");
+    Ring* ringLoot = new Ring("Basic Ring");
+   vector<Item*> chesttesting = { shieldLoot, bowLoot, armorLoot, ringLoot };
 
     
     //ItemCreation startingItems;
