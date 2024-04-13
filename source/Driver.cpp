@@ -10,46 +10,7 @@
 #include "Items/Shield.h"
 
 int main(){
-
-	/*
-	
-	// Create a character
-	Character* hero = new Character();
-	// Create an Item
-	Weapon* bow = new Weapon("Bow", "1d8", 5);
-	Armor* armor = new Armor("Light Armor");
-	Shield* shield = new Shield("Light Shield");
-
-	// add to inventory
-	hero->AddToInventory(bow);
-	hero->AddToInventory(armor);
-	hero->AddToInventory(shield);
-	//diplay inventory
-	hero->displayInventory();
-
-	//skip line
-	std::cout << "\n";
-	//skip line
-	std::cout << "\n";
-
-	//take Weapon from Inventory
-	Item* takeWeapon = hero->takeItem("Bow");
-	Item* takeArmor = hero->takeItem("Light Armor");
-	// Equip Item to Character
-	hero->equipItem(takeWeapon);
-	hero->equipItem(takeArmor);
-	//display Equipped items
-	hero->displayEquippedItems();
-	//diplay inventory
-	hero->displayInventory(); // should have nothing
-	hero->DisplayStats(); // Increase the character stats
-	hero->unEquipItem(takeWeapon);
-	// display Character stats
-	hero->DisplayStats();
-	hero->displayInventory(); // should have the bow back
-	*/
-
-	int option;
+int option;
 	Campaign* campaign;
 	cout << "=============================================" << endl;
 	cout << "Welcome to Dungeons and Dragons Online!" << endl;

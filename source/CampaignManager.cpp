@@ -2,58 +2,11 @@
 #include "CellOccupants/Enemy.h"
 #include "Strategies/FriendlyStrategy.h"
 
-void CampaignManager::LaunchCampaignBuilder() {
-	cout << "Welcome to the interactive campaign builder!" << endl;
-	cout << "============================================" << endl;
-	int currentOption;
-	while (true) {
-		DisplayMainMenu();
-
-		cin >> currentOption;
-		switch (currentOption) {
-		case 1: // Creating a new map
-		{
-			Map* newMap = new Map(5, 6, new Vector2(2, 0));
-			newMap->SetName("testMap");
-			//Map* newMap = CreateNewMap();
-			ofstream mapFile(".\\source\\UserCreatedMaps\\" + newMap->GetName() + ".txt");
-			mapFile.write((char*)&newMap, sizeof(newMap));
-			mapFile.close();
-			cout << "Your new map has been saved to a file!" << endl;
-			break;
-		}
-
-		case 2: // Creating a new campaign
-		{
-			Campaign* newCampaign = CampaignManager::CreateNewCampaign();
-			ofstream campaignFile(".\\source\\UserCreatedCampaigns\\" + newCampaign->GetTitle() + ".txt");
-			campaignFile.write((char*)&newCampaign, sizeof(newCampaign));
-			campaignFile.close();
-
-			break;
-		}
-
-		case 3: // Loading and editing a map
-		{
-			Map* loadedMap = CampaignManager::LoadMap();
-			CampaignManager::EditLoadedMap(loadedMap);
-			break;
-		}
-
-		case 4: // loading and editing a campaign
-		{
-			Campaign* loadedCampaign = CampaignManager::LoadCampaign();
-			CampaignManager::EditLoadedCampaign(loadedCampaign);
-			break;
-		}
-		case 5:
-		{
-			cout << "Thank you for using the campaign builder! Exiting the software now..." << endl;
-			return;
-		}
-
-		}
-	}
+void CampaignManager::WriteMapToFile(Map* map) {
+	ofstream mapFile(".\\source\\UserCreatedMaps\\" + map->GetName() + ".txt");
+	mapFile.write((char*)&map, sizeof(map));
+	mapFile.close();
+	//cout << "Your new map has been saved to a file!" << endl;
 }
 
 	void CampaignManager::DisplayMainMenu(){
@@ -70,29 +23,52 @@ Campaign* CampaignManager::LoadCampaign() {
 	vector<Map*> maps;
 	Map* barovia = new Map(5, 6, new Vector2(3, 0));
 	barovia->SetName("Barovia");
-	Map* vallaki = new Map(6, 7, new Vector2(4, 0));
+	WriteMapToFile(barovia);
+	Map* vallaki = new Map(5, 4, new Vector2(4, 0));
 	vallaki->SetName("Vallaki");
+	WriteMapToFile(vallaki);
 	Map* ravenloft = new Map(4, 5, new Vector2(2, 0));
 	ravenloft->SetName("Ravenloft");
+	WriteMapToFile(ravenloft);
 	maps.push_back(barovia);
 	maps.push_back(vallaki);
 	maps.push_back(ravenloft);
 
 	Campaign* testCampaign = new Campaign(maps, "COS");
-	// Campaign* newCampaign = CampaignManager::CreateNewCampaign();
 	ofstream campaignFile(".\\source\\UserCreatedCampaigns\\" + testCampaign->GetTitle() + ".txt");
-	campaignFile.write((char*)&testCampaign, sizeof(testCampaign));
+	string mapList = "";
+	for (int i = 0; i < maps.size(); i++) {
+		mapList += maps[i]->GetName() + "\n";
+	}
+	campaignFile << mapList;
 	campaignFile.close();
 
 	string campaignToLoad;
 	// take string input for which campaign
-	cout << "Enter the name of the campaignn you want to load." << endl;
+	cout << "Enter the name of the campaign you want to load." << endl;
 	cin >> campaignToLoad;
 	cin.ignore();
 	// create file stream based on the string
 	ifstream loadedCampaignFile(".\\source\\UserCreatedCampaigns\\" + campaignToLoad + ".txt");
 	Campaign* loadedCampaign;
-	loadedCampaignFile.read((char*)&loadedCampaign, sizeof(loadedCampaign));
+	string currentLine;
+	vector<Map*> loadedMaps;
+	vector<Item*> items;
+	while (std::getline(loadedCampaignFile, currentLine)) { // Read each line
+		/*
+		* if (currentLine == "***") {
+			store_in_maps = false; // Stop storing in maps
+			continue; // Skip storing "***"
+		}
+		*/
+		// if (store_in_maps) {
+			loadedMaps.push_back(LoadMapWithName(currentLine)); // Store in maps
+		//}
+		//else {
+			//items.push_back(line); // Store in items
+		//}
+	}
+	loadedCampaign = new Campaign(loadedMaps, campaignToLoad);
 	// show the loaded campaign to the user
 	cout << "This is the campaign you loaded!" << endl;
 	cout << loadedCampaign->ToString() << endl;
@@ -170,13 +146,16 @@ void CampaignManager::EditLoadedMap(Map* loadedMap) {
 		cout << "Enter the name of the map you want to load." << endl;
 		cin >> mapToLoad;
 		cin.ignore();
-		// create stream from the file name
-		ifstream loadedMapFile(".\\source\\UserCreatedMaps\\" + mapToLoad + ".txt");
+		return LoadMapWithName(mapToLoad);
+	}
+
+	Map* CampaignManager::LoadMapWithName(string name) {
+		ifstream loadedMapFile(".\\source\\UserCreatedMaps\\" + name + ".txt");
 		Map* loadedMap;
 		loadedMapFile.read((char*)&loadedMap, sizeof(loadedMap));
 		// display loaded map to user
-		cout << "This is the map you loaded!" << endl;
-		cout << loadedMap->ToString() << endl;
+		//cout << "This is the map you loaded!" << endl;
+		//cout << loadedMap->ToString() << endl;
 		loadedMapFile.close();
 		return loadedMap;
 	}
