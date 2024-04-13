@@ -1,0 +1,9 @@
+Brick 3 Bully
+Lila 7 Nimble
+Garrick 9 Tank
+Bob 11 Bully
+Steven 1 Nimble
+Alanie 1 Tank
+Zoro 1 Bully
+Luffy 1 Nimble
+Himmel 1 Tank
